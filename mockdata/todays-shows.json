@@ -1,0 +1,181 @@
+{
+  "tallinn": [
+    {
+      "title": "Rhythm Doctor´s Waiting Room 2022-06-06",
+      "episode_id": 23046,
+      "slug": "rhythm-doctors-waiting-room",
+      "show_title": "Rhythm Doctor´s Waiting Room",
+      "episode_time": {
+        "episode_start": "2022-06-06 11:00:00",
+        "episode_end": "2022-06-06 13:00:00"
+      },
+      "episode_timestamps": {
+        "episode_start": "1654502400",
+        "episode_end": "1654509600"
+      }
+    },
+    {
+      "title": "Frotee Lainepikkus 2022-06-06",
+      "episode_id": 23053,
+      "slug": "martin-joela-erki-pruul",
+      "show_title": "Frotee Lainepikkus",
+      "episode_time": {
+        "episode_start": "2022-06-06 13:00:00",
+        "episode_end": "2022-06-06 14:00:00"
+      },
+      "episode_timestamps": {
+        "episode_start": "1654509600",
+        "episode_end": "1654513200"
+      },
+      "is_repeat": true
+    },
+    {
+      "title": "Tutkalla 2022-06-06",
+      "episode_id": 23054,
+      "slug": "tutkalla",
+      "show_title": "Tutkalla",
+      "episode_time": {
+        "episode_start": "2022-06-06 14:00:00",
+        "episode_end": "2022-06-06 15:00:00"
+      },
+      "episode_timestamps": {
+        "episode_start": "1654513200",
+        "episode_end": "1654516800"
+      },
+      "is_repeat": true
+    },
+    {
+      "title": "Head High 2022-06-06",
+      "episode_id": 23055,
+      "slug": "head-high",
+      "show_title": "Head High",
+      "episode_time": {
+        "episode_start": "2022-06-06 15:00:00",
+        "episode_end": "2022-06-06 16:00:00"
+      },
+      "episode_timestamps": {
+        "episode_start": "1654516800",
+        "episode_end": "1654520400"
+      },
+      "is_repeat": true
+    },
+    {
+      "title": "Serenades Show 2022-06-06",
+      "episode_id": 23056,
+      "slug": "serenades-show",
+      "show_title": "Serenades Show",
+      "episode_time": {
+        "episode_start": "2022-06-06 16:00:00",
+        "episode_end": "2022-06-06 18:00:00"
+      },
+      "episode_timestamps": {
+        "episode_start": "1654520400",
+        "episode_end": "1654527600"
+      },
+      "is_repeat": true
+    },
+    {
+      "title": "SULK RODEO 2022-06-06",
+      "episode_id": 23058,
+      "slug": "sulk-rodeo",
+      "show_title": "SULK RODEO",
+      "episode_time": {
+        "episode_start": "2022-06-06 18:00:00",
+        "episode_end": "2022-06-06 19:03:00"
+      },
+      "episode_timestamps": {
+        "episode_start": "1654527600",
+        "episode_end": "1654531380"
+      },
+      "subtitle": "Tex Tehan"
+    }
+  ],
+  "helsinki": [
+    {
+      "title": "Suvan säkeet 2022-06-06",
+      "episode_id": 23003,
+      "slug": "suvan-sakeet",
+      "show_title": "Suvan säkeet",
+      "episode_time": {
+        "episode_start": "2022-06-06 11:00:00",
+        "episode_end": "2022-06-06 13:00:00"
+      },
+      "episode_timestamps": {
+        "episode_start": "1654502400",
+        "episode_end": "1654509600"
+      },
+      "subtitle": "Patrick Cowley Mix Special"
+    },
+    {
+      "title": "Kristian Crusoen maailma 2022-06-06",
+      "episode_id": 23004,
+      "slug": "kristiancrusoe",
+      "show_title": "Kristian Crusoen maailma",
+      "episode_time": {
+        "episode_start": "2022-06-06 13:00:00",
+        "episode_end": "2022-06-06 14:00:00"
+      },
+      "episode_timestamps": {
+        "episode_start": "1654509600",
+        "episode_end": "1654513200"
+      }
+    },
+    {
+      "title": "Cosmic Turtle 2022-06-06",
+      "episode_id": 23005,
+      "slug": "cosmic-turtle",
+      "show_title": "Cosmic Turtle",
+      "episode_time": {
+        "episode_start": "2022-06-06 14:00:00",
+        "episode_end": "2022-06-06 15:00:00"
+      },
+      "episode_timestamps": {
+        "episode_start": "1654513200",
+        "episode_end": "1654516800"
+      },
+      "subtitle": "w/ The Sands of Time"
+    },
+    {
+      "title": "Papiz recipes 2022-06-06",
+      "episode_id": 23006,
+      "slug": "papiz-recipes",
+      "show_title": "Papiz recipes",
+      "episode_time": {
+        "episode_start": "2022-06-06 15:00:00",
+        "episode_end": "2022-06-06 16:00:00"
+      },
+      "episode_timestamps": {
+        "episode_start": "1654516800",
+        "episode_end": "1654520400"
+      }
+    },
+    {
+      "title": "Elements Radio 2022-06-06",
+      "episode_id": 23007,
+      "slug": "elements-radio",
+      "show_title": "Elements Radio",
+      "episode_time": {
+        "episode_start": "2022-06-06 16:00:00",
+        "episode_end": "2022-06-06 18:00:00"
+      },
+      "episode_timestamps": {
+        "episode_start": "1654520400",
+        "episode_end": "1654527600"
+      }
+    },
+    {
+      "title": "Signal Life 2022-06-06",
+      "episode_id": 23008,
+      "slug": "signal-life",
+      "show_title": "Signal Life",
+      "episode_time": {
+        "episode_start": "2022-06-06 18:00:00",
+        "episode_end": "2022-06-06 20:00:00"
+      },
+      "episode_timestamps": {
+        "episode_start": "1654527600",
+        "episode_end": "1654534800"
+      }
+    }
+  ]
+}
