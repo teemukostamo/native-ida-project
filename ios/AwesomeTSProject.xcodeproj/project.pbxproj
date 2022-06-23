@@ -14,6 +14,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-AwesomeTSProject-AwesomeTSProjectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-AwesomeTSProject-AwesomeTSProjectTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		C756D7B46EFE4B0195229293 /* FavoritMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 129F51B7A99543D9ACE0112A /* FavoritMono-Regular.ttf */; };
+		E1C2A9E6081B462BA0ED5F51 /* Ida-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E394D9F5ECA472ABEB11F4F /* Ida-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +32,8 @@
 		00E356EE1AD99517003FC87E /* AwesomeTSProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwesomeTSProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* AwesomeTSProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AwesomeTSProjectTests.m; sourceTree = "<group>"; };
+		0E394D9F5ECA472ABEB11F4F /* Ida-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Ida-Regular.ttf"; path = "../assets/fonts/Ida-Regular.ttf"; sourceTree = "<group>"; };
+		129F51B7A99543D9ACE0112A /* FavoritMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "FavoritMono-Regular.ttf"; path = "../assets/fonts/FavoritMono-Regular.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* AwesomeTSProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomeTSProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = AwesomeTSProject/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = AwesomeTSProject/AppDelegate.mm; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 		5A5751E8BAC7495E953B1BCF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				129F51B7A99543D9ACE0112A /* FavoritMono-Regular.ttf */,
+				0E394D9F5ECA472ABEB11F4F /* Ida-Regular.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -253,6 +259,8 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				C756D7B46EFE4B0195229293 /* FavoritMono-Regular.ttf in Resources */,
+				E1C2A9E6081B462BA0ED5F51 /* Ida-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
