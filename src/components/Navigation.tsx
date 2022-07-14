@@ -1,25 +1,30 @@
 import * as React from 'react';
-import {Text} from 'react-native';
 import {BottomNavigation} from 'react-native-paper';
 
-import LiveView from './LiveView';
+import LiveView from './live';
+import ExploreView from './explore';
+import RecentsView from './recents';
+import MyIdaView from './myida';
 
-const Navigation = () => {
+const Navigation: React.FC = () => {
   const LiveRoute = () => <LiveView />;
-  const ExploreRoute = () => <Text>Explore</Text>;
-  const RecentsRoute = () => <Text>Recents</Text>;
+  const ExploreRoute = () => <ExploreView />;
+  const RecentsRoute = () => <RecentsView />;
+  const MyIdaRoute = () => <MyIdaView />;
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     {key: 'live', title: 'Live', icon: 'music', color: '#795548'},
     {key: 'explore', title: 'Explore', icon: 'album', color: '#607D8B'},
     {key: 'recents', title: 'Recents', icon: 'history', color: '#3F51B5'},
+    {key: 'myida', title: 'My Ida', icon: 'history', color: '#e3e3e3'},
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
     live: LiveRoute,
     explore: ExploreRoute,
     recents: RecentsRoute,
+    myida: MyIdaRoute,
   });
 
   return (
