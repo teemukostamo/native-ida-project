@@ -1,7 +1,9 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 
-import {LiveShows} from '../../types/liveRequest';
+import {LiveShows} from '../../contexts/live/types';
+import {NowPlayingState} from '../../contexts/nowPlaying/types';
+
 import OnAir from './OnAir';
 import OffAir from './OffAir';
 
@@ -24,27 +26,32 @@ const styles = StyleSheet.create({
 
 interface Props {
   liveState: LiveShows;
+  nowPlaying: NowPlayingState;
   onPress: () => void;
 }
 
-const Helsinki: React.FC<Props> = ({liveState, onPress}) => {
-  console.log('livestate in helsinki', liveState?.live);
-  return liveState && liveState.live ? (
+const Helsinki: React.FC<Props> = ({liveState, nowPlaying, onPress}) => {
+  return liveState && liveState.helsinki ? (
     <View style={styles.flexItemB}>
-      {liveState?.live.helsinki.live_show ? (
-        <OnAir onPress={onPress} town="Helsinki" />
+      {liveState.helsinki.live_show ? (
+        <OnAir
+          liveShow={liveState?.helsinki.live_show}
+          nowPlaying={nowPlaying}
+          onPress={onPress}
+          town="helsinki"
+        />
       ) : (
         <OffAir
           styles={styles}
           city="Helsinki"
-          nextShow={liveState?.live.helsinki.next_show.show_title}
+          nextShow={liveState?.helsinki.next_show.show_title}
           nextShowStartTime={
-            liveState?.live.helsinki.next_show.episode_time.episode_start
+            liveState?.helsinki.next_show.episode_time.episode_start
           }
         />
       )}
     </View>
-  ) : //some offline spinner here
+  ) : //some data loading spinner here
   null;
 };
 

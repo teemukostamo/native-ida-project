@@ -1,6 +1,6 @@
-import {FETCH_LIVE_SHOWS} from './liveShowsContext';
-import {PLAY_HELSINKI} from './nowPlayingContext';
-import {LiveShows} from '../types/liveRequest';
+import {FETCH_LIVE_SHOWS} from './live/reducer';
+import {PLAY_HELSINKI, STOP} from './nowPlaying/reducer';
+import {LiveShows} from './live/types';
 
 interface LiveShowsAction {
   type: typeof FETCH_LIVE_SHOWS;
@@ -8,7 +8,7 @@ interface LiveShowsAction {
 }
 
 interface PlayHelsinkiAction {
-  type: typeof PLAY_HELSINKI;
+  type: typeof PLAY_HELSINKI | typeof STOP;
 }
 
 type ActionTypes = LiveShowsAction | PlayHelsinkiAction;

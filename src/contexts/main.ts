@@ -1,12 +1,11 @@
 import {createContext, Dispatch} from 'react';
-import {LiveShows} from '../types/liveRequest';
+import {LiveShows} from './live/types';
+import {liveShowsReducer} from './live/reducer';
+
+import {NowPlayingState} from './nowPlaying/types';
+import {initialNowPlaying, nowPlayingReducer} from './nowPlaying/reducer';
+
 import ActionTypes from './actionTypes';
-import {liveShowsReducer} from './liveShowsContext';
-import {
-  NowPlayingState,
-  initialNowPlaying,
-  nowPlayingReducer,
-} from './nowPlayingContext';
 
 type InitialStateType = {
   nowPlaying: NowPlayingState;
@@ -31,17 +30,7 @@ export const AppContext = createContext<{
   dispatch: Dispatch<ActionTypes>;
 }>({
   state: initialState,
-  dispatch: () => null,
+  dispatch: ({}) => null,
 });
-
-// const AppProvider: React.FC = ({children}) => {
-//   const [state, dispatch] = useReducer(mainReducer, initialState);
-
-//   return (
-//     <AppContext.Provider value={{state, dispatch}}>
-//       {children}
-//     </AppContext.Provider>
-//   );
-// };
 
 // export {AppProvider, AppContext};

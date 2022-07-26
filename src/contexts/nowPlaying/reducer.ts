@@ -1,11 +1,8 @@
-import ActionTypes from './actionTypes';
+import ActionTypes from '../actionTypes';
+import {NowPlayingState} from './types';
 
 export const PLAY_HELSINKI = 'PLAY_HELSINKI';
-
-export interface NowPlayingState {
-  nowPlaying: boolean;
-  streamType: string | null;
-}
+export const STOP = 'STOP';
 
 export const nowPlayingReducer = (
   state: NowPlayingState,
@@ -16,7 +13,14 @@ export const nowPlayingReducer = (
       return {
         ...state,
         nowPlaying: true,
+        // action.data helsinki
         streamType: 'LIVE',
+      };
+    case 'STOP':
+      return {
+        ...state,
+        streamType: null,
+        nowPlaying: false,
       };
     default:
       return state;

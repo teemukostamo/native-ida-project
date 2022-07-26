@@ -26,12 +26,18 @@ const LiveView: React.FC = () => {
     });
   };
 
-  console.log('state', state);
-  console.log('state.live', state.live);
   return state.live ? (
     <View style={styles.liveContainer}>
-      <Tallinn onPress={onPress} liveState={state.live} />
-      <Helsinki onPress={onPress} liveState={state.live} />
+      <Tallinn
+        nowPlaying={state.nowPlaying}
+        onPress={onPress}
+        liveState={state.live}
+      />
+      <Helsinki
+        nowPlaying={state.nowPlaying}
+        onPress={onPress}
+        liveState={state.live}
+      />
     </View>
   ) : null;
 };

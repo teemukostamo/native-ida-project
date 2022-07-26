@@ -46,31 +46,33 @@ interface NextShow {
   episode_time: EpisodeTime;
 }
 
-interface LiveShow {
-  title: string;
-  show_title: string;
-  slug: string;
-  episode_id: number;
-  artist: string;
-  episode_time: EpisodeTime;
-  episode_timestamps: EpisodeTime;
-  show_image: Image;
-  taxonomies: {
-    channel: Array<Channel>;
-  };
-}
+type FalseType = false;
+
+export type LiveShowData =
+  | {
+      title: string;
+      show_title: string;
+      slug: string;
+      episode_id: number;
+      artist: string;
+      episode_time: EpisodeTime;
+      episode_timestamps: EpisodeTime;
+      show_image: Image;
+      taxonomies: {
+        channel: Array<Channel>;
+      };
+    }
+  | FalseType;
 
 export type LiveShows = {
-  live: {
-    tallinn: {
-      live_show: boolean | LiveShow;
-      next_show: NextShow;
-      video_stream: string;
-    };
-    helsinki: {
-      live_show: boolean | LiveShow;
-      next_show: NextShow;
-      video_stream: string;
-    };
-  } | null;
+  tallinn: {
+    live_show: LiveShowData;
+    next_show: NextShow;
+    video_stream: string;
+  };
+  helsinki: {
+    live_show: LiveShowData | FalseType;
+    next_show: NextShow;
+    video_stream: string;
+  };
 } | null;
