@@ -3,6 +3,7 @@ import {SafeAreaView, StyleSheet} from 'react-native';
 
 import {AppContext, mainReducer, initialState} from './contexts/main';
 import Navigation from './components/Navigation';
+import {getMsToNextHour} from './utils';
 
 import theme from './theme';
 
@@ -21,8 +22,17 @@ const App = () => {
         data: liveShows,
       });
     };
-
+    console.log('fetching shows on initial render at: ', new Date());
     fetchLiveShows();
+
+    setTimeout(() => {
+      fetchLiveShows();
+      console.log('fetched shows at the next hour at: ', new Date());
+      setInterval(() => {
+        console.log('fetched shows at every hour at: ', new Date());
+        fetchLiveShows();
+      }, 3600000);
+    }, getMsToNextHour());
   }, []);
 
   const styles = StyleSheet.create({

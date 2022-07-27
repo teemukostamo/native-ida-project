@@ -13,6 +13,7 @@ export const nowPlayingReducer = (
       return {
         ...state,
         nowPlaying: true,
+        showNowPlayingBar: true,
         // action.data helsinki
         streamType: 'LIVE',
       };
@@ -28,6 +29,7 @@ export const nowPlayingReducer = (
 };
 
 export const initialNowPlaying = {
+  showNowPlayingBar: false,
   nowPlaying: false,
   streamType: null,
 };

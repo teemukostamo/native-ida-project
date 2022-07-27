@@ -14,10 +14,10 @@ const Navigation: React.FC = () => {
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    {key: 'live', title: 'Live', icon: 'music', color: '#795548'},
-    {key: 'explore', title: 'Explore', icon: 'album', color: '#607D8B'},
-    {key: 'recents', title: 'Recents', icon: 'history', color: '#3F51B5'},
-    {key: 'myida', title: 'My Ida', icon: 'history', color: '#e3e3e3'},
+    {key: 'live', title: 'Live', icon: 'music'},
+    {key: 'explore', title: 'Explore', icon: 'album'},
+    {key: 'recents', title: 'Recents', icon: 'history'},
+    {key: 'myida', title: 'My Ida', icon: 'history'},
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
@@ -33,7 +33,7 @@ const Navigation: React.FC = () => {
       onIndexChange={setIndex}
       renderScene={renderScene}
       // eslint-disable-next-line react-native/no-inline-styles
-      barStyle={{backgroundColor: '#e3e3e3'}}
+      //barStyle={{backgroundColor: '#e3e3e3'}}
       safeAreaInsets={{bottom: 1}}
     />
   );

@@ -58,6 +58,7 @@ export type LiveShowData =
       episode_time: EpisodeTime;
       episode_timestamps: EpisodeTime;
       show_image: Image;
+      episode_image?: Image;
       taxonomies: {
         channel: Array<Channel>;
       };

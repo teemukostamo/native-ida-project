@@ -3,6 +3,7 @@ import {View, StyleSheet} from 'react-native';
 
 import Tallinn from './Tallinn';
 import Helsinki from './Helsinki';
+import NowPlayingBar from '../nowPlaying';
 import {AppContext} from '../../contexts/main';
 
 const styles = StyleSheet.create({
@@ -34,6 +35,7 @@ const LiveView: React.FC = () => {
           liveState={state.live}
         />
       </View>
+      <NowPlayingBar />
     </View>
   ) : null;
 };
