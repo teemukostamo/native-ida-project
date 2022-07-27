@@ -3,6 +3,7 @@ import {View, StyleSheet} from 'react-native';
 
 import {LiveShows} from '../../contexts/live/types';
 import {NowPlayingState} from '../../contexts/nowPlaying/types';
+import {onTallinnPlayPress} from '../../contexts/nowPlaying/actions';
 
 import OffAir from './OffAir';
 import OnAir from './OnAir';
@@ -21,23 +22,22 @@ const styles = StyleSheet.create({
 interface Props {
   liveState: LiveShows;
   nowPlaying: NowPlayingState;
-  onPress: () => void;
 }
 
-const Tallinn: React.FC<Props> = ({nowPlaying, liveState, onPress}) => {
+const Tallinn: React.FC<Props> = ({nowPlaying, liveState}) => {
   return liveState && liveState.tallinn ? (
     <View style={styles.flexItemA}>
       {liveState?.tallinn.live_show ? (
         <OnAir
           liveShow={liveState?.tallinn.live_show}
           nowPlaying={nowPlaying}
-          onPress={onPress}
-          town="tallinn"
+          onPress={onTallinnPlayPress}
+          studio="tallinn"
         />
       ) : (
         <OffAir
           styles={styles}
-          city="Tallinn"
+          studio="Tallinn"
           nextShow={liveState?.tallinn.next_show.show_title}
           nextShowStartTime={
             liveState?.tallinn.next_show.episode_time.episode_start

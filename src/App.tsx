@@ -39,7 +39,7 @@ const App = () => {
     container: {
       flex: 1,
       justifyContent: 'center',
-      backgroundColor: theme.colors.primary,
+      backgroundColor: theme.colors.gray,
     },
   });
 

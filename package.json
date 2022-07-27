@@ -10,9 +10,11 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-native-community/slider": "^4.2.4",
     "react": "17.0.2",
     "react-native": "0.68.2",
     "react-native-paper": "^4.12.1",
+    "react-native-track-player": "^2.2.0-rc4",
     "react-native-vector-icons": "^9.1.0",
     "react-native-webview": "^11.18.2"
   },

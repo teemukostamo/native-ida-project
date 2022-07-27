@@ -1,14 +1,21 @@
 import React, {useContext} from 'react';
 
 import {AppContext} from '../../contexts/main';
+import {
+  stopPlayerPress,
+  onTallinnPlayPress,
+  onHelsinkiPlayPress,
+} from '../../contexts/nowPlaying/actions';
 
 import {View, StyleSheet} from 'react-native';
 import {Text, IconButton} from 'react-native-paper';
 
+import theme from '../../theme';
+
 const styles = StyleSheet.create({
   container: {
     height: 55,
-    backgroundColor: 'red',
+    backgroundColor: theme.colors.gray,
     flexDirection: 'row',
   },
   flexContainer: {
@@ -20,19 +27,47 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     marginBottom: 12,
   },
+  studioText: {
+    fontFamily: 'Menlo-Bold',
+    margin: 5,
+  },
 });
 
 const NowPlayingBar = () => {
-  const {state} = useContext(AppContext);
-  console.log(state);
+  const {state, dispatch} = useContext(AppContext);
+  const {nowPlaying} = state;
+  console.log('nowPlaying state at nowplaying', nowPlaying);
 
-  return state.nowPlaying.showNowPlayingBar ? (
+  const handlePress = () => {
+    if (nowPlaying.nowPlaying) {
+      stopPlayerPress(dispatch);
+    }
+
+    if (
+      !nowPlaying.nowPlaying &&
+      nowPlaying.studio &&
+      nowPlaying.show_title &&
+      nowPlaying.artist
+    ) {
+      if (nowPlaying.studio === 'helsinki') {
+        onHelsinkiPlayPress(dispatch, nowPlaying.show_title, nowPlaying.artist);
+      }
+      if (nowPlaying.studio === 'tallinn') {
+        onTallinnPlayPress(dispatch, nowPlaying.show_title, nowPlaying.artist);
+      }
+    }
+  };
+
+  return nowPlaying.showNowPlayingBar ? (
     <View style={styles.container}>
       <View style={styles.flexContainer}>
-        <Text>Now playing bar</Text>
+        <Text style={styles.studioText}>
+          Now playing {nowPlaying.show_title?.toUpperCase()} by{' '}
+          {nowPlaying.artist} from {nowPlaying.studio?.toUpperCase()}
+        </Text>
         <IconButton
-          icon={state.nowPlaying.nowPlaying ? 'play' : 'pause'}
-          onPress={() => console.log('pressed nowplaying bar')}
+          icon={!nowPlaying.nowPlaying ? 'play' : 'stop'}
+          onPress={() => handlePress()}
         />
       </View>
     </View>

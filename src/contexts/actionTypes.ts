@@ -1,5 +1,5 @@
 import {FETCH_LIVE_SHOWS} from './live/reducer';
-import {PLAY_HELSINKI, STOP} from './nowPlaying/reducer';
+import {PLAY_HELSINKI, PLAY_TALLINN, STOP} from './nowPlaying/reducer';
 import {LiveShows} from './live/types';
 
 interface LiveShowsAction {
@@ -7,10 +7,18 @@ interface LiveShowsAction {
   data: LiveShows;
 }
 
-interface PlayHelsinkiAction {
-  type: typeof PLAY_HELSINKI | typeof STOP;
+interface StartPlayerAction {
+  type: typeof PLAY_HELSINKI | typeof PLAY_TALLINN;
+  data: {
+    artist: string;
+    show_title: string;
+  };
 }
 
-type ActionTypes = LiveShowsAction | PlayHelsinkiAction;
+interface StopPlayerAction {
+  type: typeof STOP;
+}
+
+type ActionTypes = LiveShowsAction | StartPlayerAction | StopPlayerAction;
 
 export default ActionTypes;

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {Dispatch, useContext} from 'react';
 import {View, ImageBackground, StyleSheet} from 'react-native';
 import {Title, Text, IconButton} from 'react-native-paper';
+import {AppContext} from '../../contexts/main';
+import ActionTypes from '../../contexts/actionTypes';
 
 import {NowPlayingState} from '../../contexts/nowPlaying/types';
 import {LiveShowData} from '../../contexts/live/types';
@@ -8,10 +10,14 @@ import {LiveShowData} from '../../contexts/live/types';
 import theme from '../../theme';
 
 interface Props {
-  town: string;
+  studio: string;
   nowPlaying: NowPlayingState;
   liveShow: LiveShowData;
-  onPress: () => void;
+  onPress: (
+    dispatch: Dispatch<ActionTypes>,
+    show_title: string,
+    artist: string,
+  ) => void;
 }
 
 const styles = StyleSheet.create({
@@ -46,7 +52,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(52, 52, 52, 0.6)',
     position: 'relative',
     bottom: 125,
-    marginLeft: 10,
+    marginLeft: 3,
+    marginTop: 5,
     alignSelf: 'flex-start',
     paddingHorizontal: 3,
     fontFamily: 'Menlo-Bold',
@@ -55,7 +62,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const OnAir: React.FC<Props> = ({town, onPress, nowPlaying, liveShow}) => {
+const OnAir: React.FC<Props> = ({studio, onPress, nowPlaying, liveShow}) => {
+  const {dispatch} = useContext(AppContext);
   if (liveShow) {
     const image = {
       uri: liveShow.episode_image
@@ -71,7 +79,7 @@ const OnAir: React.FC<Props> = ({town, onPress, nowPlaying, liveShow}) => {
             resizeMode="cover"
             style={styles.image}>
             <Text style={styles.liveTextStyle}>
-              LIVE IN {town.toUpperCase()}
+              Live in {studio.toUpperCase()}
             </Text>
           </ImageBackground>
         </View>
@@ -83,11 +91,13 @@ const OnAir: React.FC<Props> = ({town, onPress, nowPlaying, liveShow}) => {
           <IconButton
             style={styles.playButton}
             icon={
-              !nowPlaying.nowPlaying || nowPlaying.streamType !== town
-                ? 'play'
-                : 'pause'
+              nowPlaying.nowPlaying && nowPlaying.studio === studio
+                ? 'stop'
+                : 'play'
             }
-            onPress={() => onPress()}
+            onPress={() =>
+              onPress(dispatch, liveShow.show_title, liveShow.artist)
+            }
           />
         </View>
       </View>

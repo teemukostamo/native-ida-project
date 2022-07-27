@@ -2,6 +2,7 @@ import ActionTypes from '../actionTypes';
 import {NowPlayingState} from './types';
 
 export const PLAY_HELSINKI = 'PLAY_HELSINKI';
+export const PLAY_TALLINN = 'PLAY_TALLINN';
 export const STOP = 'STOP';
 
 export const nowPlayingReducer = (
@@ -14,8 +15,20 @@ export const nowPlayingReducer = (
         ...state,
         nowPlaying: true,
         showNowPlayingBar: true,
-        // action.data helsinki
-        streamType: 'LIVE',
+        streamType: 'live',
+        studio: 'helsinki',
+        show_title: action.data.show_title,
+        artist: action.data.artist,
+      };
+    case 'PLAY_TALLINN':
+      return {
+        ...state,
+        nowPlaying: true,
+        showNowPlayingBar: true,
+        streamType: 'live',
+        studio: 'tallinn',
+        show_title: action.data.show_title,
+        artist: action.data.artist,
       };
     case 'STOP':
       return {
@@ -32,4 +45,7 @@ export const initialNowPlaying = {
   showNowPlayingBar: false,
   nowPlaying: false,
   streamType: null,
+  studio: null,
+  show_title: null,
+  artist: null,
 };
