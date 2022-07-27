@@ -9,13 +9,8 @@ import OffAir from './OffAir';
 
 const styles = StyleSheet.create({
   flexItemB: {
-    flexGrow: 1,
+    flex: 3,
     backgroundColor: '#7162dd',
-    position: 'relative',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
   },
   title: {
     marginTop: 10,

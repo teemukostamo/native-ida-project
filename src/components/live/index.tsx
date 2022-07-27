@@ -7,13 +7,7 @@ import {AppContext} from '../../contexts/main';
 
 const styles = StyleSheet.create({
   liveContainer: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
+    flex: 1,
   },
 });
 
@@ -28,16 +22,18 @@ const LiveView: React.FC = () => {
 
   return state.live ? (
     <View style={styles.liveContainer}>
-      <Tallinn
-        nowPlaying={state.nowPlaying}
-        onPress={onPress}
-        liveState={state.live}
-      />
-      <Helsinki
-        nowPlaying={state.nowPlaying}
-        onPress={onPress}
-        liveState={state.live}
-      />
+      <View style={styles.liveContainer}>
+        <Tallinn
+          nowPlaying={state.nowPlaying}
+          onPress={onPress}
+          liveState={state.live}
+        />
+        <Helsinki
+          nowPlaying={state.nowPlaying}
+          onPress={onPress}
+          liveState={state.live}
+        />
+      </View>
     </View>
   ) : null;
 };

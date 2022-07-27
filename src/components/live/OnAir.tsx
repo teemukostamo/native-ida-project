@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, ImageBackground, StyleSheet} from 'react-native';
-import {Title, Button} from 'react-native-paper';
+import {Title, Text, IconButton} from 'react-native-paper';
 
 import {NowPlayingState} from '../../contexts/nowPlaying/types';
 import {LiveShowData} from '../../contexts/live/types';
@@ -20,6 +20,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  titleContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  imageContainer: {
+    flex: 5,
+  },
+  playButton: {
+    alignSelf: 'flex-end',
+  },
 });
 
 const OnAir: React.FC<Props> = ({town, onPress, nowPlaying, liveShow}) => {
@@ -28,14 +38,27 @@ const OnAir: React.FC<Props> = ({town, onPress, nowPlaying, liveShow}) => {
 
     return (
       <View style={styles.container}>
-        <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-          <Title>in prog</Title>
-          <Button icon="camera" mode="contained" onPress={() => onPress()}>
-            {!nowPlaying.nowPlaying || nowPlaying.streamType !== town
-              ? 'Play'
-              : 'Pause'}
-          </Button>
-        </ImageBackground>
+        <View style={styles.imageContainer}>
+          <ImageBackground
+            source={image}
+            resizeMode="cover"
+            style={styles.image}>
+            <Title>in prog</Title>
+          </ImageBackground>
+        </View>
+        <View style={styles.titleContainer}>
+          <Title>{liveShow.show_title}</Title>
+          <Text>{liveShow.artist}</Text>
+          <IconButton
+            style={styles.playButton}
+            icon={
+              !nowPlaying.nowPlaying || nowPlaying.streamType !== town
+                ? 'play'
+                : 'pause'
+            }
+            onPress={() => onPress()}
+          />
+        </View>
       </View>
     );
   }

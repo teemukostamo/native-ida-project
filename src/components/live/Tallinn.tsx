@@ -9,13 +9,8 @@ import OnAir from './OnAir';
 
 const styles = StyleSheet.create({
   flexItemA: {
-    flexGrow: 1,
+    flex: 3,
     backgroundColor: '#ebaccb',
-    position: 'relative',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
   },
   title: {
     marginTop: 50,

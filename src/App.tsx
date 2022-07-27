@@ -1,7 +1,10 @@
 import React, {useEffect, useReducer} from 'react';
+import {SafeAreaView, StyleSheet} from 'react-native';
 
 import {AppContext, mainReducer, initialState} from './contexts/main';
 import Navigation from './components/Navigation';
+
+import theme from './theme';
 
 const App = () => {
   const [state, dispatch] = useReducer(mainReducer, initialState);
@@ -22,10 +25,20 @@ const App = () => {
     fetchLiveShows();
   }, []);
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: theme.colors.primary,
+    },
+  });
+
   return (
     <>
       <AppContext.Provider value={{state, dispatch}}>
-        <Navigation />
+        <SafeAreaView style={styles.container}>
+          <Navigation />
+        </SafeAreaView>
       </AppContext.Provider>
     </>
   );

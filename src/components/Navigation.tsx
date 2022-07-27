@@ -34,6 +34,7 @@ const Navigation: React.FC = () => {
       renderScene={renderScene}
       // eslint-disable-next-line react-native/no-inline-styles
       barStyle={{backgroundColor: '#e3e3e3'}}
+      safeAreaInsets={{bottom: 1}}
     />
   );
 };
