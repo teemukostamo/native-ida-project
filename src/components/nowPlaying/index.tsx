@@ -1,14 +1,22 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
+import {useTrackPlayerEvents, Event, State} from 'react-native-track-player';
 
 import {AppContext} from '../../contexts/main';
+import {
+  stopPlayerPress,
+  onTallinnPlayPress,
+  onHelsinkiPlayPress,
+} from '../../contexts/nowPlaying/actions';
 
 import {View, StyleSheet} from 'react-native';
 import {Text, IconButton} from 'react-native-paper';
 
+import theme from '../../theme';
+
 const styles = StyleSheet.create({
   container: {
     height: 55,
-    backgroundColor: 'red',
+    backgroundColor: theme.colors.gray,
     flexDirection: 'row',
   },
   flexContainer: {
@@ -19,21 +27,74 @@ const styles = StyleSheet.create({
   playButtonContainer: {
     alignSelf: 'flex-end',
     marginBottom: 12,
+    flex: 1,
+  },
+  studioText: {
+    fontFamily: 'Menlo-Bold',
+    margin: 5,
+    flex: 5,
   },
 });
 
 const NowPlayingBar = () => {
-  const {state} = useContext(AppContext);
-  console.log(state);
+  const {state, dispatch} = useContext(AppContext);
+  const [buffering, setBuffering] = useState(false);
+  console.log(buffering);
+  const {nowPlaying} = state;
+  const events = [Event.PlaybackState];
 
-  return state.nowPlaying.showNowPlayingBar ? (
+  useTrackPlayerEvents(events, async event => {
+    console.log('event state', event.state);
+    if (event.state === State.Buffering) {
+      setBuffering(true);
+    } else {
+      setBuffering(false);
+    }
+  });
+
+  const handlePress = () => {
+    if (nowPlaying.nowPlaying) {
+      stopPlayerPress(dispatch);
+    }
+
+    if (
+      !nowPlaying.nowPlaying &&
+      nowPlaying.studio &&
+      nowPlaying.show_title &&
+      nowPlaying.artist
+    ) {
+      if (nowPlaying.studio === 'helsinki') {
+        onHelsinkiPlayPress(dispatch, nowPlaying.show_title, nowPlaying.artist);
+      }
+      if (nowPlaying.studio === 'tallinn') {
+        onTallinnPlayPress(dispatch, nowPlaying.show_title, nowPlaying.artist);
+      }
+    }
+  };
+
+  return nowPlaying.showNowPlayingBar ? (
     <View style={styles.container}>
       <View style={styles.flexContainer}>
-        <Text>Now playing bar</Text>
+        <Text style={styles.studioText}>
+          Now playing {nowPlaying.show_title?.toUpperCase()} by{' '}
+          {nowPlaying.artist} from {nowPlaying.studio?.toUpperCase()}
+        </Text>
         <IconButton
-          icon={state.nowPlaying.nowPlaying ? 'play' : 'pause'}
-          onPress={() => console.log('pressed nowplaying bar')}
+          icon={
+            buffering ? 'loading' : !nowPlaying.nowPlaying ? 'play' : 'stop'
+          }
+          onPress={() => handlePress()}
         />
+        {/* {buffering ? (
+          <IconButton
+            icon={!nowPlaying.nowPlaying ? 'play' : 'stop'}
+            onPress={() => handlePress()}
+          />
+        ) : (
+          <View>
+            <Text>spinner</Text>
+          </View>
+        )} */}
       </View>
     </View>
   ) : null;

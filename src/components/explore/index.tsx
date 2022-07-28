@@ -7,13 +7,14 @@ import NowPlayingBar from '../nowPlaying';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'space-between',
   },
 });
 
 const ExploreView = () => {
   return (
     <View style={styles.container}>
-      <Title>this will be explore component</Title>
+      <Title>explore shows coming soon</Title>
       <NowPlayingBar />
     </View>
   );

@@ -7,13 +7,15 @@ import {NowPlayingState} from '../../contexts/nowPlaying/types';
 import OffAir from './OffAir';
 import OnAir from './OnAir';
 
+import theme from '../../theme';
+
 const styles = StyleSheet.create({
-  flexItemA: {
+  container: {
     flex: 3,
-    backgroundColor: '#ebaccb',
+    backgroundColor: theme.colors.primary,
   },
   title: {
-    marginTop: 50,
+    marginTop: 10,
     marginLeft: 10,
   },
 });
@@ -21,23 +23,20 @@ const styles = StyleSheet.create({
 interface Props {
   liveState: LiveShows;
   nowPlaying: NowPlayingState;
-  onPress: () => void;
 }
 
-const Tallinn: React.FC<Props> = ({nowPlaying, liveState, onPress}) => {
+const Tallinn: React.FC<Props> = ({nowPlaying, liveState}) => {
   return liveState && liveState.tallinn ? (
-    <View style={styles.flexItemA}>
+    <View style={styles.container}>
       {liveState?.tallinn.live_show ? (
         <OnAir
           liveShow={liveState?.tallinn.live_show}
           nowPlaying={nowPlaying}
-          onPress={onPress}
-          town="tallinn"
+          studio="tallinn"
         />
       ) : (
         <OffAir
-          styles={styles}
-          city="Tallinn"
+          studio="tallinn"
           nextShow={liveState?.tallinn.next_show.show_title}
           nextShowStartTime={
             liveState?.tallinn.next_show.episode_time.episode_start
