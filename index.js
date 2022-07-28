@@ -21,5 +21,4 @@ export default function Main() {
 
 AppRegistry.registerComponent(appName, () => Main);
 
-//add this line to register the TrackPlayer
 TrackPlayer.registerPlaybackService(() => require('./service.js'));
