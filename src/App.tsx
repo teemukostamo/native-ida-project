@@ -1,14 +1,26 @@
 import React, {useEffect, useReducer} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
+import {useTrackPlayerEvents, Event} from 'react-native-track-player';
 
 import {AppContext, mainReducer, initialState} from './contexts/main';
 import Navigation from './components/Navigation';
 import {getMsToNextHour} from './utils';
+import {setupPlayer} from './components/trackPlayer';
 
 import theme from './theme';
 
 const App = () => {
   const [state, dispatch] = useReducer(mainReducer, initialState);
+
+  const events = [Event.PlaybackState, Event.PlaybackError];
+  useTrackPlayerEvents(events, async event => {
+    if (event.type === Event.PlaybackError) {
+      console.warn('An error occured while playing the current track.');
+    }
+    if (event.type === Event.PlaybackState) {
+      console.log('player state is ', event.state);
+    }
+  });
 
   useEffect(() => {
     const fetchLiveShows = async () => {
@@ -33,6 +45,11 @@ const App = () => {
         fetchLiveShows();
       }, 3600000);
     }, getMsToNextHour());
+
+    const initPlayer = async () => {
+      await setupPlayer();
+    };
+    initPlayer();
   }, []);
 
   const styles = StyleSheet.create({

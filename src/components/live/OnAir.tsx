@@ -1,24 +1,18 @@
-import React, {Dispatch, useContext} from 'react';
+import React, {useContext} from 'react';
 import {View, ImageBackground, StyleSheet} from 'react-native';
 import {Title, Text, IconButton} from 'react-native-paper';
 import {AppContext} from '../../contexts/main';
-import ActionTypes from '../../contexts/actionTypes';
 
 import {NowPlayingState} from '../../contexts/nowPlaying/types';
 import {LiveShowData} from '../../contexts/live/types';
 
-import theme from '../../theme';
+import {
+  stopPlayerPress,
+  onTallinnPlayPress,
+  onHelsinkiPlayPress,
+} from '../../contexts/nowPlaying/actions';
 
-interface Props {
-  studio: string;
-  nowPlaying: NowPlayingState;
-  liveShow: LiveShowData;
-  onPress: (
-    dispatch: Dispatch<ActionTypes>,
-    show_title: string,
-    artist: string,
-  ) => void;
-}
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -62,13 +56,44 @@ const styles = StyleSheet.create({
   },
 });
 
-const OnAir: React.FC<Props> = ({studio, onPress, nowPlaying, liveShow}) => {
+interface Props {
+  studio: string;
+  nowPlaying: NowPlayingState;
+  liveShow: LiveShowData;
+}
+
+const OnAir: React.FC<Props> = ({studio, nowPlaying, liveShow}) => {
   const {dispatch} = useContext(AppContext);
+
   if (liveShow) {
     const image = {
       uri: liveShow.episode_image
         ? liveShow.episode_image.url
         : liveShow.show_image.url,
+    };
+
+    const handlePress = () => {
+      if (nowPlaying.nowPlaying) {
+        if (studio === nowPlaying.studio) {
+          stopPlayerPress(dispatch);
+        } else {
+          if (studio === 'helsinki') {
+            onHelsinkiPlayPress(dispatch, liveShow.show_title, liveShow.artist);
+          }
+          if (studio === 'tallinn') {
+            onTallinnPlayPress(dispatch, liveShow.show_title, liveShow.artist);
+          }
+        }
+      }
+
+      if (!nowPlaying.nowPlaying) {
+        if (studio === 'tallinn') {
+          onTallinnPlayPress(dispatch, liveShow.show_title, liveShow.artist);
+        }
+        if (studio === 'helsinki') {
+          onHelsinkiPlayPress(dispatch, liveShow.show_title, liveShow.artist);
+        }
+      }
     };
 
     return (
@@ -85,8 +110,20 @@ const OnAir: React.FC<Props> = ({studio, onPress, nowPlaying, liveShow}) => {
         </View>
         <View style={styles.titleContainer}>
           <View style={styles.titleTextContainer}>
-            <Title>{liveShow.show_title}</Title>
-            <Text>{liveShow.artist}</Text>
+            <Title
+              style={{
+                color:
+                  studio === 'helsinki' ? theme.colors.gray : theme.colors.text,
+              }}>
+              {liveShow.show_title}
+            </Title>
+            <Text
+              style={{
+                color:
+                  studio === 'helsinki' ? theme.colors.gray : theme.colors.text,
+              }}>
+              {liveShow.artist}
+            </Text>
           </View>
           <IconButton
             style={styles.playButton}
@@ -95,9 +132,7 @@ const OnAir: React.FC<Props> = ({studio, onPress, nowPlaying, liveShow}) => {
                 ? 'stop'
                 : 'play'
             }
-            onPress={() =>
-              onPress(dispatch, liveShow.show_title, liveShow.artist)
-            }
+            onPress={() => handlePress()}
           />
         </View>
       </View>

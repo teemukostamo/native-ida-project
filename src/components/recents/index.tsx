@@ -5,7 +5,7 @@ import {Title} from 'react-native-paper';
 const RecentsView = () => {
   return (
     <View>
-      <Title>this will be recents component</Title>
+      <Title>recent shows coming soon</Title>
     </View>
   );
 };

@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 const ExploreView = () => {
   return (
     <View style={styles.container}>
-      <Title>this will be explore component</Title>
+      <Title>explore shows coming soon</Title>
       <NowPlayingBar />
     </View>
   );

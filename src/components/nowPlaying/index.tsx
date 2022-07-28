@@ -1,4 +1,5 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
+import {useTrackPlayerEvents, Event, State} from 'react-native-track-player';
 
 import {AppContext} from '../../contexts/main';
 import {
@@ -26,17 +27,30 @@ const styles = StyleSheet.create({
   playButtonContainer: {
     alignSelf: 'flex-end',
     marginBottom: 12,
+    flex: 1,
   },
   studioText: {
     fontFamily: 'Menlo-Bold',
     margin: 5,
+    flex: 5,
   },
 });
 
 const NowPlayingBar = () => {
   const {state, dispatch} = useContext(AppContext);
+  const [buffering, setBuffering] = useState(false);
+  console.log(buffering);
   const {nowPlaying} = state;
-  console.log('nowPlaying state at nowplaying', nowPlaying);
+  const events = [Event.PlaybackState];
+
+  useTrackPlayerEvents(events, async event => {
+    console.log('event state', event.state);
+    if (event.state === State.Buffering) {
+      setBuffering(true);
+    } else {
+      setBuffering(false);
+    }
+  });
 
   const handlePress = () => {
     if (nowPlaying.nowPlaying) {
@@ -66,9 +80,21 @@ const NowPlayingBar = () => {
           {nowPlaying.artist} from {nowPlaying.studio?.toUpperCase()}
         </Text>
         <IconButton
-          icon={!nowPlaying.nowPlaying ? 'play' : 'stop'}
+          icon={
+            buffering ? 'loading' : !nowPlaying.nowPlaying ? 'play' : 'stop'
+          }
           onPress={() => handlePress()}
         />
+        {/* {buffering ? (
+          <IconButton
+            icon={!nowPlaying.nowPlaying ? 'play' : 'stop'}
+            onPress={() => handlePress()}
+          />
+        ) : (
+          <View>
+            <Text>spinner</Text>
+          </View>
+        )} */}
       </View>
     </View>
   ) : null;

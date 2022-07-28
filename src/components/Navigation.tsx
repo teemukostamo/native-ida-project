@@ -19,7 +19,7 @@ const Navigation: React.FC = () => {
     {key: 'live', title: 'Live', icon: 'music'},
     {key: 'explore', title: 'Explore', icon: 'album'},
     {key: 'recents', title: 'Recents', icon: 'history'},
-    {key: 'myida', title: 'My Ida', icon: 'history'},
+    {key: 'myida', title: 'My Ida', icon: 'account-circle'},
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
@@ -34,7 +34,6 @@ const Navigation: React.FC = () => {
       navigationState={{index, routes}}
       onIndexChange={setIndex}
       renderScene={renderScene}
-      // eslint-disable-next-line react-native/no-inline-styles
       barStyle={{backgroundColor: theme.colors.gray}}
       safeAreaInsets={{bottom: 1}}
     />

@@ -5,7 +5,7 @@ import {Title} from 'react-native-paper';
 const MyIdaView = () => {
   return (
     <View>
-      <Title>this will be my ida component</Title>
+      <Title>my ida coming soon</Title>
     </View>
   );
 };

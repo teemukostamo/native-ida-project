@@ -3,18 +3,19 @@ import {View, StyleSheet} from 'react-native';
 
 import {LiveShows} from '../../contexts/live/types';
 import {NowPlayingState} from '../../contexts/nowPlaying/types';
-import {onTallinnPlayPress} from '../../contexts/nowPlaying/actions';
 
 import OffAir from './OffAir';
 import OnAir from './OnAir';
 
+import theme from '../../theme';
+
 const styles = StyleSheet.create({
-  flexItemA: {
+  container: {
     flex: 3,
-    backgroundColor: '#ebaccb',
+    backgroundColor: theme.colors.primary,
   },
   title: {
-    marginTop: 50,
+    marginTop: 10,
     marginLeft: 10,
   },
 });
@@ -26,18 +27,16 @@ interface Props {
 
 const Tallinn: React.FC<Props> = ({nowPlaying, liveState}) => {
   return liveState && liveState.tallinn ? (
-    <View style={styles.flexItemA}>
+    <View style={styles.container}>
       {liveState?.tallinn.live_show ? (
         <OnAir
           liveShow={liveState?.tallinn.live_show}
           nowPlaying={nowPlaying}
-          onPress={onTallinnPlayPress}
           studio="tallinn"
         />
       ) : (
         <OffAir
-          styles={styles}
-          studio="Tallinn"
+          studio="tallinn"
           nextShow={liveState?.tallinn.next_show.show_title}
           nextShowStartTime={
             liveState?.tallinn.next_show.episode_time.episode_start
