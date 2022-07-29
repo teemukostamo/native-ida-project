@@ -2907,6 +2907,11 @@
     "whatwg-mimetype" "^2.3.0"
     "whatwg-url" "^8.0.0"
 
+"date-fns@^2.29.1":
+  "integrity" "sha512-dlLD5rKaKxpFdnjrs+5azHDFOPEu4ANy/LTh04A1DTzMM7qoajmKCBc8pkKRFT41CNzw+4gQh79X5C+Jq27HAw=="
+  "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-2.29.1.tgz"
+  "version" "2.29.1"
+
 "dayjs@^1.8.15":
   "integrity" "sha512-F4LXf1OeU9hrSYRPTTj/6FbO4HTjPKXvEIC1P2kcnFurViINCVk3ZV0xAS3XVx9MkMsXbbqlK6hjseaYbgKEHw=="
   "resolved" "https://registry.npmjs.org/dayjs/-/dayjs-1.11.2.tgz"

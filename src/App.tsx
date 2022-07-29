@@ -2,9 +2,15 @@ import React, {useEffect, useReducer} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {useTrackPlayerEvents, Event} from 'react-native-track-player';
 
-import {AppContext, mainReducer, initialState} from './contexts/main';
 import Navigation from './components/Navigation';
+import NowPlayingBar from './components/nowPlaying';
+
+import {AppContext, mainReducer, initialState} from './contexts/main';
+import {getLiveShows} from './contexts/live/actions';
+import {getLatestShows} from './contexts/latest/actions';
+import {getFullSchedule} from './contexts/schedule/actions';
 import {getMsToNextHour} from './utils';
+
 import {setupPlayer} from './components/trackPlayer';
 
 import theme from './theme';
@@ -23,26 +29,19 @@ const App = () => {
   });
 
   useEffect(() => {
-    const fetchLiveShows = async () => {
-      const response = await fetch(
-        'https://admin.idaidaida.net/wp-json/ida/v3/live',
-      );
-      const liveShows = await response.json();
-
-      dispatch({
-        type: 'FETCH_LIVE_SHOWS',
-        data: liveShows,
-      });
-    };
-    console.log('fetching shows on initial render at: ', new Date());
-    fetchLiveShows();
+    getLiveShows(dispatch);
+    getLatestShows(dispatch);
+    getFullSchedule(dispatch);
 
     setTimeout(() => {
-      fetchLiveShows();
+      getLiveShows(dispatch);
+      getLatestShows(dispatch);
       console.log('fetched shows at the next hour at: ', new Date());
+
       setInterval(() => {
+        getLiveShows(dispatch);
+        getLatestShows(dispatch);
         console.log('fetched shows at every hour at: ', new Date());
-        fetchLiveShows();
       }, 3600000);
     }, getMsToNextHour());
 
@@ -57,6 +56,7 @@ const App = () => {
       flex: 1,
       justifyContent: 'center',
       backgroundColor: theme.colors.gray,
+      flexDirection: 'column-reverse',
     },
   });
 
@@ -64,6 +64,7 @@ const App = () => {
     <>
       <AppContext.Provider value={{state, dispatch}}>
         <SafeAreaView style={styles.container}>
+          <NowPlayingBar />
           <Navigation />
         </SafeAreaView>
       </AppContext.Provider>
