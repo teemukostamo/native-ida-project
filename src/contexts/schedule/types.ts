@@ -7,16 +7,18 @@ interface EpisodeTime {
 
 interface ScheduleItemDetails {
   episode_id: number;
+  show_id: number;
+  is_repeat?: boolean;
   title: string;
   show_title: string;
   slug: string;
-  subtitle: string;
+  subtitle?: string;
   episode_time: EpisodeTime;
   episode_timestamps: EpisodeTime;
-  mixcloud: string;
-  soundcloud: string;
-  genres: number[];
-  thumbnail: Image;
+  mixcloud?: string;
+  soundcloud?: string;
+  genres?: number[];
+  thumbnail?: Image;
 }
 
 interface ScheduleItem {
