@@ -33,7 +33,6 @@ export const nowPlayingReducer = (
     case 'STOP':
       return {
         ...state,
-        streamType: null,
         nowPlaying: false,
       };
     default:
