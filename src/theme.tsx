@@ -29,11 +29,11 @@ const fontConfig = {
       fontWeight: 'normal',
     },
     light: {
-      fontFamily: 'sans-serif-light',
+      fontFamily: 'Menlo-Bold',
       fontWeight: 'normal',
     },
     thin: {
-      fontFamily: 'sans-serif-thin',
+      fontFamily: 'Menlo-Bold',
       fontWeight: 'normal',
     },
   },
