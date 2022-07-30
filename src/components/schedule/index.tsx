@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   timeContainer: {
-    paddingLeft: 30,
+    paddingLeft: 1,
   },
   timeTextTallinn: {
     color: theme.colors.primary,
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     paddingLeft: 30,
+    width: 310,
   },
   titleTextTallinn: {
     fontFamily: 'Menlo-Bold',
@@ -84,8 +85,6 @@ const styles = StyleSheet.create({
 const ScheduleView = () => {
   const {state} = useContext(AppContext);
   const {fullSchedule} = state;
-
-  console.log('state at schedule', fullSchedule?.helsinki);
 
   return fullSchedule ? (
     <ScrollView style={styles.container}>

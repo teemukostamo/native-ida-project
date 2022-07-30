@@ -12,4 +12,4 @@ export const latestShowsReducer = (state: LatestShows, action: ActionTypes) => {
   }
 };
 
-export const initialLatestState = {};
+export const initialLatestState = [];

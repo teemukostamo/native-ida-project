@@ -11,6 +11,7 @@ interface EpisodeTime {
 }
 
 export interface LatestShow {
+  id: string;
   slug: string;
   title: string;
   episode_time: EpisodeTime;
@@ -18,15 +19,15 @@ export interface LatestShow {
   mixcloud: string;
   show_title: string;
   featured_image: Image;
+  related_show_ID: number;
+  related_show_artist: string;
+  related_show_slug: string;
   taxonomies: {
     genres?: NameSlug[];
     channel?: NameSlug[];
   };
   post_type: string;
-  tracklist: string;
+  tracklist?: string;
 }
 
-export type LatestShows = {
-  featured_shows: LatestShow[];
-  latest_episodes: LatestShow[];
-} | null;
+export type LatestShows = LatestShow[] | null;

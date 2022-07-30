@@ -73,7 +73,7 @@ const NowPlayingBar = () => {
     }
   };
 
-  console.log(nowPlaying);
+  console.log('nowplaying state: ', nowPlaying);
 
   return nowPlaying.showNowPlayingBar ? (
     <View style={styles.container}>

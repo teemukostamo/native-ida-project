@@ -24,32 +24,21 @@ const Item = ({item}: any) => {
 
 const ExploreView = () => {
   const {state} = useContext(AppContext);
+  console.log('state at latests', state);
   const {latest} = state;
 
-  const hasLatestShows =
-    latest && latest.latest_episodes && latest.latest_episodes.length;
+  const hasLatestShows = latest && latest && latest.length > 0;
 
-  console.log('state in latest', state);
   return (
     <View style={styles.container}>
       <Title>Explore shows</Title>
       {hasLatestShows && (
         <View>
           <FlatList
-            data={latest.latest_episodes}
+            data={latest}
             renderItem={({item}) => <Item item={item} />}
             keyExtractor={item => item.show_title}
           />
-          {/* {latest.latest_episodes.map(show => {
-            console.log(show);
-
-            return (
-              <Card>
-                <Card.Cover source={{uri: show.featured_image.url}} />
-                <Card.Title title={show.show_title} subtitle={show.title} />
-              </Card>
-            );
-          })} */}
         </View>
       )}
     </View>

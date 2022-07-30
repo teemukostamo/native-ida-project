@@ -16,7 +16,6 @@ export const startPlayback = async (
   artist: string,
   // imageUrl: string,
 ) => {
-  console.log(await TrackPlayer.getState());
   await TrackPlayer.add([
     {
       id: '1',
