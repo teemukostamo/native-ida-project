@@ -1,4 +1,9 @@
-import {PLAY_HELSINKI, PLAY_TALLINN, STOP} from './nowPlaying/reducer';
+import {
+  PLAY_HELSINKI,
+  PLAY_TALLINN,
+  PLAY_MIXCLOUD,
+  STOP,
+} from './nowPlaying/reducer';
 
 import {FETCH_LIVE_SHOWS} from './live/reducer';
 import {LiveShows} from './live/types';
@@ -25,10 +30,11 @@ interface FullScheduleAction {
 }
 
 interface StartPlayerAction {
-  type: typeof PLAY_HELSINKI | typeof PLAY_TALLINN;
+  type: typeof PLAY_HELSINKI | typeof PLAY_TALLINN | typeof PLAY_MIXCLOUD;
   data: {
     artist: string;
     show_title: string;
+    mixcloud: string | null;
   };
 }
 

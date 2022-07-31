@@ -56,7 +56,7 @@ const App = () => {
       flex: 1,
       justifyContent: 'center',
       backgroundColor: theme.colors.gray,
-      flexDirection: 'column-reverse',
+      flexDirection: 'column',
     },
   });
 
@@ -64,8 +64,8 @@ const App = () => {
     <>
       <AppContext.Provider value={{state, dispatch}}>
         <SafeAreaView style={styles.container}>
-          <NowPlayingBar />
           <Navigation />
+          <NowPlayingBar />
         </SafeAreaView>
       </AppContext.Provider>
     </>
