@@ -1,9 +1,14 @@
 import React, {useEffect, useReducer} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
+import {NativeRouter, Route, Routes, Navigate} from 'react-router-native';
 import {useTrackPlayerEvents, Event} from 'react-native-track-player';
 
-import Navigation from './components/Navigation';
+import Navigation from './components/layout/Navigation';
 import NowPlayingBar from './components/nowPlaying';
+import LiveView from './components/live';
+import ExploreView from './components/explore';
+import ScheduleView from './components/schedule';
+import MyIdaView from './components/myida';
 
 import {AppContext, mainReducer, initialState} from './contexts/main';
 import {getLiveShows} from './contexts/live/actions';
@@ -63,10 +68,19 @@ const App = () => {
   return (
     <>
       <AppContext.Provider value={{state, dispatch}}>
-        <SafeAreaView style={styles.container}>
-          <Navigation />
-          <NowPlayingBar />
-        </SafeAreaView>
+        <NativeRouter>
+          <SafeAreaView style={styles.container}>
+            <Routes>
+              <Route path="/" element={<LiveView />} />
+              <Route path="/explore" element={<ExploreView />} />
+              <Route path="/schedule" element={<ScheduleView />} />
+              <Route path="/myida" element={<MyIdaView />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+            <NowPlayingBar />
+            <Navigation />
+          </SafeAreaView>
+        </NativeRouter>
       </AppContext.Provider>
     </>
   );

@@ -1,12 +1,6 @@
 import React, {Dispatch, useContext} from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  ImageBackground,
-  Button,
-} from 'react-native';
-import {Text, Title} from 'react-native-paper';
+import {View, StyleSheet, FlatList, ImageBackground} from 'react-native';
+import {Text, Title, IconButton} from 'react-native-paper';
 import {format, parseISO} from 'date-fns';
 
 import {LatestShow} from '../../contexts/latest/types';
@@ -63,10 +57,19 @@ const styles = StyleSheet.create({
     color: theme.colors.gray,
   },
   playButton: {
-    position: 'relative',
-    bottom: 690,
-    backgroundColor: 'rgba(52, 52, 52, 0.6)',
+    padding: 1,
+    backgroundColor: 'red',
     alignSelf: 'center',
+    position: 'relative',
+    top: 80,
+  },
+  playButtonHelsinki: {
+    backgroundColor: 'rgba(227, 227, 227, 0.8)',
+    color: theme.colors.accent,
+  },
+  playButtonTallinn: {
+    backgroundColor: 'rgba(227, 112, 106, 0.8)',
+    color: theme.colors.primary,
   },
   showDateText: {
     marginTop: 8,
@@ -87,7 +90,6 @@ const Item: React.FC<Props> = ({item, dispatch}) => {
     ? item.taxonomies.channel[0].slug
     : '';
 
-  //console.log('item', item);
   return (
     <View
       style={[
@@ -97,14 +99,27 @@ const Item: React.FC<Props> = ({item, dispatch}) => {
           : styles.cardContainerTallinn,
       ]}>
       <View style={styles.imageContainer}>
+        {/* make sure the image is always same size */}
         <ImageBackground
           source={{uri: item.featured_image.url}}
           resizeMode="cover"
           style={styles.image}>
           <View style={styles.imageContentContainer}>
             <Text style={styles.liveTextStyle}>{channel.toUpperCase()}</Text>
-            <Button
-              title="moro"
+            <IconButton
+              icon="play"
+              color={
+                channel === 'helsinki'
+                  ? theme.colors.accent
+                  : theme.colors.primary
+              }
+              style={[
+                styles.playButton,
+                channel === 'helsinki'
+                  ? styles.playButtonHelsinki
+                  : styles.playButtonTallinn,
+              ]}
+              size={50}
               onPress={() =>
                 onPlayMixcloudPress(
                   dispatch,
