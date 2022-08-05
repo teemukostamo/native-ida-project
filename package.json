@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@react-native-community/slider": "^4.2.4",
+    "@tanstack/react-query": "^4.0.10",
     "date-fns": "^2.29.1",
     "react": "17.0.2",
     "react-native": "0.68.2",

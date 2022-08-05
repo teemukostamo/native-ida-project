@@ -1,6 +1,7 @@
-import React, {Dispatch, useContext} from 'react';
+import React, {Dispatch, useContext, useState} from 'react';
 import {View, StyleSheet, FlatList, ImageBackground} from 'react-native';
 import {Text, Title, IconButton} from 'react-native-paper';
+import {useInfiniteQuery} from '@tanstack/react-query';
 import {format, parseISO} from 'date-fns';
 
 import {LatestShow} from '../../contexts/latest/types';
@@ -86,6 +87,7 @@ interface Props {
 }
 
 const Item: React.FC<Props> = ({item, dispatch}) => {
+  //console.log('item in item', item);
   const channel = item.taxonomies.channel
     ? item.taxonomies.channel[0].slug
     : '';
@@ -99,9 +101,8 @@ const Item: React.FC<Props> = ({item, dispatch}) => {
           : styles.cardContainerTallinn,
       ]}>
       <View style={styles.imageContainer}>
-        {/* make sure the image is always same size */}
         <ImageBackground
-          source={{uri: item.featured_image.url}}
+          source={{uri: item.featured_image.sizes.medium_large}}
           resizeMode="cover"
           style={styles.image}>
           <View style={styles.imageContentContainer}>
@@ -155,20 +156,58 @@ const Item: React.FC<Props> = ({item, dispatch}) => {
 };
 
 const ExploreView = () => {
-  const {state, dispatch} = useContext(AppContext);
-  const {latest} = state;
+  const {dispatch} = useContext(AppContext);
+  const [pageNumber, setPageNumber] = useState(1);
 
-  const hasLatestShows = latest && latest && latest.length > 0;
+  const fetchLatestShows = async ({pageParam = 1}: any) => {
+    console.log('pageParam', pageParam);
+    const response = await fetch(
+      `https://admin.idaidaida.net/wp-json/ida/v3/episodes?paged=${pageParam}&posts_per_page=36`,
+    );
+    return response.json();
+  };
+
+  const {isLoading, isError, data, hasNextPage, fetchNextPage} =
+    useInfiniteQuery(['latestShows'], fetchLatestShows, {
+      getNextPageParam: () => pageNumber + 1,
+    });
+
+  console.log(hasNextPage);
+  console.log('latest data', data?.pageParams);
+
+  const fetchMore = () => {
+    if (pageNumber < 100) {
+      setPageNumber(pageNumber + 1);
+      fetchNextPage();
+    }
+  };
+
+  if (isError) {
+    return (
+      <View>
+        <Title>Error</Title>
+      </View>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <View>
+        <Title>Loading</Title>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
       <Title>Explore shows</Title>
-      {hasLatestShows && (
+      {!isLoading && (
         <View>
           <FlatList
-            data={latest}
+            data={data.pages.map(page => page).flat()}
             renderItem={({item}) => <Item dispatch={dispatch} item={item} />}
             keyExtractor={item => item.featured_image.url}
+            onEndReached={() => fetchMore()}
           />
         </View>
       )}
