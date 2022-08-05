@@ -5,6 +5,13 @@ import {AppContext} from '../../contexts/main';
 const Mixcloud = () => {
   const {state} = useContext(AppContext);
   const {nowPlaying} = state;
+
+  const style = {
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: 'transparent',
+  };
+
   if (nowPlaying.mixcloud) {
     console.log(nowPlaying.mixcloud);
     const mixcloudId = nowPlaying.mixcloud.replaceAll('/', '%2F');
@@ -16,6 +23,9 @@ const Mixcloud = () => {
         scalesPageToFit={true}
         bounces={false}
         javaScriptEnabled
+        automaticallyAdjustContentInsets={true}
+        mediaPlaybackRequiresUserAction={false}
+        style={style}
         source={{
           html: `
                 <!DOCTYPE html>
@@ -29,7 +39,7 @@ const Mixcloud = () => {
                       id="mixcloud"
                       src=${streamUrl}
                       width="100%"
-                      height="1200"
+                      height="100%"
                       frameborder="0"
                       allow="autoplay"
                   >
