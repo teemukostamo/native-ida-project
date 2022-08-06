@@ -19,6 +19,7 @@ import {getMsToNextHour} from './utils';
 import {setupPlayer} from './components/trackPlayer';
 
 import theme from './theme';
+import TopBar from './components/layout/TopBar';
 
 const queryClient = new QueryClient();
 
@@ -73,6 +74,7 @@ const App = () => {
         <NativeRouter>
           <QueryClientProvider client={queryClient}>
             <SafeAreaView style={styles.container}>
+              <TopBar />
               <Routes>
                 <Route path="/" element={<LiveView />} />
                 <Route path="/explore" element={<ExploreView />} />
