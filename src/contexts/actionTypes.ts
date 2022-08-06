@@ -14,6 +14,9 @@ import {LatestEpisodes} from './latest/types';
 import {FETCH_FULL_SCHEDULE} from './schedule/reducer';
 import {FullSchedule} from './schedule/types';
 
+import {SET_SHOW_PAGE_STATE} from './shows/reducer';
+import {ShowItemType} from './shows/types';
+
 interface LiveShowsAction {
   type: typeof FETCH_LIVE_SHOWS;
   data: LiveShows;
@@ -27,6 +30,11 @@ interface LatestEpisodesAction {
 interface FullScheduleAction {
   type: typeof FETCH_FULL_SCHEDULE;
   data: FullSchedule;
+}
+
+interface ShowPageAction {
+  type: typeof SET_SHOW_PAGE_STATE;
+  data: ShowItemType;
 }
 
 interface StartPlayerAction {
@@ -46,6 +54,7 @@ type ActionTypes =
   | LiveShowsAction
   | LatestEpisodesAction
   | FullScheduleAction
+  | ShowPageAction
   | StartPlayerAction
   | StopPlayerAction;
 

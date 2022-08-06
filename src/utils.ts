@@ -14,5 +14,11 @@ export const getViewNameFromLocation = (pathName = '/') => {
   if (pathName === '/myida') {
     return 'my ida';
   }
+  if (pathName.startsWith('/shows')) {
+    return 'show';
+  }
+  if (pathName.startsWith('/episodes')) {
+    return 'episode';
+  }
   return '';
 };

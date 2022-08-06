@@ -10,6 +10,7 @@ import LiveView from './components/live';
 import ExploreView from './components/explore';
 import ScheduleView from './components/schedule';
 import MyIdaView from './components/myida';
+import ShowPage from './components/shows';
 
 import {AppContext, mainReducer, initialState} from './contexts/main';
 import {getLiveShows} from './contexts/live/actions';
@@ -80,6 +81,7 @@ const App = () => {
                 <Route path="/explore" element={<ExploreView />} />
                 <Route path="/schedule" element={<ScheduleView />} />
                 <Route path="/myida" element={<MyIdaView />} />
+                <Route path="/shows/:slug/:id" element={<ShowPage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
               <NowPlayingBar />

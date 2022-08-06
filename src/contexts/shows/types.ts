@@ -20,4 +20,5 @@ export type ShowItemType = {
   acf?: {
     artist: string;
   };
-};
+  code?: string;
+} | null;

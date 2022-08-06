@@ -1,14 +1,17 @@
 import React from 'react';
 import {View, StyleSheet, ImageBackground} from 'react-native';
+import {useNavigate} from 'react-router-native';
 import {Title} from 'react-native-paper';
 
 import {ShowItemType} from '../../contexts/shows/types';
+import Error from '../layout/Error';
 
 import theme from '../../theme';
 
 const styles = StyleSheet.create({
   cardContainer: {
     margin: 10,
+    paddingBottom: 8,
     backgroundColor: theme.colors.accent,
   },
   cardContainerHelsinki: {
@@ -74,46 +77,61 @@ interface Props {
 }
 
 const ShowItem: React.FC<Props> = ({item}) => {
-  const channel =
-    item.taxonomies && item.taxonomies.channel
-      ? item.taxonomies.channel[0].slug
-      : '';
+  let navigate = useNavigate();
 
-  return (
-    <View
-      style={[
-        styles.cardContainer,
-        channel === 'helsinki'
-          ? styles.cardContainerHelsinki
-          : styles.cardContainerTallinn,
-      ]}>
-      <View style={styles.imageContainer}>
-        <ImageBackground
-          source={{
-            uri: item.featured_image
-              ? item.featured_image.sizes.medium_large
-              : '/assets/images/ida-logo-1024.png',
-          }}
-          resizeMode="cover"
-          style={styles.image}>
-          <View style={styles.imageContentContainer}>
-            {/* <Text style={styles.liveTextStyle}>{channel.toUpperCase()}</Text> */}
+  if (item?.code === 'not_found') {
+    return null;
+  }
+
+  if (item) {
+    const handlePress = () => {
+      navigate(`/shows/${item.slug}/${item.ID}`);
+    };
+
+    const channel =
+      item.taxonomies && item.taxonomies.channel
+        ? item.taxonomies.channel[0].slug
+        : '';
+
+    return (
+      <View
+        style={[
+          styles.cardContainer,
+          channel === 'helsinki'
+            ? styles.cardContainerHelsinki
+            : styles.cardContainerTallinn,
+        ]}>
+        <View style={styles.imageContainer}>
+          <ImageBackground
+            source={{
+              uri: item.featured_image
+                ? item.featured_image.sizes.medium_large
+                : '/assets/images/ida-logo-1024.png',
+            }}
+            resizeMode="cover"
+            style={styles.image}>
+            <View style={styles.imageContentContainer}>
+              {/* <Text style={styles.liveTextStyle}>{channel.toUpperCase()}</Text> */}
+            </View>
+          </ImageBackground>
+        </View>
+        <View style={styles.titleContainer}>
+          <View style={styles.titleTextContainer}>
+            <Title
+              onPress={() => handlePress()}
+              style={[
+                styles.showTitleText,
+                channel === 'helsinki' && {color: theme.colors.gray},
+              ]}>
+              {item.title}
+            </Title>
           </View>
-        </ImageBackground>
-      </View>
-      <View style={styles.titleContainer}>
-        <View style={styles.titleTextContainer}>
-          <Title
-            style={[
-              styles.showTitleText,
-              channel === 'helsinki' && {color: theme.colors.gray},
-            ]}>
-            {item.title}
-          </Title>
         </View>
       </View>
-    </View>
-  );
+    );
+  }
+
+  return <Error />;
 };
 
 export default ShowItem;

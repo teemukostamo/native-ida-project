@@ -28,6 +28,7 @@ export interface LatestEpisode {
   };
   post_type: string;
   tracklist?: string;
+  code?: string;
 }
 
 export type LatestEpisodes = LatestEpisode[] | null;

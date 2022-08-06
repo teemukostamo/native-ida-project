@@ -79,6 +79,10 @@ interface Props {
 const EpisodeItem: React.FC<Props> = ({item}) => {
   const {dispatch} = useContext(AppContext);
 
+  if (item?.code === 'not_found') {
+    return null;
+  }
+
   const channel =
     item.taxonomies && item.taxonomies.channel
       ? item.taxonomies.channel[0].slug
@@ -136,7 +140,9 @@ const EpisodeItem: React.FC<Props> = ({item}) => {
               styles.showDateText,
               channel === 'helsinki' && {color: theme.colors.gray},
             ]}>
-            {format(parseISO(item.episode_time.episode_start), 'dd.MM.yyyy')}
+            {item.episode_time.episode_start
+              ? format(parseISO(item.episode_time.episode_start), 'dd.MM.yyyy')
+              : 'unknown'}
           </Text>
           <Title
             style={[
