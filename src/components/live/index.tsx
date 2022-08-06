@@ -1,8 +1,9 @@
 import React, {useContext} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import Tallinn from './Tallinn';
 import Helsinki from './Helsinki';
+import Loading from '../layout/Loading';
 import {AppContext} from '../../contexts/main';
 
 const styles = StyleSheet.create({
@@ -22,9 +23,7 @@ const LiveView: React.FC = () => {
       </View>
     </View>
   ) : (
-    <View>
-      <Text>Loading...</Text>
-    </View>
+    <Loading />
   );
 };
 

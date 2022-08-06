@@ -9,7 +9,7 @@ import {FETCH_LIVE_SHOWS} from './live/reducer';
 import {LiveShows} from './live/types';
 
 import {FETCH_LATEST_SHOWS} from './latest/reducer';
-import {LatestShows} from './latest/types';
+import {LatestEpisodes} from './latest/types';
 
 import {FETCH_FULL_SCHEDULE} from './schedule/reducer';
 import {FullSchedule} from './schedule/types';
@@ -19,9 +19,9 @@ interface LiveShowsAction {
   data: LiveShows;
 }
 
-interface LatestShowsAction {
+interface LatestEpisodesAction {
   type: typeof FETCH_LATEST_SHOWS;
-  data: LatestShows;
+  data: LatestEpisodes;
 }
 
 interface FullScheduleAction {
@@ -44,7 +44,7 @@ interface StopPlayerAction {
 
 type ActionTypes =
   | LiveShowsAction
-  | LatestShowsAction
+  | LatestEpisodesAction
   | FullScheduleAction
   | StartPlayerAction
   | StopPlayerAction;

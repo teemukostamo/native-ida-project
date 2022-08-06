@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 const Episodes: React.FC = () => {
   const [pageNumber, setPageNumber] = useState(1);
 
-  const fetchLatestShows = async ({pageParam = 1}) => {
+  const fetchLatestEpisodes = async ({pageParam = 1}) => {
     const response = await fetch(
       `https://admin.idaidaida.net/wp-json/ida/v3/episodes?paged=${pageParam}&posts_per_page=36`,
     );
@@ -26,8 +26,8 @@ const Episodes: React.FC = () => {
   };
 
   const {isLoading, isError, data, fetchNextPage} = useInfiniteQuery(
-    ['latestShows'],
-    fetchLatestShows,
+    ['LatestEpisodes'],
+    fetchLatestEpisodes,
     {
       getNextPageParam: () => pageNumber + 1,
     },
@@ -53,7 +53,7 @@ const Episodes: React.FC = () => {
         <FlatList
           data={data.pages.map(page => page).flat()}
           renderItem={({item}) => <EpisodeItem item={item} />}
-          keyExtractor={item => item.featured_image.url}
+          //keyExtractor={item => item.featured_image.url}
           onEndReached={() => fetchMore()}
         />
       </View>

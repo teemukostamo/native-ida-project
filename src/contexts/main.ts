@@ -3,8 +3,8 @@ import {createContext, Dispatch} from 'react';
 import {LiveShows} from './live/types';
 import {liveShowsReducer} from './live/reducer';
 
-import {LatestShows} from './latest/types';
-import {latestShowsReducer} from './latest/reducer';
+import {LatestEpisodes} from './latest/types';
+import {LatestEpisodesReducer} from './latest/reducer';
 
 import {NowPlayingState} from './nowPlaying/types';
 import {initialNowPlaying, nowPlayingReducer} from './nowPlaying/reducer';
@@ -17,7 +17,7 @@ import ActionTypes from './actionTypes';
 type InitialStateType = {
   nowPlaying: NowPlayingState;
   live: LiveShows;
-  latest: LatestShows;
+  latest: LatestEpisodes;
   fullSchedule: FullSchedule;
 };
 
@@ -34,7 +34,7 @@ export const mainReducer = (
 ) => ({
   nowPlaying: nowPlayingReducer(nowPlaying, action),
   live: liveShowsReducer(live, action),
-  latest: latestShowsReducer(latest, action),
+  latest: LatestEpisodesReducer(latest, action),
   fullSchedule: fullScheduleReducer(fullSchedule, action),
 });
 

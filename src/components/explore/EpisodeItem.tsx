@@ -3,7 +3,7 @@ import {View, StyleSheet, ImageBackground} from 'react-native';
 import {Text, Title, IconButton} from 'react-native-paper';
 import {format, parseISO} from 'date-fns';
 
-import {LatestShow} from '../../contexts/latest/types';
+import {LatestEpisode} from '../../contexts/latest/types';
 import {AppContext} from '../../contexts/main';
 import {onPlayMixcloudPress} from '../../contexts/nowPlaying/actions';
 
@@ -73,15 +73,16 @@ const styles = StyleSheet.create({
 });
 
 interface Props {
-  item: LatestShow;
+  item: LatestEpisode;
 }
 
 const EpisodeItem: React.FC<Props> = ({item}) => {
   const {dispatch} = useContext(AppContext);
 
-  const channel = item.taxonomies.channel
-    ? item.taxonomies.channel[0].slug
-    : '';
+  const channel =
+    item.taxonomies && item.taxonomies.channel
+      ? item.taxonomies.channel[0].slug
+      : '';
 
   return (
     <View
@@ -93,7 +94,11 @@ const EpisodeItem: React.FC<Props> = ({item}) => {
       ]}>
       <View style={styles.imageContainer}>
         <ImageBackground
-          source={{uri: item.featured_image.sizes.medium_large}}
+          source={{
+            uri: item.featured_image
+              ? item.featured_image.sizes.medium_large
+              : '/assets/images/ida-logo-1024.png',
+          }}
           resizeMode="cover"
           style={styles.image}>
           <View style={styles.imageContentContainer}>

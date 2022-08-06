@@ -1,8 +1,8 @@
 import {LATEST_SHOWS_URL} from '../../constants';
 
-export const fetchLatestShows = async () => {
+export const fetchLatestEpisodes = async () => {
   const response = await fetch(LATEST_SHOWS_URL);
-  const latestShows = await response.json();
+  const LatestEpisodes = await response.json();
 
-  return latestShows;
+  return LatestEpisodes;
 };

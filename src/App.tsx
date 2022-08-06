@@ -38,17 +38,17 @@ const App = () => {
 
   useEffect(() => {
     getLiveShows(dispatch);
-    //getLatestShows(dispatch);
+    //getLatestEpisodes(dispatch);
     getFullSchedule(dispatch);
 
     setTimeout(() => {
       getLiveShows(dispatch);
-      //getLatestShows(dispatch);
+      //getLatestEpisodes(dispatch);
       console.log('fetched shows at the next hour at: ', new Date());
 
       setInterval(() => {
         getLiveShows(dispatch);
-        //getLatestShows(dispatch);
+        //getLatestEpisodes(dispatch);
         console.log('fetched shows at every hour at: ', new Date());
       }, 3600000);
     }, getMsToNextHour());

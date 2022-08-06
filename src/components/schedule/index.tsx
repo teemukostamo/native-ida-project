@@ -92,9 +92,9 @@ const ScheduleView = () => {
         <View style={styles.containerTallinn}>
           <Title style={styles.studioNameTallinn}>Tallinn</Title>
           {fullSchedule.tallinn.map(
-            day =>
+            (day, index) =>
               day.schedule.length > 0 && (
-                <View style={styles.dayContainer} key={day.day}>
+                <View style={styles.dayContainer} key={index}>
                   <View style={styles.dayTextContainer}>
                     <View style={styles.day}>
                       <Text style={styles.dayTextTallinn}>
@@ -108,7 +108,9 @@ const ScheduleView = () => {
                     </View>
                   </View>
                   {day.schedule.map(show => (
-                    <View style={styles.showContainer}>
+                    <View
+                      key={show.episode_time.episode_start}
+                      style={styles.showContainer}>
                       <View style={styles.timeContainer}>
                         <Text style={styles.timeTextTallinn}>
                           {format(
@@ -134,9 +136,9 @@ const ScheduleView = () => {
         <View style={styles.containerHelsinki}>
           <Title style={styles.studioNameHelsinki}>Helsinki</Title>
           {fullSchedule.helsinki.map(
-            day =>
+            (day, index) =>
               day.schedule.length > 0 && (
-                <View style={styles.dayContainer} key={day.day}>
+                <View style={styles.dayContainer} key={index}>
                   <View style={styles.dayTextContainer}>
                     <View style={styles.day}>
                       <Text style={styles.dayTextHelsinki}>
@@ -150,7 +152,9 @@ const ScheduleView = () => {
                     </View>
                   </View>
                   {day.schedule.map(show => (
-                    <View style={styles.showContainer}>
+                    <View
+                      key={show.episode_time.episode_start}
+                      style={styles.showContainer}>
                       <View style={styles.timeContainer}>
                         <Text style={styles.timeTextHelsinki}>
                           {format(

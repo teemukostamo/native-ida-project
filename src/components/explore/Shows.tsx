@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useState} from 'react';
-import {View, StyleSheet, FlatList, Text} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import {useInfiniteQuery} from '@tanstack/react-query';
 
-//import ShowItem from './ShowItem';
+import ShowItem from './ShowItem';
 import Loading from '../layout/Loading';
 import Error from '../layout/Error';
 
@@ -27,7 +26,7 @@ const Episodes: React.FC = () => {
   };
 
   const {isLoading, isError, data, fetchNextPage} = useInfiniteQuery(
-    ['latestShows'],
+    ['LatestShows'],
     fetchLatestShows,
     {
       getNextPageParam: () => pageNumber + 1,
@@ -48,18 +47,15 @@ const Episodes: React.FC = () => {
     return <Loading />;
   }
 
-  console.log(data);
-
   return (
     <View style={styles.container}>
       <View>
-        <Text>testing</Text>
-        {/* <FlatList
+        <FlatList
           data={data.pages.map(page => page).flat()}
-          renderItem={({item}) => <EpisodeItem item={item} />}
-          keyExtractor={item => item.featured_image.url}
+          renderItem={({item}) => <ShowItem item={item} />}
+          // keyExtractor={item => item.ID}
           onEndReached={() => fetchMore()}
-        /> */}
+        />
       </View>
     </View>
   );
