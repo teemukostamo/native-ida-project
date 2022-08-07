@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  ScrollView,
-  Text,
-  StyleSheet,
-  ImageBackground,
-  FlatList,
-} from 'react-native';
+import {View, Text, StyleSheet, ImageBackground, FlatList} from 'react-native';
 import {Title} from 'react-native-paper';
 import {useParams} from 'react-router-native';
 import {useInfiniteQuery, useQuery} from '@tanstack/react-query';
@@ -14,6 +7,7 @@ import theme from '../../theme';
 import Error from '../layout/Error';
 import EpisodeItem from '../explore/EpisodeItem';
 import Loading from '../layout/Loading';
+import DescriptionText from './DescriptionText';
 
 const styles = StyleSheet.create({
   container: {
@@ -117,50 +111,55 @@ const ShowPage: React.FC = () => {
 
     console.log('showdetails', showDetails);
     return (
-      <ScrollView style={styles.container}>
-        <View style={styles.imageContainer}>
-          <ImageBackground
-            source={imageSrc}
-            resizeMode="cover"
-            style={styles.image}>
-            <View style={styles.imageContentContainer} />
-          </ImageBackground>
-          <View
-            style={[
-              styles.showInfoContainer,
-              channel === 'tallinn'
-                ? styles.showInfoContainerTallinn
-                : styles.showInfoContainerHelsinki,
-            ]}>
-            <Text
-              style={[
-                styles.showArtistText,
-                channel === 'tallinn'
-                  ? styles.showArtistTextTallinn
-                  : styles.showArtistTextHelsinki,
-              ]}>
-              {showDetails.acf?.artist ? showDetails.acf?.artist : ''}
-            </Text>
-            <Title
-              style={
-                channel === 'tallinn'
-                  ? styles.showTitleTextTallinn
-                  : styles.showTitleTextHelsinki
-              }>
-              {showDetails.title}
-            </Title>
-            <Text>
-              {showDetails?.acf?.eng_content
-                ? showDetails?.acf?.eng_content
-                : ''}
-            </Text>
-          </View>
-        </View>
+      <View style={styles.container}>
         <View style={styles.epidodesContainer}>
           {isLoading && <Loading />}
           {isError && <Error />}
           {episodes && !isLoading && (
             <FlatList
+              ListHeaderComponent={
+                <>
+                  <View style={styles.imageContainer}>
+                    <ImageBackground
+                      source={imageSrc}
+                      resizeMode="cover"
+                      style={styles.image}>
+                      <View style={styles.imageContentContainer} />
+                    </ImageBackground>
+                    <View
+                      style={[
+                        styles.showInfoContainer,
+                        channel === 'tallinn'
+                          ? styles.showInfoContainerTallinn
+                          : styles.showInfoContainerHelsinki,
+                      ]}>
+                      <Text
+                        style={[
+                          styles.showArtistText,
+                          channel === 'tallinn'
+                            ? styles.showArtistTextTallinn
+                            : styles.showArtistTextHelsinki,
+                        ]}>
+                        {showDetails.acf?.artist ? showDetails.acf?.artist : ''}
+                      </Text>
+                      <Title
+                        style={
+                          channel === 'tallinn'
+                            ? styles.showTitleTextTallinn
+                            : styles.showTitleTextHelsinki
+                        }>
+                        {showDetails.title}
+                      </Title>
+                      {showDetails?.acf?.eng_content && (
+                        <DescriptionText html={showDetails?.acf?.eng_content} />
+                      )}
+                      {showDetails?.acf?.eng_content && (
+                        <Text>{showDetails?.acf?.eng_content}</Text>
+                      )}
+                    </View>
+                  </View>
+                </>
+              }
               data={episodes.pages.map(page => page).flat()}
               renderItem={({item}) => <EpisodeItem item={item} />}
               //keyExtractor={item => item.featured_image.url}
@@ -168,7 +167,7 @@ const ShowPage: React.FC = () => {
             />
           )}
         </View>
-      </ScrollView>
+      </View>
     );
   }
 
