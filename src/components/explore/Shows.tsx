@@ -7,15 +7,17 @@ import Loading from '../layout/Loading';
 import Error from '../layout/Error';
 
 import theme from '../../theme';
+import LinkButtons from './LinkButtons';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.gray,
+    justifyContent: 'space-between',
   },
 });
 
-const Episodes: React.FC = () => {
+const Shows: React.FC = () => {
   const [pageNumber, setPageNumber] = useState(1);
 
   const fetchLatestShows = async ({pageParam = 1}) => {
@@ -41,14 +43,24 @@ const Episodes: React.FC = () => {
   };
 
   if (isError) {
-    return <Error />;
+    return (
+      <View style={styles.container}>
+        <LinkButtons />
+        <Error />
+      </View>
+    );
   }
   if (isLoading) {
-    return <Loading />;
+    return (
+      <View style={styles.container}>
+        <LinkButtons />
+        <Loading />
+      </View>
+    );
   }
-
   return (
     <View style={styles.container}>
+      <LinkButtons />
       <View>
         <FlatList
           data={data.pages.map(page => page).flat()}
@@ -61,4 +73,4 @@ const Episodes: React.FC = () => {
   );
 };
 
-export default Episodes;
+export default Shows;

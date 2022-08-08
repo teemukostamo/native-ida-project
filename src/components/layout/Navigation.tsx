@@ -28,7 +28,7 @@ const Navigation = () => {
       <View style={styles.itemContainer}>
         <Appbar.Action
           icon="album"
-          onPress={() => navigate('/explore', {replace: true})}
+          onPress={() => navigate('/episodes', {replace: true})}
         />
         <Text style={styles.textStyle}>Explore</Text>
       </View>

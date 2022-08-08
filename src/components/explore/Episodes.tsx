@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {useInfiniteQuery} from '@tanstack/react-query';
 
+import LinkButtons from './LinkButtons';
 import EpisodeItem from './EpisodeItem';
 import Loading from '../layout/Loading';
 import Error from '../layout/Error';
@@ -41,14 +42,25 @@ const Episodes: React.FC = () => {
   };
 
   if (isError) {
-    return <Error />;
+    return (
+      <View style={styles.container}>
+        <LinkButtons />
+        <Error />
+      </View>
+    );
   }
   if (isLoading) {
-    return <Loading />;
+    return (
+      <View style={styles.container}>
+        <LinkButtons />
+        <Loading />
+      </View>
+    );
   }
 
   return (
     <View style={styles.container}>
+      <LinkButtons />
       <View>
         <FlatList
           data={data.pages.map(page => page).flat()}

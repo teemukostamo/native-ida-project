@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
 const TopBar: React.FC = () => {
   const location = useLocation();
   const viewName = getViewNameFromLocation(location.pathname);
-  console.log('location', viewName);
   return (
     <View style={styles.container}>
       <Title style={styles.pageTitleStyle}>{viewName}</Title>

@@ -7,10 +7,13 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import Navigation from './components/layout/Navigation';
 import NowPlayingBar from './components/nowPlaying';
 import LiveView from './components/live';
-import ExploreView from './components/explore';
 import ScheduleView from './components/schedule';
 import MyIdaView from './components/myida';
 import ShowPage from './components/shows';
+import HotTips from './components/explore/HotTips';
+import Shows from './components/explore/Shows';
+import Episodes from './components/explore/Episodes';
+import Search from './components/explore/Search';
 
 import {AppContext, mainReducer, initialState} from './contexts/main';
 import {getLiveShows} from './contexts/live/actions';
@@ -78,9 +81,12 @@ const App = () => {
               <TopBar />
               <Routes>
                 <Route path="/" element={<LiveView />} />
-                <Route path="/explore" element={<ExploreView />} />
                 <Route path="/schedule" element={<ScheduleView />} />
                 <Route path="/myida" element={<MyIdaView />} />
+                <Route path="picks" element={<HotTips />} />
+                <Route path="shows" element={<Shows />} />
+                <Route path="episodes" element={<Episodes />} />
+                <Route path="search" element={<Search />} />
                 <Route path="/shows/:slug/:id" element={<ShowPage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
