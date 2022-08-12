@@ -10,10 +10,12 @@ import LiveView from './components/live';
 import ScheduleView from './components/schedule';
 import MyIdaView from './components/myida';
 import ShowPage from './components/shows';
+import EpisodePage from './components/episodes';
 import HotTips from './components/explore/HotTips';
 import Shows from './components/explore/Shows';
 import Episodes from './components/explore/Episodes';
 import Search from './components/explore/Search';
+import TopBar from './components/layout/TopBar';
 
 import {AppContext, mainReducer, initialState} from './contexts/main';
 import {getLiveShows} from './contexts/live/actions';
@@ -23,7 +25,6 @@ import {getMsToNextHour} from './utils';
 import {setupPlayer} from './components/trackPlayer';
 
 import theme from './theme';
-import TopBar from './components/layout/TopBar';
 
 const queryClient = new QueryClient();
 
@@ -88,6 +89,7 @@ const App = () => {
                 <Route path="episodes" element={<Episodes />} />
                 <Route path="search" element={<Search />} />
                 <Route path="/shows/:slug/:id" element={<ShowPage />} />
+                <Route path="/episodes/:slug/:id" element={<EpisodePage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
               <NowPlayingBar />

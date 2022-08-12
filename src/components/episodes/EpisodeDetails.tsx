@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import {Title} from 'react-native-paper';
 import theme from '../../theme';
 import GenreButtons from '../layout/GenreButtons';
-import {stripHtmlTags} from '../../utils';
+import {stripHtmlTags, decodeHtmlCharCodes} from '../../utils';
 
 const styles = StyleSheet.create({
   coverImage: {
@@ -61,16 +61,16 @@ type Props = {
   channel: string;
   artist?: string;
   title: string;
-  description?: string;
+  tracklist?: string;
   genres?: Genre[];
 };
 
-const ShowDetails: React.FC<Props> = ({
+const EpisodeDetails: React.FC<Props> = ({
   imageUrl,
   channel,
   artist,
   title,
-  description,
+  tracklist,
   genres,
 }) => {
   const imageSrc = imageUrl
@@ -112,14 +112,17 @@ const ShowDetails: React.FC<Props> = ({
           {title}
         </Title>
         <GenreButtons channel={channel} genres={genres} />
-        {description && (
-          <Text style={[styles.descriptionTextStyle]}>
-            {stripHtmlTags(description)}
-          </Text>
-        )}
+        {tracklist &&
+          tracklist
+            .split('\n')
+            .map(tracklist_item => (
+              <Text style={[styles.descriptionTextStyle]}>
+                {decodeHtmlCharCodes(stripHtmlTags(tracklist_item))}
+              </Text>
+            ))}
       </View>
     </View>
   );
 };
 
-export default ShowDetails;
+export default EpisodeDetails;

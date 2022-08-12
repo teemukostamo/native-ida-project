@@ -84,6 +84,8 @@ const ShowItem: React.FC<Props> = ({item}) => {
   }
 
   if (item) {
+    console.log(item.ID);
+    console.log(item);
     const handlePress = () => {
       navigate(`/shows/${item.slug}/${item.ID}`);
     };

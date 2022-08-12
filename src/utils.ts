@@ -28,3 +28,11 @@ export const getViewNameFromLocation = (pathName = '/') => {
   }
   return '';
 };
+
+export const stripHtmlTags = (text: string) =>
+  text.replace(/(<([^>]+)>)/gi, '');
+
+export const decodeHtmlCharCodes = (str: string) =>
+  str.replace(/(&#(\d+);)/g, (match, capture, charCode) =>
+    String.fromCharCode(charCode),
+  );

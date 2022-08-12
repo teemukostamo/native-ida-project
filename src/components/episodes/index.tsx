@@ -6,7 +6,7 @@ import theme from '../../theme';
 import Error from '../layout/Error';
 import EpisodeItem from '../explore/EpisodeItem';
 import Loading from '../layout/Loading';
-import ShowDetails from './ShowDetails';
+import EpisodeDetails from './EpisodeDetails';
 import BackButton from '../layout/BackButton';
 
 const styles = StyleSheet.create({
@@ -19,10 +19,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const ShowPage: React.FC = () => {
+const EpisodePage: React.FC = () => {
   let {slug, id} = useParams();
-
-  console.log(id);
 
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -33,18 +31,18 @@ const ShowPage: React.FC = () => {
     return response.json();
   };
 
-  const fetchShowDetails = async () => {
+  const fetchEpisodeDetails = async () => {
     const response = await fetch(
-      `https://admin.idaidaida.net/wp-json/ida/v3/post-types/broadcast/${slug}`,
+      `https://admin.idaidaida.net/wp-json/ida/v3/episodes/${slug}`,
     );
     return response.json();
   };
 
   const {
-    data: showDetails,
-    isLoading: isShowDetailsLoading,
-    isError: isShowDetailsError,
-  } = useQuery([`${slug}-info`], fetchShowDetails, {
+    data: episodeDetails,
+    isLoading: isEpisodeDetailsLoading,
+    isError: isEpisodeDetailsError,
+  } = useQuery([`${slug}-info`], fetchEpisodeDetails, {
     keepPreviousData: true,
   });
 
@@ -63,8 +61,8 @@ const ShowPage: React.FC = () => {
     }
   };
 
-  isShowDetailsError && <Error />;
-  if (isShowDetailsLoading) {
+  isEpisodeDetailsError && <Error />;
+  if (isEpisodeDetailsLoading) {
     return (
       <View style={styles.container}>
         <Text>
@@ -74,10 +72,10 @@ const ShowPage: React.FC = () => {
     );
   }
 
-  if (showDetails) {
-    const channel = showDetails.taxonomies.channel[0].slug;
-    const genres = showDetails.taxonomies.genres
-      ? showDetails.taxonomies.genres
+  if (episodeDetails.data) {
+    const channel = episodeDetails.data.taxonomies.channel[0].slug;
+    const genres = episodeDetails.data.taxonomies.genres
+      ? episodeDetails.data.taxonomies.genres
       : [];
 
     return (
@@ -87,12 +85,12 @@ const ShowPage: React.FC = () => {
           <FlatList
             ListEmptyComponent={<Loading />}
             ListHeaderComponent={
-              <ShowDetails
+              <EpisodeDetails
                 channel={channel}
-                artist={showDetails.acf?.artist}
-                title={showDetails.title}
-                description={showDetails?.acf?.eng_content}
-                imageUrl={showDetails?.featured_image?.url}
+                artist={episodeDetails.data.related_show_artist}
+                title={episodeDetails.data.title}
+                tracklist={episodeDetails.data.tracklist}
+                imageUrl={episodeDetails?.data.featured_image?.url}
                 genres={genres}
               />
             }
@@ -109,4 +107,4 @@ const ShowPage: React.FC = () => {
   return null;
 };
 
-export default ShowPage;
+export default EpisodePage;

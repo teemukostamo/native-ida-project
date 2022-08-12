@@ -7,6 +7,7 @@ import EpisodeItem from '../explore/EpisodeItem';
 import Loading from '../layout/Loading';
 import ShowItem from './ShowItem';
 import {Title} from 'react-native-paper';
+import LinkButtons from './LinkButtons';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,11 +46,10 @@ const HotTips: React.FC = () => {
     );
   }
 
-  console.log(data);
-
   if (data) {
     return (
       <View style={styles.container}>
+        <LinkButtons />
         <View style={styles.epidodesContainer}>
           <Title>Latest episodes</Title>
           <FlatList

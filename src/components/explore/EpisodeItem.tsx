@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import {View, StyleSheet, ImageBackground} from 'react-native';
 import {Text, Title, IconButton} from 'react-native-paper';
+import {useNavigate} from 'react-router-native';
 import {format, parseISO} from 'date-fns';
 
 import {LatestEpisode} from '../../contexts/latest/types';
@@ -78,6 +79,11 @@ interface Props {
 
 const EpisodeItem: React.FC<Props> = ({item}) => {
   const {dispatch} = useContext(AppContext);
+  let navigate = useNavigate();
+
+  const handlePress = () => {
+    navigate(`/episodes/${item.slug}/${item.related_show_ID}`);
+  };
 
   if (item?.code === 'not_found') {
     return null;
@@ -145,6 +151,7 @@ const EpisodeItem: React.FC<Props> = ({item}) => {
               : 'unknown'}
           </Text>
           <Title
+            onPress={() => handlePress()}
             style={[
               styles.showTitleText,
               channel === 'helsinki' && {color: theme.colors.gray},

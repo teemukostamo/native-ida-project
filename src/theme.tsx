@@ -65,6 +65,7 @@ const theme = {
     accent: '#7162dd',
     text: '#e3706a',
     gray: '#e3e3e3',
+    blue: '#0099d2',
   },
   fonts: configureFonts(fontConfig),
 };
