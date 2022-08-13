@@ -23,12 +23,12 @@ const LinkButtons = () => {
   return (
     <View style={styles.container}>
       <View style={styles.chipContainer}>
-        <Chip
+        {/* <Chip
           mode="outlined"
           selected={location.pathname === '/picks'}
           onPress={() => navigate('/picks')}>
           Picks
-        </Chip>
+        </Chip> */}
         <Chip
           mode="outlined"
           selected={location.pathname === '/shows'}

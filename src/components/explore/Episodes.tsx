@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList, TextInput} from 'react-native';
 import {useInfiniteQuery} from '@tanstack/react-query';
 
 import LinkButtons from './LinkButtons';
@@ -14,10 +14,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.gray,
   },
+  searchInput: {
+    fontFamily: 'Menlo-Bold',
+    margin: 10,
+    backgroundColor: theme.colors.primary,
+    paddingVertical: 2,
+    paddingLeft: 6,
+    paddingHorizontal: 1,
+    color: theme.colors.backdrop,
+  },
 });
 
 const Episodes: React.FC = () => {
   const [pageNumber, setPageNumber] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
+  console.log(!searchQuery);
+  // const [genre, setGenre] = useState('');
 
   const fetchLatestEpisodes = async ({pageParam = 1}) => {
     const response = await fetch(
@@ -62,6 +74,15 @@ const Episodes: React.FC = () => {
     <View style={styles.container}>
       <LinkButtons />
       <View>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="SEARCH"
+          onChangeText={setSearchQuery}
+          value={searchQuery}
+          inlineImageLeft="search_icon"
+          inlineImagePadding={4}
+          clearButtonMode="always"
+        />
         <FlatList
           data={data.pages.map(page => page).flat()}
           renderItem={({item}) => <EpisodeItem item={item} />}
