@@ -3,7 +3,7 @@ import {View, StyleSheet, ImageBackground} from 'react-native';
 import {Text, Title, IconButton} from 'react-native-paper';
 import {useNavigate} from 'react-router-native';
 import {format, parseISO} from 'date-fns';
-
+import GenreButtons from '../layout/GenreButtons';
 import {LatestEpisode} from '../../contexts/latest/types';
 import {AppContext} from '../../contexts/main';
 import {onPlayMixcloudPress} from '../../contexts/nowPlaying/actions';
@@ -37,24 +37,12 @@ const styles = StyleSheet.create({
   titleTextContainer: {
     marginLeft: 10,
   },
-  liveTextStyle: {
-    backgroundColor: 'rgba(52, 52, 52, 0.6)',
-    position: 'relative',
-    bottom: 755,
-    marginLeft: 3,
-    marginTop: 5,
-    alignSelf: 'flex-start',
-    paddingHorizontal: 3,
-    fontFamily: 'Menlo-Bold',
-    fontWeight: 'bold',
-    color: theme.colors.gray,
-  },
   playButton: {
     padding: 1,
     backgroundColor: 'red',
     alignSelf: 'center',
     position: 'relative',
-    top: 80,
+    top: 108,
   },
   playButtonHelsinki: {
     backgroundColor: 'rgba(227, 227, 227, 0.8)',
@@ -112,7 +100,6 @@ const EpisodeItem: React.FC<Props> = ({item}) => {
           resizeMode="cover"
           style={styles.image}>
           <View style={styles.imageContentContainer}>
-            <Text style={styles.liveTextStyle}>{channel.toUpperCase()}</Text>
             <IconButton
               icon="play"
               color={
@@ -137,6 +124,7 @@ const EpisodeItem: React.FC<Props> = ({item}) => {
               }
             />
           </View>
+          <GenreButtons channel={channel} genres={item.taxonomies.genres} />
         </ImageBackground>
       </View>
       <View style={styles.titleContainer}>

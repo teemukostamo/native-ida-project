@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   textStyle: {
     fontFamily: 'Menlo-Bold',
     margin: 3,
+    marginVertical: 5,
     paddingVertical: 1,
     paddingHorizontal: 5,
     fontSize: 12,

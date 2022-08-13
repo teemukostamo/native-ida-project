@@ -7,6 +7,7 @@ import {ShowItemType} from '../../contexts/shows/types';
 import Error from '../layout/Error';
 
 import theme from '../../theme';
+import GenreButtons from '../layout/GenreButtons';
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -113,7 +114,7 @@ const ShowItem: React.FC<Props> = ({item}) => {
             resizeMode="cover"
             style={styles.image}>
             <View style={styles.imageContentContainer}>
-              {/* <Text style={styles.liveTextStyle}>{channel.toUpperCase()}</Text> */}
+              <GenreButtons channel={channel} genres={item.taxonomies.genres} />
             </View>
           </ImageBackground>
         </View>
