@@ -49,6 +49,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginTop: 5,
   },
+  descriptionTextStyleHelsinki: {
+    color: theme.colors.gray,
+  },
+  descriptionTextStyleTallinn: {
+    color: theme.colors.text,
+  },
 });
 
 type Genre = {
@@ -113,7 +119,13 @@ const ShowDetails: React.FC<Props> = ({
         </Title>
         <GenreButtons channel={channel} genres={genres} />
         {description && (
-          <Text style={[styles.descriptionTextStyle]}>
+          <Text
+            style={[
+              styles.descriptionTextStyle,
+              channel === 'helsinki'
+                ? styles.descriptionTextStyleHelsinki
+                : styles.descriptionTextStyleTallinn,
+            ]}>
             {stripHtmlTags(description)}
           </Text>
         )}

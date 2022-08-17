@@ -41,12 +41,12 @@ const LinkButtons = () => {
           onPress={() => navigate('/episodes')}>
           Episodes
         </Chip>
-        <Chip
+        {/* <Chip
           mode="outlined"
           selected={location.pathname === '/search'}
           onPress={() => navigate('/search')}>
           Search
-        </Chip>
+        </Chip> */}
       </View>
     </View>
   );

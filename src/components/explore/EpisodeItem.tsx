@@ -66,6 +66,7 @@ interface Props {
 }
 
 const EpisodeItem: React.FC<Props> = ({item}) => {
+  console.log('episodeItem', item);
   const {dispatch} = useContext(AppContext);
   let navigate = useNavigate();
 
@@ -134,7 +135,7 @@ const EpisodeItem: React.FC<Props> = ({item}) => {
               styles.showDateText,
               channel === 'helsinki' && {color: theme.colors.gray},
             ]}>
-            {item.episode_time.episode_start
+            {item?.episode_time?.episode_start
               ? format(parseISO(item.episode_time.episode_start), 'dd.MM.yyyy')
               : 'unknown'}
           </Text>
@@ -144,7 +145,7 @@ const EpisodeItem: React.FC<Props> = ({item}) => {
               styles.showTitleText,
               channel === 'helsinki' && {color: theme.colors.gray},
             ]}>
-            {item.show_title}
+            {item.show_title ? item.show_title : item.title}
           </Title>
         </View>
       </View>

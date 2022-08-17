@@ -42,26 +42,33 @@ const App = () => {
   });
 
   useEffect(() => {
-    getLiveShows(dispatch);
-    //getLatestEpisodes(dispatch);
-    getFullSchedule(dispatch);
-
-    setTimeout(() => {
+    let isMounted = true;
+    if (isMounted) {
       getLiveShows(dispatch);
       //getLatestEpisodes(dispatch);
-      console.log('fetched shows at the next hour at: ', new Date());
+      getFullSchedule(dispatch);
 
-      setInterval(() => {
+      setTimeout(() => {
         getLiveShows(dispatch);
         //getLatestEpisodes(dispatch);
-        console.log('fetched shows at every hour at: ', new Date());
-      }, 3600000);
-    }, getMsToNextHour());
+        console.log('fetched shows at the next hour at: ', new Date());
+
+        setInterval(() => {
+          getLiveShows(dispatch);
+          //getLatestEpisodes(dispatch);
+          console.log('fetched shows at every hour at: ', new Date());
+        }, 3600000);
+      }, getMsToNextHour());
+    }
 
     const initPlayer = async () => {
       await setupPlayer();
     };
     initPlayer();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const styles = StyleSheet.create({

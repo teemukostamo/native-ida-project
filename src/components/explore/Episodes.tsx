@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, FlatList, TextInput} from 'react-native';
-import {useInfiniteQuery} from '@tanstack/react-query';
 
 import LinkButtons from './LinkButtons';
 import EpisodeItem from './EpisodeItem';
 import Loading from '../layout/Loading';
 import Error from '../layout/Error';
+import Dropdown from '../layout/Dropdown';
+import ChannelButtons from '../layout/ChannelButtons';
+import {DropdownOptionType} from '../layout/types';
+import {GENRE_OPTIONS} from '../../constants';
+import useLatestEpisodes from '../../hooks/useLatestEpisodes';
 
 import theme from '../../theme';
 
@@ -26,31 +30,28 @@ const styles = StyleSheet.create({
 });
 
 const Episodes: React.FC = () => {
-  const [pageNumber, setPageNumber] = useState(1);
+  const {isLoading, isError, data, fetchMore} = useLatestEpisodes();
+  // const defaultUrl =
+  //   'https://admin.idaidaida.net/wp-json/ida/v3/episodes?paged=${pageParam}&posts_per_page=36';
   const [searchQuery, setSearchQuery] = useState('');
-  console.log(!searchQuery);
   // const [genre, setGenre] = useState('');
+  // const [fetchUrl, setFetchUrl] = useState(defaultUrl);
 
-  const fetchLatestEpisodes = async ({pageParam = 1}) => {
-    const response = await fetch(
-      `https://admin.idaidaida.net/wp-json/ida/v3/episodes?paged=${pageParam}&posts_per_page=36`,
-    );
-    return response.json();
-  };
+  // useEffect(() => {
+  //   console.log('effect ran');
+  //   if (searchQuery || genre) {
+  //     console.log(searchQuery);
+  //     setFetchUrl(
+  //       fetchUrlBuilder('episode', pageNumber, '', genre, searchQuery),
+  //     );
+  //   } else {
+  //     setFetchUrl(defaultUrl);
+  //   }
+  // }, [searchQuery, genre, pageNumber]);
 
-  const {isLoading, isError, data, fetchNextPage} = useInfiniteQuery(
-    ['LatestEpisodes'],
-    fetchLatestEpisodes,
-    {
-      getNextPageParam: () => pageNumber + 1,
-    },
-  );
-
-  const fetchMore = () => {
-    if (pageNumber < 100) {
-      setPageNumber(pageNumber + 1);
-      fetchNextPage();
-    }
+  const onGenreChange = (value: DropdownOptionType) => {
+    console.log('value', value);
+    // setGenre(value.value);
   };
 
   if (isError) {
@@ -82,11 +83,18 @@ const Episodes: React.FC = () => {
           inlineImageLeft="search_icon"
           inlineImagePadding={4}
           clearButtonMode="always"
+          onSubmitEditing={() => console.log('klikd submit')}
         />
+        <Dropdown
+          onSelect={onGenreChange}
+          data={GENRE_OPTIONS}
+          label={'GENRES'}
+        />
+        <ChannelButtons />
         <FlatList
-          data={data.pages.map(page => page).flat()}
+          data={data?.pages.map(page => page).flat()}
           renderItem={({item}) => <EpisodeItem item={item} />}
-          //keyExtractor={item => item.featured_image.url}
+          //keyExtractor={item => item.id}
           onEndReached={() => fetchMore()}
         />
       </View>
