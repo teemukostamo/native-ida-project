@@ -28,9 +28,7 @@ const MyIdaView = () => {
             <Text>Example Modal. Click outside this area to dismiss.</Text>
           </Modal>
         </Portal>
-        <Button style={{marginTop: 30}} onPress={showModal}>
-          LOGIN
-        </Button>
+        <Button onPress={showModal}>LOGIN</Button>
       </Provider>
     </View>
   );
