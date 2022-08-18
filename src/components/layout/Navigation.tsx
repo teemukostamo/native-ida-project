@@ -5,6 +5,27 @@ import {useNavigate} from 'react-router-native';
 
 import theme from '../../theme';
 
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: theme.colors.gray,
+    elevation: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'baseline',
+    paddingTop: 10,
+    marginHorizontal: 15,
+  },
+  itemContainer: {
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  textStyle: {
+    alignSelf: 'center',
+    marginBottom: 20,
+    color: theme.colors.backdrop,
+  },
+});
+
 const Navigation = () => {
   let navigate = useNavigate();
 
@@ -28,7 +49,7 @@ const Navigation = () => {
       <View style={styles.itemContainer}>
         <Appbar.Action
           icon="album"
-          onPress={() => navigate('/explore', {replace: true})}
+          onPress={() => navigate('/episodes', {replace: true})}
         />
         <Text style={styles.textStyle}>Explore</Text>
       </View>
@@ -44,24 +65,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: theme.colors.gray,
-    elevation: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'baseline',
-    paddingTop: 10,
-    marginHorizontal: 15,
-  },
-  itemContainer: {
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-  },
-  textStyle: {
-    alignSelf: 'center',
-    marginBottom: 20,
-    color: theme.colors.backdrop,
-  },
-});

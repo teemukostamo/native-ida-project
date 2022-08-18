@@ -9,24 +9,34 @@ import {FETCH_LIVE_SHOWS} from './live/reducer';
 import {LiveShows} from './live/types';
 
 import {FETCH_LATEST_SHOWS} from './latest/reducer';
-import {LatestShows} from './latest/types';
+import {LatestEpisodes} from './latest/types';
 
 import {FETCH_FULL_SCHEDULE} from './schedule/reducer';
 import {FullSchedule} from './schedule/types';
+
+import {SET_SHOW_PAGE_STATE} from './shows/reducer';
+import {ShowItemType} from './shows/types';
+
+import {SET_SEARCH_QUERY, SET_CHANNEL, SET_GENRE} from './filters/reducer';
 
 interface LiveShowsAction {
   type: typeof FETCH_LIVE_SHOWS;
   data: LiveShows;
 }
 
-interface LatestShowsAction {
+interface LatestEpisodesAction {
   type: typeof FETCH_LATEST_SHOWS;
-  data: LatestShows;
+  data: LatestEpisodes;
 }
 
 interface FullScheduleAction {
   type: typeof FETCH_FULL_SCHEDULE;
   data: FullSchedule;
+}
+
+interface ShowPageAction {
+  type: typeof SET_SHOW_PAGE_STATE;
+  data: ShowItemType;
 }
 
 interface StartPlayerAction {
@@ -42,11 +52,18 @@ interface StopPlayerAction {
   type: typeof STOP;
 }
 
+interface SetFilterAction {
+  type: typeof SET_CHANNEL | typeof SET_GENRE | typeof SET_SEARCH_QUERY;
+  data: string;
+}
+
 type ActionTypes =
   | LiveShowsAction
-  | LatestShowsAction
+  | LatestEpisodesAction
   | FullScheduleAction
+  | ShowPageAction
   | StartPlayerAction
-  | StopPlayerAction;
+  | StopPlayerAction
+  | SetFilterAction;
 
 export default ActionTypes;

@@ -1,20 +1,16 @@
-import React, {Dispatch, useContext} from 'react';
-import {View, StyleSheet, FlatList, ImageBackground} from 'react-native';
+import React, {useContext} from 'react';
+import {View, StyleSheet, ImageBackground} from 'react-native';
 import {Text, Title, IconButton} from 'react-native-paper';
+import {useNavigate} from 'react-router-native';
 import {format, parseISO} from 'date-fns';
-
-import {LatestShow} from '../../contexts/latest/types';
+import GenreButtons from '../layout/GenreButtons';
+import {LatestEpisode} from '../../contexts/latest/types';
 import {AppContext} from '../../contexts/main';
 import {onPlayMixcloudPress} from '../../contexts/nowPlaying/actions';
 
 import theme from '../../theme';
-import ActionTypes from '../../contexts/actionTypes';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.gray,
-  },
   cardContainer: {
     margin: 10,
     backgroundColor: theme.colors.accent,
@@ -29,39 +25,24 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   image: {
-    // flex: 1,
     justifyContent: 'center',
   },
   imageContentContainer: {
     height: 300,
   },
   titleContainer: {
-    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   titleTextContainer: {
-    // flex: 1,
     marginLeft: 10,
-  },
-  liveTextStyle: {
-    backgroundColor: 'rgba(52, 52, 52, 0.6)',
-    position: 'relative',
-    bottom: 755,
-    marginLeft: 3,
-    marginTop: 5,
-    alignSelf: 'flex-start',
-    paddingHorizontal: 3,
-    fontFamily: 'Menlo-Bold',
-    fontWeight: 'bold',
-    color: theme.colors.gray,
   },
   playButton: {
     padding: 1,
     backgroundColor: 'red',
     alignSelf: 'center',
     position: 'relative',
-    top: 80,
+    top: 108,
   },
   playButtonHelsinki: {
     backgroundColor: 'rgba(227, 227, 227, 0.8)',
@@ -81,14 +62,26 @@ const styles = StyleSheet.create({
 });
 
 interface Props {
-  item: LatestShow;
-  dispatch: Dispatch<ActionTypes>;
+  item: LatestEpisode;
 }
 
-const Item: React.FC<Props> = ({item, dispatch}) => {
-  const channel = item.taxonomies.channel
-    ? item.taxonomies.channel[0].slug
-    : '';
+const EpisodeItem: React.FC<Props> = ({item}) => {
+  console.log('episodeItem', item);
+  const {dispatch} = useContext(AppContext);
+  let navigate = useNavigate();
+
+  const handlePress = () => {
+    navigate(`/episodes/${item.slug}/${item.related_show_ID}`);
+  };
+
+  if (item?.code === 'not_found') {
+    return null;
+  }
+
+  const channel =
+    item.taxonomies && item.taxonomies.channel
+      ? item.taxonomies.channel[0].slug
+      : '';
 
   return (
     <View
@@ -99,13 +92,15 @@ const Item: React.FC<Props> = ({item, dispatch}) => {
           : styles.cardContainerTallinn,
       ]}>
       <View style={styles.imageContainer}>
-        {/* make sure the image is always same size */}
         <ImageBackground
-          source={{uri: item.featured_image.url}}
+          source={{
+            uri: item.featured_image
+              ? item.featured_image.sizes.medium_large
+              : '/assets/images/ida-logo-1024.png',
+          }}
           resizeMode="cover"
           style={styles.image}>
           <View style={styles.imageContentContainer}>
-            <Text style={styles.liveTextStyle}>{channel.toUpperCase()}</Text>
             <IconButton
               icon="play"
               color={
@@ -130,6 +125,7 @@ const Item: React.FC<Props> = ({item, dispatch}) => {
               }
             />
           </View>
+          <GenreButtons channel={channel} genres={item.taxonomies.genres} />
         </ImageBackground>
       </View>
       <View style={styles.titleContainer}>
@@ -139,14 +135,17 @@ const Item: React.FC<Props> = ({item, dispatch}) => {
               styles.showDateText,
               channel === 'helsinki' && {color: theme.colors.gray},
             ]}>
-            {format(parseISO(item.episode_time.episode_start), 'dd.MM.yyyy')}
+            {item?.episode_time?.episode_start
+              ? format(parseISO(item.episode_time.episode_start), 'dd.MM.yyyy')
+              : 'unknown'}
           </Text>
           <Title
+            onPress={() => handlePress()}
             style={[
               styles.showTitleText,
               channel === 'helsinki' && {color: theme.colors.gray},
             ]}>
-            {item.show_title}
+            {item.show_title ? item.show_title : item.title}
           </Title>
         </View>
       </View>
@@ -154,26 +153,4 @@ const Item: React.FC<Props> = ({item, dispatch}) => {
   );
 };
 
-const ExploreView = () => {
-  const {state, dispatch} = useContext(AppContext);
-  const {latest} = state;
-
-  const hasLatestShows = latest && latest && latest.length > 0;
-
-  return (
-    <View style={styles.container}>
-      <Title>Explore shows</Title>
-      {hasLatestShows && (
-        <View>
-          <FlatList
-            data={latest}
-            renderItem={({item}) => <Item dispatch={dispatch} item={item} />}
-            keyExtractor={item => item.featured_image.url}
-          />
-        </View>
-      )}
-    </View>
-  );
-};
-
-export default ExploreView;
+export default EpisodeItem;

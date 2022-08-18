@@ -10,7 +10,7 @@ interface EpisodeTime {
   episode_end: string;
 }
 
-export interface LatestShow {
+export interface LatestEpisode {
   id: string;
   slug: string;
   title: string;
@@ -28,6 +28,7 @@ export interface LatestShow {
   };
   post_type: string;
   tracklist?: string;
+  code?: string;
 }
 
-export type LatestShows = LatestShow[] | null;
+export type LatestEpisodes = LatestEpisode[] | null;

@@ -73,8 +73,6 @@ const NowPlayingBar = () => {
     }
   };
 
-  console.log('nowplaying state: ', nowPlaying);
-
   return nowPlaying.showNowPlayingBar ? (
     <View style={styles.container}>
       {nowPlaying.streamType === 'live' ? (
