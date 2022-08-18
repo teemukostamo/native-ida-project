@@ -16,6 +16,8 @@ const styles = StyleSheet.create({
     paddingVertical: 1,
     paddingHorizontal: 5,
     fontSize: 12,
+    borderRadius: 3,
+    overflow: 'hidden',
   },
   channelStyleHelsinki: {
     backgroundColor: theme.colors.primary,

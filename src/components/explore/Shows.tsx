@@ -7,7 +7,7 @@ import Loading from '../layout/Loading';
 import Error from '../layout/Error';
 
 import theme from '../../theme';
-import LinkButtons from './LinkButtons';
+import Filters from '../layout/Filters';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,7 +45,6 @@ const Shows: React.FC = () => {
   if (isError) {
     return (
       <View style={styles.container}>
-        <LinkButtons />
         <Error />
       </View>
     );
@@ -53,15 +52,14 @@ const Shows: React.FC = () => {
   if (isLoading) {
     return (
       <View style={styles.container}>
-        <LinkButtons />
         <Loading />
       </View>
     );
   }
   return (
     <View style={styles.container}>
-      <LinkButtons />
       <View>
+        <Filters />
         <FlatList
           data={data.pages.map(page => page).flat()}
           renderItem={({item}) => <ShowItem item={item} />}

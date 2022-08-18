@@ -15,6 +15,9 @@ import {fullScheduleReducer} from './schedule/reducer';
 import {ShowItemType} from './shows/types';
 import {showPageReducer} from './shows/reducer';
 
+import {FiltersType} from './filters/types';
+import {filtersReducer, initialFiltersState} from './filters/reducer';
+
 import ActionTypes from './actionTypes';
 
 type InitialStateType = {
@@ -23,6 +26,7 @@ type InitialStateType = {
   latest: LatestEpisodes;
   fullSchedule: FullSchedule;
   showPage: ShowItemType;
+  filters: FiltersType;
 };
 
 export const initialState = {
@@ -31,10 +35,11 @@ export const initialState = {
   latest: null,
   fullSchedule: null,
   showPage: null,
+  filters: initialFiltersState,
 };
 
 export const mainReducer = (
-  {nowPlaying, live, latest, fullSchedule, showPage}: InitialStateType,
+  {nowPlaying, live, latest, fullSchedule, showPage, filters}: InitialStateType,
   action: ActionTypes,
 ) => ({
   nowPlaying: nowPlayingReducer(nowPlaying, action),
@@ -42,6 +47,7 @@ export const mainReducer = (
   latest: LatestEpisodesReducer(latest, action),
   fullSchedule: fullScheduleReducer(fullSchedule, action),
   showPage: showPageReducer(showPage, action),
+  filters: filtersReducer(filters, action),
 });
 
 export const AppContext = createContext<{

@@ -17,6 +17,8 @@ import {FullSchedule} from './schedule/types';
 import {SET_SHOW_PAGE_STATE} from './shows/reducer';
 import {ShowItemType} from './shows/types';
 
+import {SET_SEARCH_QUERY, SET_CHANNEL, SET_GENRE} from './filters/reducer';
+
 interface LiveShowsAction {
   type: typeof FETCH_LIVE_SHOWS;
   data: LiveShows;
@@ -50,12 +52,18 @@ interface StopPlayerAction {
   type: typeof STOP;
 }
 
+interface SetFilterAction {
+  type: typeof SET_CHANNEL | typeof SET_GENRE | typeof SET_SEARCH_QUERY;
+  data: string;
+}
+
 type ActionTypes =
   | LiveShowsAction
   | LatestEpisodesAction
   | FullScheduleAction
   | ShowPageAction
   | StartPlayerAction
-  | StopPlayerAction;
+  | StopPlayerAction
+  | SetFilterAction;
 
 export default ActionTypes;

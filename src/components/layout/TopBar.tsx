@@ -2,6 +2,8 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Title} from 'react-native-paper';
 import {useLocation} from 'react-router-native';
+import ExploreViewSelector from './ExploreViewSelector';
+
 import {getViewNameFromLocation} from '../../utils';
 
 import theme from '../../theme';
@@ -27,7 +29,11 @@ const TopBar: React.FC = () => {
   const viewName = getViewNameFromLocation(location.pathname);
   return (
     <View style={styles.container}>
-      <Title style={styles.pageTitleStyle}>{viewName}</Title>
+      {viewName === 'shows' || viewName === 'episodes' ? (
+        <ExploreViewSelector />
+      ) : (
+        <Title style={styles.pageTitleStyle}>{viewName}</Title>
+      )}
       <Title style={styles.idaStyle}>IDA</Title>
     </View>
   );

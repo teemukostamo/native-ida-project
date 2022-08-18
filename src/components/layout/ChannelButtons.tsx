@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
 
 import theme from '../../theme';
@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    marginBottom: 10,
+    marginBottom: 2,
   },
   textStyle: {
     fontFamily: 'Menlo-Bold',
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   channelStyleInactive: {
-    backgroundColor: 'black',
+    backgroundColor: 'rgba(7, 7, 7, 0.8)',
     color: theme.colors.gray,
   },
   channelStyleAll: {
@@ -37,38 +37,51 @@ const styles = StyleSheet.create({
   },
 });
 
-const ChannelButtons: React.FC = () => {
-  const [active, setActive] = useState('all');
-  console.log(active);
+type Props = {
+  channel: string;
+  setChannel: Dispatch<SetStateAction<string>>;
+  onChannelChange: () => void;
+};
+
+const ChannelButtons: React.FC<Props> = ({
+  channel,
+  setChannel,
+  onChannelChange,
+}) => {
+  const handleChange = (selectedChannel: string) => {
+    setChannel(selectedChannel);
+    onChannelChange();
+  };
+
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => setActive('all')}>
+      <Pressable onPress={() => handleChange('all')}>
         <Text
           style={[
             styles.textStyle,
-            active === 'all'
+            channel === 'all'
               ? styles.channelStyleAll
               : styles.channelStyleInactive,
           ]}>
           ALL
         </Text>
       </Pressable>
-      <Pressable onPress={() => setActive('tallinn')}>
+      <Pressable onPress={() => handleChange('tallinn')}>
         <Text
           style={[
             styles.textStyle,
-            active === 'tallinn'
+            channel === 'tallinn'
               ? styles.channelStyleTallinn
               : styles.channelStyleInactive,
           ]}>
           TALLINN
         </Text>
       </Pressable>
-      <Pressable onPress={() => setActive('helsinki')}>
+      <Pressable onPress={() => handleChange('helsinki')}>
         <Text
           style={[
             styles.textStyle,
-            active === 'helsinki'
+            channel === 'helsinki'
               ? styles.channelStyleHelsinki
               : styles.channelStyleInactive,
           ]}>

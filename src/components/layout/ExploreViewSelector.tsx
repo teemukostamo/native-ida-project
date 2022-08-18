@@ -1,9 +1,7 @@
 import React, {
-  Dispatch,
   FC,
   MutableRefObject,
   ReactElement,
-  SetStateAction,
   useRef,
   useState,
 } from 'react';
@@ -15,12 +13,18 @@ import {
   Modal,
   View,
 } from 'react-native';
+import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {useNavigate} from 'react-router-native';
 import theme from '../../theme';
 
 import {DropdownOptionType} from '../layout/types';
 
 const styles = StyleSheet.create({
+  pageTitleStyle: {
+    color: theme.colors.backdrop,
+    marginLeft: 10,
+  },
   button: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -40,7 +44,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   icon: {
-    marginRight: 7,
+    marginLeft: 100,
   },
   dropdown: {
     marginLeft: 10,
@@ -48,7 +52,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     width: '95%',
     fontFamily: 'Menlo-Bold',
-    height: 400,
   },
   overlay: {
     width: '100%',
@@ -66,14 +69,6 @@ const styles = StyleSheet.create({
   },
 });
 
-interface Props {
-  label: string;
-  data: Array<{label: string; value: string}>;
-  onSelect: (item: {label: string; value: string}) => void;
-  value: {label: string; value: string};
-  setSelected: Dispatch<SetStateAction<{label: string; value: string}>>;
-}
-
 interface DropdownItem {
   item: {
     label: string;
@@ -81,16 +76,21 @@ interface DropdownItem {
   };
 }
 
-const Dropdown: FC<Props> = ({label, data, onSelect, setSelected, value}) => {
+const ExploreViewSelector: FC = () => {
+  let navigate = useNavigate();
   const DropdownButton = useRef() as MutableRefObject<TouchableOpacity>;
   const [visible, setVisible] = useState(false);
+  const [selected, setSelected] = useState({
+    label: 'EXPLORE EPISODES',
+    value: 'episodes',
+  });
   const [dropdownTop, setDropdownTop] = useState(0);
 
   const toggleDropdown = (): void => {
     visible ? setVisible(false) : openDropdown();
   };
 
-  const openDropdown = () => {
+  const openDropdown = (): void => {
     DropdownButton.current.measure(
       (
         _fx: number,
@@ -106,17 +106,28 @@ const Dropdown: FC<Props> = ({label, data, onSelect, setSelected, value}) => {
     setVisible(true);
   };
 
+  const onSelect = (item: {label: string; value: string}) => {
+    navigate(`/${item.value}`);
+  };
+
   const onItemPress = (item: DropdownOptionType): void => {
     setSelected(item);
     onSelect(item);
     setVisible(false);
   };
 
+  const data = [
+    {label: 'EXPLORE EPISODES', value: 'episodes'},
+    {label: 'EXPLORE SHOWS', value: 'shows'},
+  ];
+
   const renderItem = ({item}: DropdownItem) => {
     return (
-      <TouchableOpacity style={styles.item} onPress={() => onItemPress(item)}>
-        <Text style={styles.itemText}>{item.label}</Text>
-      </TouchableOpacity>
+      item.value !== selected.value && (
+        <TouchableOpacity style={styles.item} onPress={() => onItemPress(item)}>
+          <Text style={styles.itemText}>{item.label}</Text>
+        </TouchableOpacity>
+      )
     );
   };
 
@@ -140,16 +151,15 @@ const Dropdown: FC<Props> = ({label, data, onSelect, setSelected, value}) => {
 
   return (
     <>
-      <TouchableOpacity
-        ref={DropdownButton}
-        style={styles.button}
-        onPress={toggleDropdown}>
+      <TouchableOpacity ref={DropdownButton} onPress={toggleDropdown}>
         {renderDropdown()}
-        <Text style={styles.buttonText}>{(value && value.label) || label}</Text>
-        <Icon style={styles.icon} name="chevron-down" />
+        <Title style={styles.pageTitleStyle}>
+          {selected && selected.label}
+          <Icon style={styles.icon} name="chevron-down" />
+        </Title>
       </TouchableOpacity>
     </>
   );
 };
 
-export default Dropdown;
+export default ExploreViewSelector;
