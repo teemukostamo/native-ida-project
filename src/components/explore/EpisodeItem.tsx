@@ -66,7 +66,7 @@ interface Props {
 }
 
 const EpisodeItem: React.FC<Props> = ({item}) => {
-  console.log('episodeItem', item);
+  //  console.log('episodeItem', item);
   const {dispatch} = useContext(AppContext);
   let navigate = useNavigate();
 

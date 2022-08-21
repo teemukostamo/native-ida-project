@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 
 import EpisodeItem from './EpisodeItem';
@@ -9,6 +9,7 @@ import Filters from '../layout/Filters';
 import useLatestEpisodes from '../../hooks/useLatestEpisodes';
 
 import theme from '../../theme';
+import {AppContext} from '../../contexts/main';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,6 +29,10 @@ const styles = StyleSheet.create({
 
 const Episodes: React.FC = () => {
   const {isLoading, isError, data, fetchMore} = useLatestEpisodes();
+  const {state} = useContext(AppContext);
+  const {filters} = state;
+  console.log(filters.searchQuery);
+
   // take filter values from context and do something
 
   if (isError) {

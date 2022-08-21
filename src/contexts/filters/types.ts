@@ -1,5 +1,5 @@
 export type FiltersType = {
-  channel: string | null;
-  searchQuery: string | null;
-  genre: string | null;
+  channel: string;
+  searchQuery: string;
+  genre: string;
 };

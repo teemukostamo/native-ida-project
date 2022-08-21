@@ -11,10 +11,8 @@ import ScheduleView from './components/schedule';
 import MyIdaView from './components/myida';
 import ShowPage from './components/shows';
 import EpisodePage from './components/episodes';
-import HotTips from './components/explore/HotTips';
 import Shows from './components/explore/Shows';
 import Episodes from './components/explore/Episodes';
-import Search from './components/explore/Search';
 import TopBar from './components/layout/TopBar';
 
 import {AppContext, mainReducer, initialState} from './contexts/main';
@@ -91,10 +89,8 @@ const App = () => {
                 <Route path="/" element={<LiveView />} />
                 <Route path="/schedule" element={<ScheduleView />} />
                 <Route path="/myida" element={<MyIdaView />} />
-                <Route path="picks" element={<HotTips />} />
                 <Route path="shows" element={<Shows />} />
                 <Route path="episodes" element={<Episodes />} />
-                <Route path="search" element={<Search />} />
                 <Route path="/shows/:slug/:id" element={<ShowPage />} />
                 <Route path="/episodes/:slug/:id" element={<EpisodePage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />

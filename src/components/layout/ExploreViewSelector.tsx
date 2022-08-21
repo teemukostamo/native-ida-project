@@ -5,14 +5,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Modal,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, Modal, View} from 'react-native';
 import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigate} from 'react-router-native';
@@ -61,6 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.green,
     paddingHorizontal: 1,
     paddingVertical: 1,
+    marginTop: -10,
   },
   itemText: {
     color: theme.colors.backdrop,
@@ -68,13 +62,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
-
-interface DropdownItem {
-  item: {
-    label: string;
-    value: string;
-  };
-}
 
 const ExploreViewSelector: FC = () => {
   let navigate = useNavigate();
@@ -116,21 +103,6 @@ const ExploreViewSelector: FC = () => {
     setVisible(false);
   };
 
-  const data = [
-    {label: 'EXPLORE EPISODES', value: 'episodes'},
-    {label: 'EXPLORE SHOWS', value: 'shows'},
-  ];
-
-  const renderItem = ({item}: DropdownItem) => {
-    return (
-      item.value !== selected.value && (
-        <TouchableOpacity style={styles.item} onPress={() => onItemPress(item)}>
-          <Text style={styles.itemText}>{item.label}</Text>
-        </TouchableOpacity>
-      )
-    );
-  };
-
   const renderDropdown = (): ReactElement<any, any> => {
     return (
       <Modal visible={visible} transparent animationType="none">
@@ -138,11 +110,23 @@ const ExploreViewSelector: FC = () => {
           style={styles.overlay}
           onPress={() => setVisible(false)}>
           <View style={[styles.dropdown, {top: dropdownTop}]}>
-            <FlatList
-              data={data}
-              renderItem={renderItem}
-              keyExtractor={(item, index) => index.toString()}
-            />
+            {selected.value === 'episodes' ? (
+              <TouchableOpacity
+                style={styles.item}
+                onPress={() =>
+                  onItemPress({label: 'EXPLORE SHOWS', value: 'shows'})
+                }>
+                <Text style={styles.itemText}>EXPLORE SHOWS</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={styles.item}
+                onPress={() =>
+                  onItemPress({label: 'EXPLORE EPISODES', value: 'episodes'})
+                }>
+                <Text style={styles.itemText}>EXPLORE EPISODES</Text>
+              </TouchableOpacity>
+            )}
           </View>
         </TouchableOpacity>
       </Modal>

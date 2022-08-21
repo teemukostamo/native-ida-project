@@ -26,26 +26,19 @@ const styles = StyleSheet.create({
 const Filters: React.FC = () => {
   // make filter values go to context
   const [showFilters, setShowFilters] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const [genre, setGenre] = useState({label: '', value: ''});
   const [channel, setChannel] = useState('all');
 
   const onGenreChange = () => {
-    console.log(
-      `Genre changed, current filter params are genre ${genre.value}, channel ${channel}, searchQuery ${searchQuery}`,
-    );
+    console.log('genre changed');
   };
 
   const onSearchPress = () => {
-    console.log(
-      `Search changed, current filter params are genre ${genre.value}, channel ${channel}, searchQuery ${searchQuery}`,
-    );
+    console.log('on search pressed');
   };
 
   const onChannelChange = () => {
-    console.log(
-      `Channel changed, current filter params are genre ${genre.value}, channel ${channel}, searchQuery ${searchQuery}`,
-    );
+    console.log('channel changed');
   };
 
   return (
@@ -57,11 +50,7 @@ const Filters: React.FC = () => {
       </TouchableOpacity>
       {showFilters && (
         <View>
-          <SearchBar
-            onSearchPress={onSearchPress}
-            inputValue={searchQuery}
-            setInputValue={setSearchQuery}
-          />
+          <SearchBar onSearchPress={onSearchPress} />
           <Dropdown
             onSelect={onGenreChange}
             data={GENRE_OPTIONS}

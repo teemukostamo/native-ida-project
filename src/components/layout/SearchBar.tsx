@@ -1,5 +1,7 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {StyleSheet, TextInput} from 'react-native';
+import {AppContext} from '../../contexts/main';
+import {setSearchQuery} from '../../contexts/filters/actions';
 
 import theme from '../../theme';
 
@@ -21,21 +23,22 @@ const styles = StyleSheet.create({
 
 type Props = {
   onSearchPress: () => void;
-  setInputValue: Dispatch<SetStateAction<string>>;
-  inputValue: string;
 };
 
-const SearchBar: React.FC<Props> = ({
-  onSearchPress,
-  inputValue,
-  setInputValue,
-}) => {
+const SearchBar: React.FC<Props> = ({onSearchPress}) => {
+  const {state, dispatch} = useContext(AppContext);
+  const [value, setValue] = useState(state.filters.searchQuery);
+
+  useEffect(() => {
+    setSearchQuery(dispatch, value);
+  }, [value, dispatch]);
+
   return (
     <TextInput
       style={styles.searchInput}
       placeholder="SEARCH"
-      onChangeText={setInputValue}
-      value={inputValue}
+      onChangeText={setValue}
+      value={value}
       inlineImageLeft="search_icon"
       inlineImagePadding={4}
       clearButtonMode="always"
