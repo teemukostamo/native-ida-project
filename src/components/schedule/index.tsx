@@ -1,11 +1,12 @@
 import React, {useContext} from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView, Pressable} from 'react-native';
 import {Title, Text} from 'react-native-paper';
 import {format, parseISO} from 'date-fns';
 
 import {AppContext} from '../../contexts/main';
 
 import theme from '../../theme';
+import {useNavigate} from 'react-router-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -84,7 +85,12 @@ const styles = StyleSheet.create({
 
 const ScheduleView = () => {
   const {state} = useContext(AppContext);
+  let navigate = useNavigate();
   const {fullSchedule} = state;
+
+  const handlePress = (show_title: string, show_id: number) => {
+    navigate(`/shows/${show_title}/${show_id}`);
+  };
 
   return fullSchedule ? (
     <ScrollView style={styles.container}>
@@ -120,10 +126,14 @@ const ScheduleView = () => {
                         </Text>
                       </View>
                       <View style={styles.titleContainer}>
-                        <Text style={styles.titleTextTallinn}>
-                          {show.show_title}
-                          {show.subtitle && ` - ${show.subtitle}`}
-                        </Text>
+                        <Pressable>
+                          <Text
+                            onPress={() => handlePress(show.slug, show.show_id)}
+                            style={styles.titleTextTallinn}>
+                            {show.show_title}
+                            {show.subtitle && ` - ${show.subtitle}`}
+                          </Text>
+                        </Pressable>
                       </View>
                     </View>
                   ))}
@@ -164,10 +174,14 @@ const ScheduleView = () => {
                         </Text>
                       </View>
                       <View style={styles.titleContainer}>
-                        <Text style={styles.titleTextHelsinki}>
-                          {show.show_title}
-                          {show.subtitle && ` - ${show.subtitle}`}
-                        </Text>
+                        <Pressable>
+                          <Text
+                            onPress={() => handlePress(show.slug, show.show_id)}
+                            style={styles.titleTextHelsinki}>
+                            {show.show_title}
+                            {show.subtitle && ` - ${show.subtitle}`}
+                          </Text>
+                        </Pressable>
                       </View>
                     </View>
                   ))}

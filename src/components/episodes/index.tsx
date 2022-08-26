@@ -90,6 +90,7 @@ const EpisodePage: React.FC = () => {
                 artist={episodeDetails.data.related_show_artist}
                 title={episodeDetails.data.title}
                 tracklist={episodeDetails.data.tracklist}
+                mixcloud={episodeDetails.data.mixcloud}
                 imageUrl={episodeDetails?.data.featured_image?.url}
                 genres={genres}
               />

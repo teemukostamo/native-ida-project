@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginLeft: 10,
     marginTop: 10,
+    marginBottom: 5,
   },
 });
 
@@ -45,7 +46,7 @@ const Filters: React.FC = () => {
     <View>
       <TouchableOpacity onPress={() => setShowFilters(!showFilters)}>
         <Text style={styles.filterBtnContainer}>
-          {showFilters ? 'HIDE FILTERS' : 'SHOW FILTERS'}
+          {showFilters ? 'HIDE FILTERS' : 'FILTER'}
         </Text>
       </TouchableOpacity>
       {showFilters && (

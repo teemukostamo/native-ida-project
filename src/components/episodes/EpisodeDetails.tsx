@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, StyleSheet, ImageBackground} from 'react-native';
-import {Title} from 'react-native-paper';
+import {IconButton, Title} from 'react-native-paper';
 import theme from '../../theme';
 import GenreButtons from '../layout/GenreButtons';
 import {stripHtmlTags, decodeHtmlCharCodes} from '../../utils';
+import {onPlayMixcloudPress} from '../../contexts/nowPlaying/actions';
+import {AppContext} from '../../contexts/main';
 
 const styles = StyleSheet.create({
   coverImage: {
@@ -49,6 +51,21 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginTop: 5,
   },
+  playButton: {
+    padding: 1,
+    backgroundColor: 'red',
+    alignSelf: 'center',
+    position: 'relative',
+    top: 50,
+  },
+  playButtonHelsinki: {
+    backgroundColor: 'rgba(227, 227, 227, 0.8)',
+    color: theme.colors.accent,
+  },
+  playButtonTallinn: {
+    backgroundColor: 'rgba(227, 112, 106, 0.8)',
+    color: theme.colors.primary,
+  },
 });
 
 type Genre = {
@@ -61,6 +78,7 @@ type Props = {
   channel: string;
   artist?: string;
   title: string;
+  mixcloud: string;
   tracklist?: string;
   genres?: Genre[];
 };
@@ -68,11 +86,14 @@ type Props = {
 const EpisodeDetails: React.FC<Props> = ({
   imageUrl,
   channel,
-  artist,
+  artist = 'unknown artist',
   title,
   tracklist,
+  mixcloud,
   genres,
 }) => {
+  const {dispatch} = useContext(AppContext);
+
   const imageSrc = imageUrl
     ? {
         uri: imageUrl,
@@ -85,7 +106,26 @@ const EpisodeDetails: React.FC<Props> = ({
         source={imageSrc}
         resizeMode="cover"
         style={styles.image}>
-        <View style={styles.imageContentContainer} />
+        <View style={styles.imageContentContainer}>
+          <IconButton
+            icon="play"
+            color={
+              channel === 'helsinki'
+                ? theme.colors.accent
+                : theme.colors.primary
+            }
+            style={[
+              styles.playButton,
+              channel === 'helsinki'
+                ? styles.playButtonHelsinki
+                : styles.playButtonTallinn,
+            ]}
+            size={50}
+            onPress={() =>
+              onPlayMixcloudPress(dispatch, title, artist, mixcloud)
+            }
+          />
+        </View>
       </ImageBackground>
       <View
         style={[
