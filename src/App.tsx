@@ -31,10 +31,10 @@ const App = () => {
 
   const events = [Event.PlaybackState, Event.PlaybackError];
   useTrackPlayerEvents(events, async event => {
-    if (event.type === Event.PlaybackError) {
+    if (event.event === Event.PlaybackError) {
       console.warn('An error occured while playing the current track.');
     }
-    if (event.type === Event.PlaybackState) {
+    if (event.event === Event.PlaybackState) {
       console.log('player state is ', event.state);
     }
   });

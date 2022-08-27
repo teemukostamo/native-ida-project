@@ -153,13 +153,11 @@ const EpisodeDetails: React.FC<Props> = ({
         </Title>
         <GenreButtons channel={channel} genres={genres} />
         {tracklist &&
-          tracklist
-            .split('\n')
-            .map(tracklist_item => (
-              <Text style={[styles.descriptionTextStyle]}>
-                {decodeHtmlCharCodes(stripHtmlTags(tracklist_item))}
-              </Text>
-            ))}
+          tracklist.split('\n').map(tracklist_item => (
+            <Text key={tracklist_item} style={[styles.descriptionTextStyle]}>
+              {decodeHtmlCharCodes(stripHtmlTags(tracklist_item))}
+            </Text>
+          ))}
       </View>
     </View>
   );
