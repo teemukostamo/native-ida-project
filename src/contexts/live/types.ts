@@ -26,7 +26,7 @@ interface Sizes {
   thumbnail_lqip_height: number;
 }
 
-interface Image {
+export interface Image {
   ID: number;
   title: string;
   url: string;

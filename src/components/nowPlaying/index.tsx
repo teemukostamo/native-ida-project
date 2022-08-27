@@ -11,6 +11,8 @@ import {
 import {View, StyleSheet} from 'react-native';
 import {Text, IconButton} from 'react-native-paper';
 
+import Mixcloud from './mixcloud';
+
 import theme from '../../theme';
 
 const styles = StyleSheet.create({
@@ -39,12 +41,10 @@ const styles = StyleSheet.create({
 const NowPlayingBar = () => {
   const {state, dispatch} = useContext(AppContext);
   const [buffering, setBuffering] = useState(false);
-  console.log(buffering);
   const {nowPlaying} = state;
-  const events = [Event.PlaybackState];
 
-  useTrackPlayerEvents(events, async event => {
-    console.log('event state', event.state);
+  useTrackPlayerEvents([Event.PlaybackState], async event => {
+    console.log('event state', event);
     if (event.state === State.Buffering) {
       setBuffering(true);
     } else {
@@ -74,28 +74,22 @@ const NowPlayingBar = () => {
 
   return nowPlaying.showNowPlayingBar ? (
     <View style={styles.container}>
-      <View style={styles.flexContainer}>
-        <Text style={styles.studioText}>
-          Now playing {nowPlaying.show_title?.toUpperCase()} by{' '}
-          {nowPlaying.artist} from {nowPlaying.studio?.toUpperCase()}
-        </Text>
-        <IconButton
-          icon={
-            buffering ? 'loading' : !nowPlaying.nowPlaying ? 'play' : 'stop'
-          }
-          onPress={() => handlePress()}
-        />
-        {/* {buffering ? (
+      {nowPlaying.streamType === 'live' ? (
+        <View style={styles.flexContainer}>
+          <Text style={styles.studioText}>
+            Now playing {nowPlaying.show_title?.toUpperCase()} by{' '}
+            {nowPlaying.artist} from {nowPlaying.studio?.toUpperCase()}
+          </Text>
           <IconButton
-            icon={!nowPlaying.nowPlaying ? 'play' : 'stop'}
+            icon={
+              buffering ? 'loading' : !nowPlaying.nowPlaying ? 'play' : 'stop'
+            }
             onPress={() => handlePress()}
           />
-        ) : (
-          <View>
-            <Text>spinner</Text>
-          </View>
-        )} */}
-      </View>
+        </View>
+      ) : (
+        <Mixcloud />
+      )}
     </View>
   ) : null;
 };
