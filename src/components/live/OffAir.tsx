@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Platform} from 'react-native';
 import {Title, Text} from 'react-native-paper';
 import theme from '../../theme';
 
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   nextShowTallinn: {
     color: theme.colors.text,
-    fontFamily: 'Menlo-Bold',
+    fontFamily: Platform.OS === 'ios' ? 'Menlo-Bold' : 'FavoritMono-Regular',
     marginLeft: 10,
   },
 });

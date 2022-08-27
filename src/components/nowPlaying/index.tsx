@@ -42,10 +42,9 @@ const NowPlayingBar = () => {
   const {state, dispatch} = useContext(AppContext);
   const [buffering, setBuffering] = useState(false);
   const {nowPlaying} = state;
-  const events = [Event.PlaybackState];
 
-  useTrackPlayerEvents(events, async event => {
-    console.log('event state', event.state);
+  useTrackPlayerEvents([Event.PlaybackState], async event => {
+    console.log('event state', event);
     if (event.state === State.Buffering) {
       setBuffering(true);
     } else {

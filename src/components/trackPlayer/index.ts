@@ -16,7 +16,7 @@ export const startPlayback = async (
   artist: string,
   // imageUrl: string,
 ) => {
-  await TrackPlayer.stop();
+  await TrackPlayer.reset();
   await TrackPlayer.add([
     {
       id: '1',
@@ -31,5 +31,5 @@ export const startPlayback = async (
 };
 
 export const stopPlayback = async () => {
-  await TrackPlayer.stop();
+  await TrackPlayer.reset();
 };

@@ -1,12 +1,11 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {View, StyleSheet, ImageBackground} from 'react-native';
-import {Text, Title, IconButton} from 'react-native-paper';
+import {Text, Title} from 'react-native-paper';
 import {useNavigate} from 'react-router-native';
 import {format, parseISO} from 'date-fns';
 import GenreButtons from '../layout/GenreButtons';
 import {LatestEpisode} from '../../contexts/latest/types';
-import {AppContext} from '../../contexts/main';
-import {onPlayMixcloudPress} from '../../contexts/nowPlaying/actions';
+import MixcloudPlayButton from '../layout/MixcloudPlayButton';
 
 import theme from '../../theme';
 
@@ -27,30 +26,12 @@ const styles = StyleSheet.create({
   image: {
     justifyContent: 'center',
   },
-  imageContentContainer: {
-    height: 300,
-  },
   titleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   titleTextContainer: {
     marginLeft: 10,
-  },
-  playButton: {
-    padding: 1,
-    backgroundColor: 'red',
-    alignSelf: 'center',
-    position: 'relative',
-    top: 108,
-  },
-  playButtonHelsinki: {
-    backgroundColor: 'rgba(227, 227, 227, 0.8)',
-    color: theme.colors.accent,
-  },
-  playButtonTallinn: {
-    backgroundColor: 'rgba(227, 112, 106, 0.8)',
-    color: theme.colors.primary,
   },
   showDateText: {
     marginTop: 8,
@@ -61,13 +42,11 @@ const styles = StyleSheet.create({
   },
 });
 
-interface Props {
+type Props = {
   item: LatestEpisode;
-}
+};
 
 const EpisodeItem: React.FC<Props> = ({item}) => {
-  //  console.log('episodeItem', item);
-  const {dispatch} = useContext(AppContext);
   let navigate = useNavigate();
 
   const handlePress = () => {
@@ -100,31 +79,7 @@ const EpisodeItem: React.FC<Props> = ({item}) => {
           }}
           resizeMode="cover"
           style={styles.image}>
-          <View style={styles.imageContentContainer}>
-            <IconButton
-              icon="play"
-              color={
-                channel === 'helsinki'
-                  ? theme.colors.accent
-                  : theme.colors.primary
-              }
-              style={[
-                styles.playButton,
-                channel === 'helsinki'
-                  ? styles.playButtonHelsinki
-                  : styles.playButtonTallinn,
-              ]}
-              size={50}
-              onPress={() =>
-                onPlayMixcloudPress(
-                  dispatch,
-                  item.show_title,
-                  item.related_show_artist,
-                  item.mixcloud,
-                )
-              }
-            />
-          </View>
+          <MixcloudPlayButton item={item} />
           <GenreButtons channel={channel} genres={item.taxonomies.genres} />
         </ImageBackground>
       </View>

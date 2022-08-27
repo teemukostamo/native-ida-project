@@ -33,8 +33,6 @@ const Episodes: React.FC = () => {
   const {filters} = state;
   console.log(filters.searchQuery);
 
-  // take filter values from context and do something
-
   if (isError) {
     return (
       <View style={styles.container}>

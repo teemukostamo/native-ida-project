@@ -20,11 +20,8 @@ const styles = StyleSheet.create({
 });
 
 const ShowPage: React.FC = () => {
-  let {slug, id} = useParams();
-
-  console.log(id);
-
   const [pageNumber, setPageNumber] = useState(1);
+  let {slug, id} = useParams();
 
   const fetchLatestEpisodes = async ({pageParam = 1}) => {
     const response = await fetch(
@@ -75,7 +72,7 @@ const ShowPage: React.FC = () => {
   }
 
   if (showDetails) {
-    const channel = showDetails.taxonomies.channel[0].slug;
+    const channel = showDetails?.taxonomies.channel[0].slug;
     const genres = showDetails.taxonomies.genres
       ? showDetails.taxonomies.genres
       : [];

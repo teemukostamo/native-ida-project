@@ -13,8 +13,8 @@ const Mixcloud = () => {
   };
 
   if (nowPlaying.mixcloud) {
-    const mixcloudId = nowPlaying.mixcloud.replaceAll('/', '%2F');
-    const streamUrl = `https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&light=1&autoplay=1&feed=%2F${mixcloudId}`;
+    // const mixcloudId = nowPlaying.mixcloud.replaceAll('/', '%2F');
+    const streamUrl = `https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&light=1&autoplay=1&feed=%2F${nowPlaying.mixcloud}`;
 
     return (
       <WebView

@@ -1,58 +1,62 @@
 import {configureFonts, DefaultTheme} from 'react-native-paper';
 
+enum fontWeights {
+  normal = 'normal',
+}
+
 const fontConfig = {
   web: {
     regular: {
       fontFamily: 'ida-Regular',
-      fontWeight: 'normal',
+      fontWeight: fontWeights.normal,
     },
     medium: {
       fontFamily: 'ida-Regular',
-      fontWeight: 'normal',
+      fontWeight: fontWeights.normal,
     },
     light: {
       fontFamily: 'sans-serif-light',
-      fontWeight: 'normal',
+      fontWeight: fontWeights.normal,
     },
     thin: {
       fontFamily: 'sans-serif-thin',
-      fontWeight: 'normal',
+      fontWeight: fontWeights.normal,
     },
   },
   ios: {
     regular: {
       fontFamily: 'ida-Regular',
-      fontWeight: 'normal',
+      fontWeight: fontWeights.normal,
     },
     medium: {
       fontFamily: 'ida-Regular',
-      fontWeight: 'normal',
+      fontWeight: fontWeights.normal,
     },
     light: {
       fontFamily: 'Menlo-Bold',
-      fontWeight: 'normal',
+      fontWeight: fontWeights.normal,
     },
     thin: {
       fontFamily: 'Menlo-Bold',
-      fontWeight: 'normal',
+      fontWeight: fontWeights.normal,
     },
   },
   android: {
     regular: {
-      fontFamily: 'ida-Regular',
-      fontWeight: 'normal',
+      fontFamily: 'Ida-Regular',
+      fontWeight: fontWeights.normal,
     },
     medium: {
-      fontFamily: 'ida-Regular',
-      fontWeight: 'normal',
+      fontFamily: 'Ida-Regular',
+      fontWeight: fontWeights.normal,
     },
     light: {
-      fontFamily: 'sans-serif-light',
-      fontWeight: 'normal',
+      fontFamily: 'Ida-Regular',
+      fontWeight: fontWeights.normal,
     },
     thin: {
       fontFamily: 'sans-serif-thin',
-      fontWeight: 'normal',
+      fontWeight: fontWeights.normal,
     },
   },
 };
