@@ -51,6 +51,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginTop: 5,
   },
+  descriptionTextStyleHelsinki: {
+    color: theme.colors.gray,
+  },
+  descriptionTextStyleTallinn: {
+    color: theme.colors.text,
+  },
   playButton: {
     padding: 1,
     backgroundColor: 'red',
@@ -154,7 +160,14 @@ const EpisodeDetails: React.FC<Props> = ({
         <GenreButtons channel={channel} genres={genres} />
         {tracklist &&
           tracklist.split('\n').map(tracklist_item => (
-            <Text key={tracklist_item} style={[styles.descriptionTextStyle]}>
+            <Text
+              key={tracklist_item}
+              style={[
+                styles.descriptionTextStyle,
+                channel === 'tallinn'
+                  ? styles.descriptionTextStyleTallinn
+                  : styles.descriptionTextStyleHelsinki,
+              ]}>
               {decodeHtmlCharCodes(stripHtmlTags(tracklist_item))}
             </Text>
           ))}
