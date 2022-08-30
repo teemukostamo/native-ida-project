@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {StyleSheet, TextInput} from 'react-native';
 import {AppContext} from '../../contexts/main';
 import {setSearchQuery} from '../../contexts/filters/actions';
@@ -21,17 +21,9 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {
-  onSearchPress: () => void;
-};
-
-const SearchBar: React.FC<Props> = ({onSearchPress}) => {
+const SearchBar: React.FC = () => {
   const {state, dispatch} = useContext(AppContext);
   const [value, setValue] = useState(state.filters.searchQuery);
-
-  useEffect(() => {
-    setSearchQuery(dispatch, value);
-  }, [value, dispatch]);
 
   return (
     <TextInput
@@ -42,7 +34,7 @@ const SearchBar: React.FC<Props> = ({onSearchPress}) => {
       inlineImageLeft="search_icon"
       inlineImagePadding={4}
       clearButtonMode="always"
-      onSubmitEditing={() => onSearchPress()}
+      onSubmitEditing={() => setSearchQuery(dispatch, value)}
     />
   );
 };

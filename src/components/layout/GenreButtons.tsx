@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
+import {AppContext} from '../../contexts/main';
+import {setGenre, setChannel} from '../../contexts/filters/actions';
 
 import theme from '../../theme';
 
@@ -48,9 +50,11 @@ type Props = {
 };
 
 const GenreButtons: React.FC<Props> = ({channel, genres}) => {
+  const {dispatch} = useContext(AppContext);
+
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => console.log('pressed')}>
+      <Pressable onPress={() => setChannel(dispatch, channel)}>
         <Text
           style={[
             styles.textStyle,
@@ -62,7 +66,13 @@ const GenreButtons: React.FC<Props> = ({channel, genres}) => {
         </Text>
       </Pressable>
       {genres?.map(genre => (
-        <Pressable key={genre.slug} onPress={() => console.log('pressed')}>
+        <Pressable
+          key={genre.slug}
+          onPress={() =>
+            genre.name &&
+            genre.slug &&
+            setGenre(dispatch, genre.name, genre.slug)
+          }>
           <Text
             style={[
               styles.textStyle,
