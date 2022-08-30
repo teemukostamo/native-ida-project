@@ -1,5 +1,8 @@
 export type FiltersType = {
   channel: string;
   searchQuery: string;
-  genre: string;
+  genre: {
+    label: string;
+    value: string;
+  };
 };

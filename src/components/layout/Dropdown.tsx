@@ -1,9 +1,8 @@
 import React, {
-  Dispatch,
   FC,
   MutableRefObject,
   ReactElement,
-  SetStateAction,
+  useContext,
   useRef,
   useState,
 } from 'react';
@@ -16,6 +15,9 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {AppContext} from '../../contexts/main';
+import {setGenre} from '../../contexts/filters/actions';
+
 import theme from '../../theme';
 
 import {DropdownOptionType} from '../layout/types';
@@ -69,9 +71,6 @@ const styles = StyleSheet.create({
 interface Props {
   label: string;
   data: Array<{label: string; value: string}>;
-  onSelect: (item: {label: string; value: string}) => void;
-  value: {label: string; value: string};
-  setSelected: Dispatch<SetStateAction<{label: string; value: string}>>;
 }
 
 interface DropdownItem {
@@ -81,10 +80,12 @@ interface DropdownItem {
   };
 }
 
-const Dropdown: FC<Props> = ({label, data, onSelect, setSelected, value}) => {
+const Dropdown: FC<Props> = ({label, data}) => {
   const DropdownButton = useRef() as MutableRefObject<TouchableOpacity>;
   const [visible, setVisible] = useState(false);
   const [dropdownTop, setDropdownTop] = useState(0);
+  const {state, dispatch} = useContext(AppContext);
+  const genre = state.filters.genre;
 
   const toggleDropdown = (): void => {
     visible ? setVisible(false) : openDropdown();
@@ -107,8 +108,8 @@ const Dropdown: FC<Props> = ({label, data, onSelect, setSelected, value}) => {
   };
 
   const onItemPress = (item: DropdownOptionType): void => {
-    setSelected(item);
-    onSelect(item);
+    setGenre(dispatch, item.label, item.value);
+    // onSelect(item);
     setVisible(false);
   };
 
@@ -145,7 +146,7 @@ const Dropdown: FC<Props> = ({label, data, onSelect, setSelected, value}) => {
         style={styles.button}
         onPress={toggleDropdown}>
         {renderDropdown()}
-        <Text style={styles.buttonText}>{(value && value.label) || label}</Text>
+        <Text style={styles.buttonText}>{(genre && genre.label) || label}</Text>
         <Icon style={styles.icon} name="chevron-down" />
       </TouchableOpacity>
     </>
