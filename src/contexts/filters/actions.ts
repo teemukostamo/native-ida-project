@@ -1,11 +1,23 @@
 import {Dispatch} from 'react';
 import ActionTypes from '../actionTypes';
-import {SET_CHANNEL, SET_GENRE, SET_SEARCH_QUERY} from './reducer';
+import {
+  CLEAR_FILTERS,
+  SET_CHANNEL,
+  SET_GENRE,
+  SET_SEARCH_QUERY,
+} from './reducer';
 
-export const setGenre = (dispatch: Dispatch<ActionTypes>, genre: string) => {
+export const setGenre = (
+  dispatch: Dispatch<ActionTypes>,
+  label: string,
+  value: string,
+) => {
   dispatch({
     type: SET_GENRE,
-    data: genre,
+    data: {
+      label,
+      value,
+    },
   });
 };
 
@@ -26,5 +38,11 @@ export const setSearchQuery = (
   dispatch({
     type: SET_SEARCH_QUERY,
     data: searchQuery,
+  });
+};
+
+export const clearFilters = (dispatch: Dispatch<ActionTypes>) => {
+  dispatch({
+    type: CLEAR_FILTERS,
   });
 };

@@ -1,16 +1,22 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 
 import ChannelButtons from './ChannelButtons';
 import Dropdown from './Dropdown';
 import SearchBar from './SearchBar';
 import {GENRE_OPTIONS} from '../../constants';
+import {clearFilters} from '../../contexts/filters/actions';
+import {areFiltersSet} from '../../utils';
 
 import theme from '../../theme';
+import {AppContext} from '../../contexts/main';
 
 const styles = StyleSheet.create({
   filterBtnContainer: {
-    backgroundColor: 'rgba(7, 7, 7, 0.8)',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  filterBtn: {
     alignSelf: 'flex-start',
     color: theme.colors.gray,
     fontFamily: 'Menlo-Bold',
@@ -21,49 +27,46 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 10,
     marginBottom: 5,
+    marginRight: 10,
+  },
+  filterNotSet: {
+    backgroundColor: 'rgba(7, 7, 7, 0.8)',
+  },
+  filterSet: {
+    backgroundColor: theme.colors.green,
   },
 });
 
 const Filters: React.FC = () => {
-  // make filter values go to context
   const [showFilters, setShowFilters] = useState(false);
-  const [genre, setGenre] = useState({label: '', value: ''});
-  const [channel, setChannel] = useState('all');
-
-  const onGenreChange = () => {
-    console.log('genre changed');
-  };
-
-  const onSearchPress = () => {
-    console.log('on search pressed');
-  };
-
-  const onChannelChange = () => {
-    console.log('channel changed');
-  };
+  const {state, dispatch} = useContext(AppContext);
+  const filtersSet = areFiltersSet(state.filters);
 
   return (
     <View>
-      <TouchableOpacity onPress={() => setShowFilters(!showFilters)}>
-        <Text style={styles.filterBtnContainer}>
-          {showFilters ? 'HIDE FILTERS' : 'FILTER'}
-        </Text>
-      </TouchableOpacity>
+      <View style={styles.filterBtnContainer}>
+        <TouchableOpacity onPress={() => setShowFilters(!showFilters)}>
+          <Text
+            style={[
+              styles.filterBtn,
+              filtersSet ? styles.filterSet : styles.filterNotSet,
+            ]}>
+            {showFilters ? 'HIDE FILTERS' : 'FILTER'}
+          </Text>
+        </TouchableOpacity>
+        {filtersSet && (
+          <TouchableOpacity onPress={() => clearFilters(dispatch)}>
+            <Text style={[styles.filterBtn, styles.filterSet]}>
+              CLEAR FILTERS
+            </Text>
+          </TouchableOpacity>
+        )}
+      </View>
       {showFilters && (
         <View>
-          <SearchBar onSearchPress={onSearchPress} />
-          <Dropdown
-            onSelect={onGenreChange}
-            data={GENRE_OPTIONS}
-            value={genre}
-            label={'GENRES'}
-            setSelected={setGenre}
-          />
-          <ChannelButtons
-            onChannelChange={onChannelChange}
-            channel={channel}
-            setChannel={setChannel}
-          />
+          <SearchBar />
+          <Dropdown data={GENRE_OPTIONS} label={'GENRES'} />
+          <ChannelButtons />
         </View>
       )}
     </View>

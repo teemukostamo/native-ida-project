@@ -1,3 +1,5 @@
+import {FiltersType} from './contexts/filters/types';
+
 export const getMsToNextHour = () =>
   3600000 - (new Date().getTime() % 3600000) + 3000;
 
@@ -37,34 +39,57 @@ export const decodeHtmlCharCodes = (str: string) =>
     String.fromCharCode(charCode),
   );
 
-export const fetchUrlBuilder = (
-  view: string,
-  pageParam: number,
+export const filterEpisodesUrlBuilder = (
+  pageParam = '1',
   channel: string,
   genre: string,
   searchQuery: string,
 ) => {
-  let url = `https://admin.idaidaida.net/wp-json/ida/v3/post-types/${view}?paged=${pageParam}&posts_per_page=32&order=ASC&orderby=title&acf[0]=artist`;
+  let url = `https://admin.idaidaida.net/wp-json/ida/v3/episodes?paged=${pageParam}&posts_per_page=32`;
 
-  if (channel) {
+  if (channel !== 'all') {
     url += `&tax_query[0][taxonomy]=channel&tax_query[0][terms]=${channel}&tax_query[0][field]=slug`;
   }
   if (genre) {
     url += `&tax_query[1][taxonomy]=genres&tax_query[1][terms]=${genre}&tax_query[1][field]=slug`;
   }
   if (searchQuery) {
-    console.log('should update url');
     url += `&s=${searchQuery}`;
-    console.log('updated url', url);
   }
 
   return url;
 };
-// https://admin.idaidaida.net/wp-json/ida/v3/post-types/broadcast?paged=1&posts_per_page=24&order=ASC&orderby=title&acf[0]=artist&tax_query[0][taxonomy]=channel&tax_query[0][terms]=helsinki&tax_query[0][field]=slug&tax_query[1][taxonomy]=genres&tax_query[1][terms]=acid&tax_query[1][field]=slug&s=after
-// https://admin.idaidaida.net/wp-json/ida/v3/post-types/broadcast?paged=1&posts_per_page=24&order=ASC&orderby=title&acf[0]=artist&tax_query[0][taxonomy]=channel&tax_query[0][terms]=helsinki&tax_query[0][field]=slug&tax_query[1][taxonomy]=genres&tax_query[1][terms]=acid&tax_query[1][field]=slug
-// //all
-// https://admin.idaidaida.net/wp-json/ida/v3/post-types/broadcast?paged=1&posts_per_page=24&order=ASC&orderby=title&acf[0]=artist&s=vilun
-// // tallinn
-// https://admin.idaidaida.net/wp-json/ida/v3/post-types/broadcast?paged=1&posts_per_page=24&order=ASC&orderby=title&acf[0]=artist&tax_query[0][taxonomy]=channel&tax_query[0][terms]=tallinn&tax_query[0][field]=slug&s=vilun
-// // hel
-// https://admin.idaidaida.net/wp-json/ida/v3/post-types/broadcast?paged=1&posts_per_page=24&order=ASC&orderby=title&acf[0]=artist&tax_query[0][taxonomy]=channel&tax_query[0][terms]=helsinki&tax_query[0][field]=slug&s=vilun
+
+export const filterShowsUrlBuilder = (
+  pageParam = '1',
+  channel: string,
+  genre: string,
+  searchQuery: string,
+) => {
+  let url = `https://admin.idaidaida.net/wp-json/ida/v3/post-types/broadcast?paged=${pageParam}&posts_per_page=24&order=ASC&orderby=title&acf[0]=artist`;
+
+  if (channel !== 'all') {
+    url += `&tax_query[0][taxonomy]=channel&tax_query[0][terms]=${channel}&tax_query[0][field]=slug`;
+  }
+  if (genre) {
+    url += `&tax_query[1][taxonomy]=genres&tax_query[1][terms]=${genre}&tax_query[1][field]=slug`;
+  }
+  if (searchQuery) {
+    url += `&s=${searchQuery}`;
+  }
+
+  return url;
+};
+
+export const areFiltersSet = (filters: FiltersType) => {
+  if (filters.channel !== 'all') {
+    return true;
+  }
+  if (filters.searchQuery !== '') {
+    return true;
+  }
+  if (filters.genre.label !== '' && filters.genre.value !== '') {
+    return true;
+  }
+  return false;
+};

@@ -4,6 +4,7 @@ import {FiltersType} from './types';
 export const SET_CHANNEL = 'SET_CHANNEL';
 export const SET_GENRE = 'SET_GENRE';
 export const SET_SEARCH_QUERY = 'SET_SEARCH_QUERY';
+export const CLEAR_FILTERS = 'CLEAR_FILTERS';
 
 export const filtersReducer = (state: FiltersType, action: ActionTypes) => {
   switch (action.type) {
@@ -22,6 +23,16 @@ export const filtersReducer = (state: FiltersType, action: ActionTypes) => {
         ...state,
         searchQuery: action.data,
       };
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        searchQuery: '',
+        genre: {
+          label: '',
+          value: '',
+        },
+        channel: 'all',
+      };
     default:
       return state;
   }
@@ -29,5 +40,8 @@ export const filtersReducer = (state: FiltersType, action: ActionTypes) => {
 export const initialFiltersState = {
   channel: 'all',
   searchQuery: '',
-  genre: '',
+  genre: {
+    label: '',
+    value: '',
+  },
 };

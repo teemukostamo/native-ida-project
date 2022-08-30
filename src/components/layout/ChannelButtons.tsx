@@ -1,5 +1,7 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
+import {AppContext} from '../../contexts/main';
+import {setChannel} from '../../contexts/filters/actions';
 
 import theme from '../../theme';
 
@@ -8,7 +10,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    marginBottom: 2,
+    marginBottom: 8,
   },
   textStyle: {
     fontFamily: 'Menlo-Bold',
@@ -37,20 +39,12 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {
-  channel: string;
-  setChannel: Dispatch<SetStateAction<string>>;
-  onChannelChange: () => void;
-};
+const ChannelButtons: React.FC = ({}) => {
+  const {state, dispatch} = useContext(AppContext);
+  const channel = state.filters.channel;
 
-const ChannelButtons: React.FC<Props> = ({
-  channel,
-  setChannel,
-  onChannelChange,
-}) => {
   const handleChange = (selectedChannel: string) => {
-    setChannel(selectedChannel);
-    onChannelChange();
+    setChannel(dispatch, selectedChannel);
   };
 
   return (
