@@ -32,7 +32,8 @@ The schedule view displays the current week's program schedule. Pressing on a sh
 
 ### Explore view
 
-<img src="./screenshots/schedule.png" alt="Explore view" width="200"/>
+<img src="./screenshots/explore.png" alt="Explore view" width="200"/>
+
 A view to explore shows and episodes. By default, the latest shows are displayed and shows are listed alphabetically. The user may filter shows by a search query, by genres or by channel (all/tallinn/helsinki). Pressing the play icon on an episode's card view opens the Mixcloud iframe player for on-demand listening.
 
 ### My Ida view
