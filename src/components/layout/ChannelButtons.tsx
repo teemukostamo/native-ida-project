@@ -49,7 +49,7 @@ const ChannelButtons: React.FC = ({}) => {
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => handleChange('all')}>
+      <Pressable testID="channel-all-btn" onPress={() => handleChange('all')}>
         <Text
           style={[
             styles.textStyle,
@@ -60,7 +60,9 @@ const ChannelButtons: React.FC = ({}) => {
           ALL
         </Text>
       </Pressable>
-      <Pressable onPress={() => handleChange('tallinn')}>
+      <Pressable
+        testID="channel-tallinn-btn"
+        onPress={() => handleChange('tallinn')}>
         <Text
           style={[
             styles.textStyle,
@@ -71,7 +73,9 @@ const ChannelButtons: React.FC = ({}) => {
           TALLINN
         </Text>
       </Pressable>
-      <Pressable onPress={() => handleChange('helsinki')}>
+      <Pressable
+        testID="channel-helsinki-btn"
+        onPress={() => handleChange('helsinki')}>
         <Text
           style={[
             styles.textStyle,
