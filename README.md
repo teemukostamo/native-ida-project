@@ -1,5 +1,4 @@
 # IDA Radio fan app
-
 A React Native mobile app for [IDA Radio](https://idaidaida.net/) written in TypeScript. This is an unofficial, fan-made project, with the goal of teaching myself React Native and hopefully making a nice mobile app for IDA Radio in the process. IDA is an online community radio based in Tallinn & Helsinki, [and they would appreciate any support](https://idaidaida.net/about-us).
 
 ## Table of contents
