@@ -1,35 +1,38 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {Title, Modal, Portal, Text, Button, Provider} from 'react-native-paper';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text} from 'react-native-paper';
+
+import theme from '../../theme';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  linkText: {
+    fontFamily: 'Menlo-Bold',
+    letterSpacing: 4,
+    fontWeight: '900',
+    fontSize: 24,
+    color: theme.colors.darkGray,
+    margin: 20,
   },
 });
 
 const MyIdaView = () => {
-  const [visible, setVisible] = React.useState(false);
-
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
-  const containerStyle = {backgroundColor: 'white', padding: 20};
-
   return (
     <View style={styles.container}>
-      <Title>my ida coming soon</Title>
-      <Provider>
-        <Portal>
-          <Modal
-            visible={visible}
-            onDismiss={hideModal}
-            contentContainerStyle={containerStyle}>
-            <Text>Example Modal. Click outside this area to dismiss.</Text>
-          </Modal>
-        </Portal>
-        <Button onPress={showModal}>LOGIN</Button>
-      </Provider>
+      <TouchableOpacity>
+        <Text style={styles.linkText}>About IDA</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.linkText}>About app</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.linkText}>Support</Text>
+      </TouchableOpacity>
     </View>
   );
 };

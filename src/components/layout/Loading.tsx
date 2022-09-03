@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {Title} from 'react-native-paper';
+import {View, StyleSheet, ActivityIndicator} from 'react-native';
 
 import theme from '../../theme';
 
@@ -8,12 +7,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.gray,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: theme.colors.primary,
   },
 });
 
 const Loading = () => (
   <View style={styles.container}>
-    <Title>Loading</Title>
+    <ActivityIndicator size="large" />
   </View>
 );
 

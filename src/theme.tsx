@@ -71,6 +71,7 @@ const theme = {
     gray: '#e3e3e3',
     blue: '#0099d2',
     green: '#1db287',
+    darkGray: '#333333',
   },
   fonts: configureFonts(fontConfig),
 };
