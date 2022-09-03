@@ -1,5 +1,4 @@
 # IDA Radio fan app
-
 A React Native mobile app for [IDA Radio](https://idaidaida.net/) written in TypeScript. This is an unofficial, fan-made project, with the goal of teaching myself React Native and hopefully making a nice mobile app for IDA Radio in the process. IDA is an online community radio based in Tallinn & Helsinki, [and they would appreciate any support](https://idaidaida.net/about-us).
 
 ## Table of contents
@@ -34,6 +33,7 @@ The schedule view displays the current week's program schedule. Pressing on a sh
 ### Explore view
 
 <img src="./screenshots/explore.png" alt="Explore view" width="200"/>
+
 A view to explore shows and episodes. By default, the latest shows are displayed and shows are listed alphabetically. The user may filter shows by a search query, by genres or by channel (all/tallinn/helsinki). Pressing the play icon on an episode's card view opens the Mixcloud iframe player for on-demand listening.
 
 ### My Ida view
