@@ -1,11 +1,13 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
+import {Text} from 'react-native-paper';
 
 import {LiveShows} from '../../contexts/live/types';
 import {NowPlayingState} from '../../contexts/nowPlaying/types';
 
 import OffAir from './OffAir';
 import OnAir from './OnAir';
+import Offline from './Offline';
 
 import theme from '../../theme';
 
@@ -34,7 +36,7 @@ const Tallinn: React.FC<Props> = ({nowPlaying, liveState}) => {
           nowPlaying={nowPlaying}
           studio="tallinn"
         />
-      ) : (
+      ) : liveState.tallinn.next_show ? (
         <OffAir
           studio="tallinn"
           nextShow={liveState?.tallinn.next_show.show_title}
@@ -42,9 +44,16 @@ const Tallinn: React.FC<Props> = ({nowPlaying, liveState}) => {
             liveState?.tallinn.next_show.episode_time.episode_start
           }
         />
+      ) : (
+        <Offline channel="tallinn" />
       )}
     </View>
-  ) : null;
+  ) : (
+    //some data loading spinner here
+    <View>
+      <Text>loading schedule</Text>
+    </View>
+  );
 };
 
 export default Tallinn;

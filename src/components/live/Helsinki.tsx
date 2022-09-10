@@ -7,6 +7,7 @@ import {NowPlayingState} from '../../contexts/nowPlaying/types';
 
 import OnAir from './OnAir';
 import OffAir from './OffAir';
+import Offline from './Offline';
 
 import theme from '../../theme';
 
@@ -31,7 +32,7 @@ const Helsinki: React.FC<Props> = ({liveState, nowPlaying}) => {
           nowPlaying={nowPlaying}
           studio="helsinki"
         />
-      ) : (
+      ) : liveState.helsinki.next_show ? (
         <OffAir
           studio="helsinki"
           nextShow={liveState?.helsinki.next_show.show_title}
@@ -39,6 +40,8 @@ const Helsinki: React.FC<Props> = ({liveState, nowPlaying}) => {
             liveState?.helsinki.next_show.episode_time.episode_start
           }
         />
+      ) : (
+        <Offline channel="helsinki" />
       )}
     </View>
   ) : (

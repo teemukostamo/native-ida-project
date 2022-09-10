@@ -118,7 +118,7 @@ const ShowDetails: React.FC<Props> = ({
           {title}
         </Title>
         <GenreButtons channel={channel} genres={genres} />
-        {description && (
+        {description ? (
           <Text
             style={[
               styles.descriptionTextStyle,
@@ -128,7 +128,7 @@ const ShowDetails: React.FC<Props> = ({
             ]}>
             {stripHtmlTags(description)}
           </Text>
-        )}
+        ) : null}
       </View>
     </View>
   );
