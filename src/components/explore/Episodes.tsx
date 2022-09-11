@@ -8,6 +8,7 @@ import Error from '../layout/Error';
 import Filters from '../layout/Filters';
 
 import theme from '../../theme';
+import FavoriteModal from '../layout/FavoriteModal';
 
 const styles = StyleSheet.create({
   container: {
@@ -54,6 +55,7 @@ const Episodes: React.FC = () => {
         ListFooterComponent={isFetching ? <Loading /> : null}
         refreshing={isFetching}
       />
+      <FavoriteModal />
     </View>
   );
 };

@@ -8,6 +8,7 @@ import Error from '../layout/Error';
 
 import theme from '../../theme';
 import GenreButtons from '../layout/GenreButtons';
+import FavoriteModalTrigger from '../layout/FavoriteModalTrigger';
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -21,14 +22,16 @@ const styles = StyleSheet.create({
   cardContainerTallinn: {
     backgroundColor: theme.colors.primary,
   },
-  imageContainer: {
-    flex: 1,
-  },
   image: {
-    justifyContent: 'center',
-  },
-  imageContentContainer: {
     height: 300,
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  genreButtonsContainer: {
+    alignSelf: 'flex-start',
+  },
+  modalTriggerContainer: {
+    alignSelf: 'flex-end',
   },
   titleContainer: {
     flexDirection: 'row',
@@ -102,20 +105,21 @@ const ShowItem: React.FC<Props> = ({item}) => {
             ? styles.cardContainerHelsinki
             : styles.cardContainerTallinn,
         ]}>
-        <View style={styles.imageContainer}>
-          <ImageBackground
-            source={{
-              uri: item.featured_image
-                ? item.featured_image.sizes.medium_large
-                : '/assets/images/ida-logo-1024.png',
-            }}
-            resizeMode="cover"
-            style={styles.image}>
-            <View style={styles.imageContentContainer}>
-              <GenreButtons channel={channel} genres={item.taxonomies.genres} />
-            </View>
-          </ImageBackground>
-        </View>
+        <ImageBackground
+          source={{
+            uri: item.featured_image
+              ? item.featured_image.sizes.medium_large
+              : '/assets/images/ida-logo-1024.png',
+          }}
+          resizeMode="cover"
+          style={styles.image}>
+          <View style={styles.modalTriggerContainer}>
+            <FavoriteModalTrigger />
+          </View>
+          <View style={styles.genreButtonsContainer}>
+            <GenreButtons channel={channel} genres={item.taxonomies.genres} />
+          </View>
+        </ImageBackground>
         <View style={styles.titleContainer}>
           <View style={styles.titleTextContainer}>
             <Title

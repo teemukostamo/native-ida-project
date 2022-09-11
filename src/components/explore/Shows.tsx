@@ -9,6 +9,7 @@ import Error from '../layout/Error';
 import useShows from '../../hooks/useShows';
 
 import theme from '../../theme';
+import FavoriteModal from '../layout/FavoriteModal';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,6 +46,7 @@ const Shows: React.FC = () => {
         onEndReached={() => fetchMore()}
         ListFooterComponent={isFetching ? <Loading /> : null}
       />
+      <FavoriteModal />
     </View>
   );
 };

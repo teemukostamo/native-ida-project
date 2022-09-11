@@ -8,6 +8,7 @@ import EpisodeItem from '../explore/EpisodeItem';
 import Loading from '../layout/Loading';
 import EpisodeDetails from './EpisodeDetails';
 import BackButton from '../layout/BackButton';
+import FavoriteModal from '../layout/FavoriteModal';
 
 const styles = StyleSheet.create({
   container: {
@@ -99,7 +100,9 @@ const EpisodePage: React.FC = () => {
             renderItem={({item}) => <EpisodeItem item={item} />}
             onEndReached={() => fetchMore()}
             refreshing={isFetching}
+            ListFooterComponent={isFetching ? <Loading /> : null}
           />
+          <FavoriteModal />
         </View>
       </View>
     );

@@ -9,6 +9,7 @@ import NowPlayingBar from './components/nowPlaying';
 import LiveView from './components/live';
 import ScheduleView from './components/schedule';
 import MyIdaView from './components/myida';
+import AccountView from './components/account';
 import ShowPage from './components/shows';
 import EpisodePage from './components/episodes';
 import Shows from './components/explore/Shows';
@@ -23,6 +24,7 @@ import {getMsToNextHour} from './utils';
 import {setupPlayer} from './components/trackPlayer';
 
 import theme from './theme';
+import {getFavorites} from './contexts/favorites/actions';
 
 const queryClient = new QueryClient();
 
@@ -45,6 +47,7 @@ const App = () => {
       getLiveShows(dispatch);
       //getLatestEpisodes(dispatch);
       getFullSchedule(dispatch);
+      getFavorites(dispatch);
 
       setTimeout(() => {
         getLiveShows(dispatch);
@@ -89,6 +92,7 @@ const App = () => {
                 <Route path="/" element={<LiveView />} />
                 <Route path="/schedule" element={<ScheduleView />} />
                 <Route path="/myida" element={<MyIdaView />} />
+                <Route path="/account" element={<AccountView />} />
                 <Route path="shows" element={<Shows />} />
                 <Route path="episodes" element={<Episodes />} />
                 <Route path="/shows/:slug/:id" element={<ShowPage />} />

@@ -11,7 +11,7 @@ interface EpisodeTime {
 }
 
 export interface LatestEpisode {
-  id: string;
+  ID: string;
   slug: string;
   title: string;
   episode_time: EpisodeTime;
