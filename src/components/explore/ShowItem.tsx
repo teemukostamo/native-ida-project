@@ -114,7 +114,13 @@ const ShowItem: React.FC<Props> = ({item}) => {
           resizeMode="cover"
           style={styles.image}>
           <View style={styles.modalTriggerContainer}>
-            <FavoriteModalTrigger />
+            <FavoriteModalTrigger
+              show_id={item.ID}
+              channel={channel}
+              show_name={item.title}
+              show_slug={item.slug}
+              share_url="google.com"
+            />
           </View>
           <View style={styles.genreButtonsContainer}>
             <GenreButtons channel={channel} genres={item.taxonomies.genres} />

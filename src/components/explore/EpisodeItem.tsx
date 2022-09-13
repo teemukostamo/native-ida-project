@@ -58,8 +58,6 @@ const EpisodeItem: React.FC<Props> = ({item}) => {
     return null;
   }
 
-  console.log(item.taxonomies.genres);
-
   const channel =
     item.taxonomies && item.taxonomies.channel
       ? item.taxonomies.channel[0].slug

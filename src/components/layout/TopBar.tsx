@@ -33,7 +33,7 @@ const TopBar: React.FC = () => {
   let navigate = useNavigate();
 
   const viewName = getViewNameFromLocation(location.pathname);
-  console.log(viewName);
+
   return (
     <View style={styles.container}>
       {viewName === 'shows' || viewName === 'episodes' ? (

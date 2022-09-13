@@ -84,8 +84,6 @@ const FavoriteModal = () => {
     closeModal(dispatch);
   };
 
-  console.log();
-
   const location = useLocation();
 
   return isOpen ? (

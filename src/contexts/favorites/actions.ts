@@ -33,10 +33,11 @@ export const addFavoriteShow = async (
   });
 };
 
-export const removeFavoriteShow = (
+export const removeFavoriteShow = async (
   dispatch: Dispatch<ActionTypes>,
   data: FavoriteShowType,
 ) => {
+  await FavoriteStorage.removeShow(data);
   dispatch({
     type: REMOVE_SHOW,
     data,
@@ -54,10 +55,12 @@ export const addFavoriteEpisode = async (
   });
 };
 
-export const removeFavoriteEpisode = (
+export const removeFavoriteEpisode = async (
   dispatch: Dispatch<ActionTypes>,
   data: FavoriteEpisodeType,
 ) => {
+  console.log('remove episode', data);
+  await FavoriteStorage.removeEpisode(data);
   dispatch({
     type: REMOVE_EPISODE,
     data,
