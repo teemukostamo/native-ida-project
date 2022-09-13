@@ -5,16 +5,13 @@ import {
 } from '../contexts/favorites/types';
 
 class FavoriteStorage {
-  static namespace: string;
-
-  constructor(namespace = 'favorites') {
-    FavoriteStorage.namespace = namespace;
-  }
+  static namespace: string = 'favorites';
 
   static getKey(key: string) {
     return `${this.namespace}:${key}`;
   }
   static async getFavoriteEpisodes() {
+    console.log(this.getKey('episodes'));
     const episodes = await AsyncStorage.getItem(this.getKey('episodes'));
     return episodes ? JSON.parse(episodes) : [];
   }

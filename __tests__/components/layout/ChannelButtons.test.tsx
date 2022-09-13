@@ -4,9 +4,7 @@ import {render, fireEvent} from '@testing-library/react-native';
 
 describe('ChannelButtons', () => {
   it('renders channel buttons', () => {
-    const {debug, getByText, getByTestId} = render(<ChannelButtons />);
-
-    debug();
+    const {getByText, getByTestId} = render(<ChannelButtons />);
 
     expect(getByText('HELSINKI')).toBeDefined();
     expect(getByText('ALL')).toBeDefined();
