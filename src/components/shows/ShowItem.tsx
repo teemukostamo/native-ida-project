@@ -3,10 +3,10 @@ import {View, StyleSheet, ImageBackground} from 'react-native';
 import {useNavigate} from 'react-router-native';
 import {Title} from 'react-native-paper';
 
-import {ShowItemType} from '../../contexts/shows/types';
+import {ShowItemType} from '~src/contexts/shows/types';
 import Error from '../layout/Error';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 import GenreButtons from '../layout/GenreButtons';
 import FavoriteModalTrigger from '../layout/FavoriteModalTrigger';
 

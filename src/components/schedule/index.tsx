@@ -3,9 +3,9 @@ import {View, StyleSheet, ScrollView, Pressable} from 'react-native';
 import {Title, Text} from 'react-native-paper';
 import {format, parseISO} from 'date-fns';
 
-import {AppContext} from '../../contexts/main';
+import {AppContext} from '~src/contexts/main';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 import {useNavigate} from 'react-router-native';
 
 const styles = StyleSheet.create({

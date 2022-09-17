@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Platform} from 'react-native';
 import {Title, Text} from 'react-native-paper';
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   nextShowContainer: {

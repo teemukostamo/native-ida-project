@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {LatestEpisode} from '../../contexts/latest/types';
+import {LatestEpisode} from '~src/contexts/latest/types';
 
 type Props = {
   episodes: LatestEpisode[];

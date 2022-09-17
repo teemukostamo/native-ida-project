@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
 import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import {IconButton, Title} from 'react-native-paper';
-import theme from '../../theme';
+import theme from '~src/theme';
 import GenreButtons from '../layout/GenreButtons';
-import {stripHtmlTags, decodeHtmlCharCodes} from '../../utils/utils';
-import {onPlayMixcloudPress} from '../../contexts/nowPlaying/actions';
-import {AppContext} from '../../contexts/main';
+import {stripHtmlTags, decodeHtmlCharCodes} from '~src/utils/utils';
+import {onPlayMixcloudPress} from '~src/contexts/nowPlaying/actions';
+import {AppContext} from '~src/contexts/main';
 
 const styles = StyleSheet.create({
   coverImage: {

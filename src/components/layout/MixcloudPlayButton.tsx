@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {IconButton} from 'react-native-paper';
-import {LatestEpisode} from '../../contexts/latest/types';
-import {AppContext} from '../../contexts/main';
-import {onPlayMixcloudPress} from '../../contexts/nowPlaying/actions';
+import {LatestEpisode} from '~src/contexts/latest/types';
+import {AppContext} from '~src/contexts/main';
+import {onPlayMixcloudPress} from '~src/contexts/nowPlaying/actions';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   imageContentContainer: {

@@ -8,7 +8,7 @@ import {LatestEpisode} from '../../contexts/latest/types';
 import MixcloudPlayButton from '../layout/MixcloudPlayButton';
 import FavoriteModalTrigger from '../layout/FavoriteModalTrigger';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   cardContainer: {

@@ -1,18 +1,18 @@
 import React, {useContext} from 'react';
 import {View, ImageBackground, StyleSheet} from 'react-native';
 import {Title, Text, IconButton} from 'react-native-paper';
-import {AppContext} from '../../contexts/main';
+import {AppContext} from '~src/contexts/main';
 
-import {NowPlayingState} from '../../contexts/nowPlaying/types';
-import {LiveShowData} from '../../contexts/live/types';
+import {NowPlayingState} from '~src/contexts/nowPlaying/types';
+import {LiveShowData} from '~src/contexts/live/types';
 
 import {
   stopPlayerPress,
   onTallinnPlayPress,
   onHelsinkiPlayPress,
-} from '../../contexts/nowPlaying/actions';
+} from '~src/contexts/nowPlaying/actions';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {

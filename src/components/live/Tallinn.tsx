@@ -2,14 +2,14 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Text} from 'react-native-paper';
 
-import {LiveShows} from '../../contexts/live/types';
-import {NowPlayingState} from '../../contexts/nowPlaying/types';
+import {LiveShows} from '~src/contexts/live/types';
+import {NowPlayingState} from '~src/contexts/nowPlaying/types';
 
 import OffAir from './OffAir';
 import OnAir from './OnAir';
 import Offline from './Offline';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {

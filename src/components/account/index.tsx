@@ -3,9 +3,9 @@ import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Text} from 'react-native-paper';
 import BackButton from '../layout/BackButton';
 
-import FavoriteStorage from '../../utils/AsyncStorageUtil';
+import FavoriteStorage from '~src/utils/AsyncStorageUtil';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {

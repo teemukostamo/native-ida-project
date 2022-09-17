@@ -6,9 +6,9 @@ import Filters from '../layout/Filters';
 import Loading from '../layout/Loading';
 import Error from '../layout/Error';
 
-import useShows from '../../hooks/useShows';
+import useShows from '~src/hooks/useShows';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 import FavoriteModal from '../layout/FavoriteModal';
 
 const styles = StyleSheet.create({

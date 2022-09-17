@@ -4,12 +4,12 @@ import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 import ChannelButtons from './ChannelButtons';
 import Dropdown from './Dropdown';
 import SearchBar from './SearchBar';
-import {GENRE_OPTIONS} from '../../constants';
-import {clearFilters} from '../../contexts/filters/actions';
-import {areFiltersSet} from '../../utils/utils';
+import {GENRE_OPTIONS} from '~src/constants';
+import {clearFilters} from '~src/contexts/filters/actions';
+import {areFiltersSet} from '~src/utils/utils';
 
-import theme from '../../theme';
-import {AppContext} from '../../contexts/main';
+import theme from '~src/theme';
+import {AppContext} from '~src/contexts/main';
 
 const styles = StyleSheet.create({
   filterBtnContainer: {

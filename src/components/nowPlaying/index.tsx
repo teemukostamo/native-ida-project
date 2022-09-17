@@ -1,19 +1,19 @@
 import React, {useContext, useState} from 'react';
 import {useTrackPlayerEvents, Event, State} from 'react-native-track-player';
 
-import {AppContext} from '../../contexts/main';
+import {AppContext} from '~src/contexts/main';
 import {
   stopPlayerPress,
   onTallinnPlayPress,
   onHelsinkiPlayPress,
-} from '../../contexts/nowPlaying/actions';
+} from '~src/contexts/nowPlaying/actions';
 
 import {View, StyleSheet} from 'react-native';
 import {Text, IconButton} from 'react-native-paper';
 
 import Mixcloud from './mixcloud';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {

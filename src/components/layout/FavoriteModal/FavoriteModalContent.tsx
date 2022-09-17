@@ -3,7 +3,7 @@ import {StyleSheet, Pressable, View, Platform} from 'react-native';
 import {Text} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import theme from '../../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   contentContainer: {

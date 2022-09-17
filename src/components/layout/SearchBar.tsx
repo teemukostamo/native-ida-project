@@ -1,9 +1,9 @@
 import React, {useContext, useState} from 'react';
 import {StyleSheet, TextInput} from 'react-native';
-import {AppContext} from '../../contexts/main';
-import {setSearchQuery} from '../../contexts/filters/actions';
+import {AppContext} from '~src/contexts/main';
+import {setSearchQuery} from '~src/contexts/filters/actions';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {

@@ -1,19 +1,19 @@
 import React, {useContext} from 'react';
 import {Modal, Portal, Provider} from 'react-native-paper';
 
-import {AppContext} from '../../../contexts/main';
-import {closeModal} from '../../../contexts/favoriteModal/actions';
+import {AppContext} from '~src/contexts/main';
+import {closeModal} from '~src/contexts/favoriteModal/actions';
 import {
   addFavoriteShow,
   removeFavoriteShow,
   addFavoriteEpisode,
   removeFavoriteEpisode,
-} from '../../../contexts/favorites/actions';
+} from '~src/contexts/favorites/actions';
 import FavoriteModalContent from './FavoriteModalContent';
 
 import {useLocation} from 'react-router-native';
 import {StyleSheet} from 'react-native';
-import theme from '../../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   modalContainer: {

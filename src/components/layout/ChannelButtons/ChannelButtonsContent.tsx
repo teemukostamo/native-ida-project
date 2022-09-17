@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
 
-import theme from '../../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {

@@ -1,13 +1,13 @@
 import React, {useContext, useState} from 'react';
 import {View, StyleSheet, Pressable} from 'react-native';
 import {Text} from 'react-native-paper';
-import {AppContext} from '../../contexts/main';
+import {AppContext} from '~src/contexts/main';
 
 import FavoriteEpisodes from './FavoriteEpisodes';
 import FavoriteShows from './FavoriteShows';
 import PlayHistory from './PlayHistory';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {

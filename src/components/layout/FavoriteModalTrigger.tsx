@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {IconButton} from 'react-native-paper';
-import {AppContext} from '../../contexts/main';
-import {openModal} from '../../contexts/favoriteModal/actions';
+import {AppContext} from '~src/contexts/main';
+import {openModal} from '~src/contexts/favoriteModal/actions';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {

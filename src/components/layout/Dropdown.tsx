@@ -15,10 +15,10 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {AppContext} from '../../contexts/main';
-import {setGenre} from '../../contexts/filters/actions';
+import {AppContext} from '~src/contexts/main';
+import {setGenre} from '~src/contexts/filters/actions';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 import {DropdownOptionType} from '../layout/types';
 

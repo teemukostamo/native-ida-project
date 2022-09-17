@@ -9,7 +9,7 @@ import {StyleSheet, Text, TouchableOpacity, Modal, View} from 'react-native';
 import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigate} from 'react-router-native';
-import theme from '../../theme';
+import theme from '~src/theme';
 
 import {DropdownOptionType} from '../layout/types';
 

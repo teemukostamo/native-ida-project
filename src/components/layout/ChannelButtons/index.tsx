@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
-import {AppContext} from '../../../contexts/main';
-import {setChannel} from '../../../contexts/filters/actions';
+import {AppContext} from '~src/contexts/main';
+import {setChannel} from '~src/contexts/filters/actions';
 import ChannelButtonsContent from './ChannelButtonsContent';
 
 const ChannelButtons: React.FC = () => {

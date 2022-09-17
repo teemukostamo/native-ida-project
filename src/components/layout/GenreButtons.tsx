@@ -1,9 +1,9 @@
 import React, {useContext} from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
-import {AppContext} from '../../contexts/main';
-import {setGenre, setChannel} from '../../contexts/filters/actions';
+import {AppContext} from '~src/contexts/main';
+import {setGenre, setChannel} from '~src/contexts/filters/actions';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {

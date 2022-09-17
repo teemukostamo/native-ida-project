@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, StyleSheet, FlatList, Text} from 'react-native';
 import {useParams} from 'react-router-native';
 import {useInfiniteQuery, useQuery} from '@tanstack/react-query';
-import theme from '../../theme';
+import theme from '~src/theme';
 import Error from '../layout/Error';
 import EpisodeItem from './EpisodeItem';
 import Loading from '../layout/Loading';

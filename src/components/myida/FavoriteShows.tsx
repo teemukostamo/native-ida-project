@@ -2,7 +2,7 @@ import React from 'react';
 import {View, FlatList, StyleSheet, Text} from 'react-native';
 
 import ShowItem from '../shows/ShowItem';
-import {ShowItemType} from '../../contexts/shows/types';
+import {ShowItemType} from '~src/contexts/shows/types';
 import FavoriteModal from '../layout/FavoriteModal';
 
 const styles = StyleSheet.create({

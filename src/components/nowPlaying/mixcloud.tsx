@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {WebView} from 'react-native-webview';
-import {AppContext} from '../../contexts/main';
+import {AppContext} from '~src/contexts/main';
 
 const Mixcloud = () => {
   const {state} = useContext(AppContext);

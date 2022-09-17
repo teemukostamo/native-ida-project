@@ -1,5 +1,6 @@
 import React from 'react';
-import ChannelButtonsContent from '../../../../src/components/layout/ChannelButtons/ChannelButtonsContent';
+// import ChannelButtonsContent from '../../../../src/components/layout/ChannelButtons/ChannelButtonsContent';
+import ChannelButtonsContent from '~src/components/layout/ChannelButtons/ChannelButtonsContent';
 import {render, fireEvent} from '../../../../__test_helpers__/testUtils';
 
 describe('ChannelButtons', () => {
