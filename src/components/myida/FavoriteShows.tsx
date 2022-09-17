@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, FlatList, StyleSheet, Text} from 'react-native';
 
-import ShowItem from '../explore/ShowItem';
+import ShowItem from '../shows/ShowItem';
 import {ShowItemType} from '../../contexts/shows/types';
 import FavoriteModal from '../layout/FavoriteModal';
 

@@ -4,7 +4,7 @@ import {useParams} from 'react-router-native';
 import {useInfiniteQuery, useQuery} from '@tanstack/react-query';
 import theme from '../../theme';
 import Error from '../layout/Error';
-import EpisodeItem from '../explore/EpisodeItem';
+import EpisodeItem from './EpisodeItem';
 import Loading from '../layout/Loading';
 import EpisodeDetails from './EpisodeDetails';
 import BackButton from '../layout/BackButton';

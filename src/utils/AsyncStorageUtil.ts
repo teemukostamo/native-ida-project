@@ -21,22 +21,36 @@ class FavoriteStorage {
 
   static async addEpisode(episode: LatestEpisode) {
     const existingEpisodes = await this.getFavoriteEpisodes();
-    const updatedEpisodes = [...existingEpisodes, episode];
 
-    await AsyncStorage.setItem(
-      this.getKey('episodes'),
-      JSON.stringify(updatedEpisodes),
-    );
+    if (
+      !existingEpisodes.some(
+        (existingEpisode: LatestEpisode) => existingEpisode.ID === episode.ID,
+      )
+    ) {
+      const updatedEpisodes = [...existingEpisodes, episode];
+
+      await AsyncStorage.setItem(
+        this.getKey('episodes'),
+        JSON.stringify(updatedEpisodes),
+      );
+    }
   }
 
   static async addShow(show: ShowItemType) {
     const existingShows = await this.getFavoriteShows();
-    const updatedShows = [...existingShows, show];
 
-    await AsyncStorage.setItem(
-      this.getKey('shows'),
-      JSON.stringify(updatedShows),
-    );
+    if (
+      !existingShows.some(
+        (existingShow: ShowItemType) => existingShow?.ID === show?.ID,
+      )
+    ) {
+      const updatedShows = [...existingShows, show];
+
+      await AsyncStorage.setItem(
+        this.getKey('shows'),
+        JSON.stringify(updatedShows),
+      );
+    }
   }
 
   static async removeEpisode(episodeToRemove: LatestEpisode) {

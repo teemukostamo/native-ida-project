@@ -4,7 +4,7 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {NativeRouter} from 'react-router-native';
 
-import {AppContext, mainReducer, initialState} from './src/contexts/main';
+import {AppContext, mainReducer, initialState} from '../src/contexts/main';
 
 const queryClient = new QueryClient();
 

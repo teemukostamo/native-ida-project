@@ -1,6 +1,6 @@
 import React from 'react';
 import FavoriteModalContent from '../../../../src/components/layout/FavoriteModal/FavoriteModalContent';
-import {render, fireEvent} from '../../../../testUtils';
+import {render, fireEvent} from '../../../../__test_helpers__/testUtils';
 
 describe('FavoriteModalContent', () => {
   it('renders links to favorite episode and show', () => {

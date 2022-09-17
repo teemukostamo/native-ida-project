@@ -1,12 +1,11 @@
 import React from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 
-import ShowItem from './ShowItem';
-import Filters from '../layout/Filters';
+import useEpisodes from '../../hooks/useEpisodes';
+import EpisodeItem from '../episodes/EpisodeItem';
 import Loading from '../layout/Loading';
 import Error from '../layout/Error';
-
-import useShows from '../../hooks/useShows';
+import Filters from '../layout/Filters';
 
 import theme from '../../theme';
 import FavoriteModal from '../layout/FavoriteModal';
@@ -15,12 +14,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.gray,
-    justifyContent: 'space-between',
+  },
+  searchInput: {
+    fontFamily: 'Menlo-Bold',
+    margin: 10,
+    backgroundColor: theme.colors.primary,
+    paddingVertical: 2,
+    paddingLeft: 6,
+    paddingHorizontal: 1,
+    color: theme.colors.backdrop,
   },
 });
 
-const Shows: React.FC = () => {
-  const {isFetching, isLoading, isError, data, fetchMore} = useShows();
+const ExploreEpisodes: React.FC = () => {
+  const {isLoading, isFetching, isError, data, fetchMore} = useEpisodes();
 
   if (isError) {
     return (
@@ -36,19 +43,21 @@ const Shows: React.FC = () => {
       </View>
     );
   }
+
   return (
     <View style={styles.container}>
       <Filters />
       <FlatList
         data={data?.pages.map(page => page).flat()}
-        renderItem={({item}) => <ShowItem item={item} />}
-        // keyExtractor={item => item.ID}
+        renderItem={({item}) => <EpisodeItem item={item} />}
+        // keyExtractor={item => item.id}
         onEndReached={() => fetchMore()}
         ListFooterComponent={isFetching ? <Loading /> : null}
+        refreshing={isFetching}
       />
       <FavoriteModal />
     </View>
   );
 };
 
-export default Shows;
+export default ExploreEpisodes;

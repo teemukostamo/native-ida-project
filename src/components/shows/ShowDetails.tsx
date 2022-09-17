@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import {Title} from 'react-native-paper';
 import theme from '../../theme';
 import GenreButtons from '../layout/GenreButtons';
-import {stripHtmlTags} from '../../utils';
+import {stripHtmlTags} from '../../utils/utils';
 
 const styles = StyleSheet.create({
   coverImage: {
