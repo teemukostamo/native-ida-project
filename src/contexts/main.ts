@@ -18,6 +18,15 @@ import {showPageReducer} from './shows/reducer';
 import {FiltersType} from './filters/types';
 import {filtersReducer, initialFiltersState} from './filters/reducer';
 
+import {FavoriteModalType} from './favoriteModal/types';
+import {
+  favoriteModalReducer,
+  initialFavoriteModalState,
+} from './favoriteModal/reducer';
+
+import {FavoritesType} from './favorites/types';
+import {favoritesReducer, initialFavoritesState} from './favorites/reducer';
+
 import ActionTypes from './actionTypes';
 
 type InitialStateType = {
@@ -27,6 +36,8 @@ type InitialStateType = {
   fullSchedule: FullSchedule;
   showPage: ShowItemType;
   filters: FiltersType;
+  favoriteModal: FavoriteModalType;
+  favorites: FavoritesType;
 };
 
 export const initialState = {
@@ -36,10 +47,21 @@ export const initialState = {
   fullSchedule: null,
   showPage: null,
   filters: initialFiltersState,
+  favoriteModal: initialFavoriteModalState,
+  favorites: initialFavoritesState,
 };
 
 export const mainReducer = (
-  {nowPlaying, live, latest, fullSchedule, showPage, filters}: InitialStateType,
+  {
+    nowPlaying,
+    live,
+    latest,
+    fullSchedule,
+    showPage,
+    filters,
+    favoriteModal,
+    favorites,
+  }: InitialStateType,
   action: ActionTypes,
 ) => ({
   nowPlaying: nowPlayingReducer(nowPlaying, action),
@@ -48,6 +70,8 @@ export const mainReducer = (
   fullSchedule: fullScheduleReducer(fullSchedule, action),
   showPage: showPageReducer(showPage, action),
   filters: filtersReducer(filters, action),
+  favoriteModal: favoriteModalReducer(favoriteModal, action),
+  favorites: favoritesReducer(favorites, action),
 });
 
 export const AppContext = createContext<{

@@ -9,20 +9,22 @@ import NowPlayingBar from './components/nowPlaying';
 import LiveView from './components/live';
 import ScheduleView from './components/schedule';
 import MyIdaView from './components/myida';
+import AccountView from './components/account';
 import ShowPage from './components/shows';
 import EpisodePage from './components/episodes';
-import Shows from './components/explore/Shows';
-import Episodes from './components/explore/Episodes';
+import ExploreShows from './components/explore/ExploreShows';
+import ExploreEpisodes from './components/explore/ExploreEpisodes';
 import TopBar from './components/layout/TopBar';
 
 import {AppContext, mainReducer, initialState} from './contexts/main';
 import {getLiveShows} from './contexts/live/actions';
 import {getFullSchedule} from './contexts/schedule/actions';
-import {getMsToNextHour} from './utils';
+import {getMsToNextHour} from './utils/utils';
 
 import {setupPlayer} from './components/trackPlayer';
 
 import theme from './theme';
+import {getFavorites} from './contexts/favorites/actions';
 
 const queryClient = new QueryClient();
 
@@ -45,6 +47,7 @@ const App = () => {
       getLiveShows(dispatch);
       //getLatestEpisodes(dispatch);
       getFullSchedule(dispatch);
+      getFavorites(dispatch);
 
       setTimeout(() => {
         getLiveShows(dispatch);
@@ -89,8 +92,9 @@ const App = () => {
                 <Route path="/" element={<LiveView />} />
                 <Route path="/schedule" element={<ScheduleView />} />
                 <Route path="/myida" element={<MyIdaView />} />
-                <Route path="shows" element={<Shows />} />
-                <Route path="episodes" element={<Episodes />} />
+                <Route path="/account" element={<AccountView />} />
+                <Route path="shows" element={<ExploreShows />} />
+                <Route path="episodes" element={<ExploreEpisodes />} />
                 <Route path="/shows/:slug/:id" element={<ShowPage />} />
                 <Route path="/episodes/:slug/:id" element={<EpisodePage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />

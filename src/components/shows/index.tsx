@@ -4,10 +4,11 @@ import {useParams} from 'react-router-native';
 import {useInfiniteQuery, useQuery} from '@tanstack/react-query';
 import theme from '../../theme';
 import Error from '../layout/Error';
-import EpisodeItem from '../explore/EpisodeItem';
+import EpisodeItem from '../episodes/EpisodeItem';
 import Loading from '../layout/Loading';
 import ShowDetails from './ShowDetails';
 import BackButton from '../layout/BackButton';
+import FavoriteModal from '../layout/FavoriteModal';
 
 const styles = StyleSheet.create({
   container: {
@@ -97,7 +98,9 @@ const ShowPage: React.FC = () => {
             renderItem={({item}) => <EpisodeItem item={item} />}
             onEndReached={() => fetchMore()}
             refreshing={isFetching}
+            ListFooterComponent={isFetching ? <Loading /> : null}
           />
+          <FavoriteModal />
         </View>
       </View>
     );

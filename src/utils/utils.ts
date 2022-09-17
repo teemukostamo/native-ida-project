@@ -1,4 +1,4 @@
-import {FiltersType} from './contexts/filters/types';
+import {FiltersType} from '../contexts/filters/types';
 
 export const getMsToNextHour = () =>
   3600000 - (new Date().getTime() % 3600000) + 3000;
@@ -27,6 +27,9 @@ export const getViewNameFromLocation = (pathName = '/') => {
   }
   if (pathName === '/search') {
     return 'search';
+  }
+  if (pathName === '/account') {
+    return 'account';
   }
   return '';
 };

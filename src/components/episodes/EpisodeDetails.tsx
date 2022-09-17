@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import {IconButton, Title} from 'react-native-paper';
 import theme from '../../theme';
 import GenreButtons from '../layout/GenreButtons';
-import {stripHtmlTags, decodeHtmlCharCodes} from '../../utils';
+import {stripHtmlTags, decodeHtmlCharCodes} from '../../utils/utils';
 import {onPlayMixcloudPress} from '../../contexts/nowPlaying/actions';
 import {AppContext} from '../../contexts/main';
 

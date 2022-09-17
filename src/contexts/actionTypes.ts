@@ -17,6 +17,22 @@ import {FullSchedule} from './schedule/types';
 import {SET_SHOW_PAGE_STATE} from './shows/reducer';
 import {ShowItemType} from './shows/types';
 
+import {OPEN_MODAL, CLOSE_MODAL} from './favoriteModal/reducer';
+import {FavoriteModalType} from './favoriteModal/types';
+
+import {
+  GET_FAVORITES,
+  ADD_EPISODE,
+  ADD_SHOW,
+  REMOVE_EPISODE,
+  REMOVE_SHOW,
+} from './favorites/reducer';
+import {
+  FavoritesType,
+  FavoriteEpisodeType,
+  FavoriteShowType,
+} from './favorites/types';
+
 import {
   SET_SEARCH_QUERY,
   SET_CHANNEL,
@@ -74,6 +90,30 @@ interface ClearFiltersAction {
   type: typeof CLEAR_FILTERS;
 }
 
+interface CloseModalAction {
+  type: typeof CLOSE_MODAL;
+}
+
+interface OpenModalAction {
+  type: typeof OPEN_MODAL;
+  data: FavoriteModalType;
+}
+
+interface AddRemoveFavoriteShowAction {
+  type: typeof ADD_SHOW | typeof REMOVE_SHOW;
+  data: FavoriteShowType;
+}
+
+interface AddRemoveFavoriteEpisodeAction {
+  type: typeof ADD_EPISODE | typeof REMOVE_EPISODE;
+  data: FavoriteEpisodeType;
+}
+
+interface GetFavoritesAction {
+  type: typeof GET_FAVORITES;
+  data: FavoritesType;
+}
+
 type ActionTypes =
   | LiveShowsAction
   | LatestEpisodesAction
@@ -83,6 +123,11 @@ type ActionTypes =
   | StopPlayerAction
   | SetFilterAction
   | SetGenresAction
-  | ClearFiltersAction;
+  | ClearFiltersAction
+  | CloseModalAction
+  | OpenModalAction
+  | AddRemoveFavoriteShowAction
+  | AddRemoveFavoriteEpisodeAction
+  | GetFavoritesAction;
 
 export default ActionTypes;

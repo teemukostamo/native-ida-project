@@ -6,6 +6,7 @@ import {format, parseISO} from 'date-fns';
 import GenreButtons from '../layout/GenreButtons';
 import {LatestEpisode} from '../../contexts/latest/types';
 import MixcloudPlayButton from '../layout/MixcloudPlayButton';
+import FavoriteModalTrigger from '../layout/FavoriteModalTrigger';
 
 import theme from '../../theme';
 
@@ -79,6 +80,7 @@ const EpisodeItem: React.FC<Props> = ({item}) => {
           }}
           resizeMode="cover"
           style={styles.image}>
+          <FavoriteModalTrigger item={item} />
           <MixcloudPlayButton item={item} />
           <GenreButtons channel={channel} genres={item.taxonomies.genres} />
         </ImageBackground>

@@ -13,6 +13,7 @@ A React Native mobile app for [IDA Radio](https://idaidaida.net/) written in Typ
    - [Schedule view](#scheduleview)
    - [Explore view](#exploreview)
    - [My IDA](#myidaview)
+   - [Account](#accountview)
 6. [Data Fetching](#datafetching)
 7. [Live Stream & On-Demand](#liveondemand)
 
@@ -65,10 +66,13 @@ The schedule view displays the current week's program schedule. Pressing on a sh
 
 A view to explore shows and episodes. By default, the latest shows are displayed and shows are listed alphabetically. The user may filter shows by a search query, by genres or by channel (all/tallinn/helsinki). Pressing the play icon on an episode's card view opens the Mixcloud iframe player for on-demand listening.
 
-### My Ida view
+### My Ida view <a name="myidaview"></a>
 
-**NOT IMPLEMENTED YET**
-My Ida view will host the user's favorite shows, episodes and play history, as well as an about section with information about Ida Radio and the app itself.
+My Ida view will host the user's favorite shows, episodes and play history. Saved items are stored in AsyncStorage. Pressing the User icon in the top right corner navigates to Account view.
+
+### Account <a name="accountview"></a>
+
+In Account view user may log in, create an account, change settings and view About Ida and About App sections.
 
 ## Data Fetching <a name="datafetching"></a>
 

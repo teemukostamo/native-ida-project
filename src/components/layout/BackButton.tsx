@@ -15,7 +15,7 @@ const BackButton = () => {
       style={{
         position: 'absolute',
         top: 600,
-        zIndex: 999,
+        zIndex: 2,
         left: 10,
         backgroundColor: 'rgba(227, 227, 227, 0.8)',
       }}

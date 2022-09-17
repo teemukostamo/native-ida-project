@@ -4,17 +4,18 @@ import {useParams} from 'react-router-native';
 import {useInfiniteQuery, useQuery} from '@tanstack/react-query';
 import theme from '../../theme';
 import Error from '../layout/Error';
-import EpisodeItem from '../explore/EpisodeItem';
+import EpisodeItem from './EpisodeItem';
 import Loading from '../layout/Loading';
 import EpisodeDetails from './EpisodeDetails';
 import BackButton from '../layout/BackButton';
+import FavoriteModal from '../layout/FavoriteModal';
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.gray,
     flex: 1,
   },
-  epidodesContainer: {
+  episodesContainer: {
     flex: 1,
   },
 });
@@ -81,7 +82,7 @@ const EpisodePage: React.FC = () => {
     return (
       <View style={styles.container}>
         <BackButton />
-        <View style={styles.epidodesContainer}>
+        <View style={styles.episodesContainer}>
           <FlatList
             ListEmptyComponent={<Loading />}
             ListHeaderComponent={
@@ -99,7 +100,9 @@ const EpisodePage: React.FC = () => {
             renderItem={({item}) => <EpisodeItem item={item} />}
             onEndReached={() => fetchMore()}
             refreshing={isFetching}
+            ListFooterComponent={isFetching ? <Loading /> : null}
           />
+          <FavoriteModal />
         </View>
       </View>
     );

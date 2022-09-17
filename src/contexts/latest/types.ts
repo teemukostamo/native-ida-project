@@ -11,7 +11,7 @@ interface EpisodeTime {
 }
 
 export interface LatestEpisode {
-  id: string;
+  ID: string;
   slug: string;
   title: string;
   episode_time: EpisodeTime;
@@ -26,7 +26,6 @@ export interface LatestEpisode {
     genres?: NameSlug[];
     channel?: NameSlug[];
   };
-  post_type: string;
   tracklist?: string;
   code?: string;
 }

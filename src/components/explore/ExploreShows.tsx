@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 
-import ShowItem from './ShowItem';
+import ShowItem from '../shows/ShowItem';
 import Filters from '../layout/Filters';
 import Loading from '../layout/Loading';
 import Error from '../layout/Error';
@@ -9,6 +9,7 @@ import Error from '../layout/Error';
 import useShows from '../../hooks/useShows';
 
 import theme from '../../theme';
+import FavoriteModal from '../layout/FavoriteModal';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Shows: React.FC = () => {
+const ExploreShows: React.FC = () => {
   const {isFetching, isLoading, isError, data, fetchMore} = useShows();
 
   if (isError) {
@@ -45,8 +46,9 @@ const Shows: React.FC = () => {
         onEndReached={() => fetchMore()}
         ListFooterComponent={isFetching ? <Loading /> : null}
       />
+      <FavoriteModal />
     </View>
   );
 };
 
-export default Shows;
+export default ExploreShows;
