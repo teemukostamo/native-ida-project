@@ -6,7 +6,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest --transformIgnorePatterns --watch",
+    "test": "jest --transformIgnorePatterns",
+    "test:watch": "jest --transformIgnorePatterns --watch",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prepare": "husky install"
   },
