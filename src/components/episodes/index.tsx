@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.gray,
     flex: 1,
   },
-  epidodesContainer: {
+  episodesContainer: {
     flex: 1,
   },
 });
@@ -82,7 +82,7 @@ const EpisodePage: React.FC = () => {
     return (
       <View style={styles.container}>
         <BackButton />
-        <View style={styles.epidodesContainer}>
+        <View style={styles.episodesContainer}>
           <FlatList
             ListEmptyComponent={<Loading />}
             ListHeaderComponent={

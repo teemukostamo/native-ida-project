@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import FavoriteStorage from '../../src/utils/AsyncStorageUtil';
 
 describe('FavoritesStorage', () => {
-  it('checks if Async Storage is used', async () => {
+  it('is called with correct key', async () => {
     const test = FavoriteStorage.getKey('bar');
     expect(test).toEqual('favorites:bar');
 

@@ -18,13 +18,7 @@ export const favoriteModalReducer = (
       return {
         ...state,
         isOpen: false,
-        episode_name: null,
-        episode_id: null,
-        episode_image: null,
-        show_name: null,
-        show_id: null,
-        show_image: null,
-        share_url: null,
+        item: null,
       };
     default:
       return state;
@@ -33,13 +27,5 @@ export const favoriteModalReducer = (
 
 export const initialFavoriteModalState = {
   isOpen: false,
-  channel: null,
-  show_slug: null,
-  episode_name: null,
-  episode_id: null,
-  episode_image: null,
-  show_name: null,
-  show_id: null,
-  show_image: null,
-  share_url: null,
+  item: null,
 };

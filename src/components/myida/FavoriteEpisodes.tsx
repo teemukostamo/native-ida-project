@@ -1,20 +1,34 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, FlatList, StyleSheet} from 'react-native';
+import {LatestEpisode} from '../../contexts/latest/types';
 
-import {FavoriteEpisodeType} from '../../contexts/favorites/types';
+import EpisodeItem from '../explore/EpisodeItem';
+import FavoriteModal from '../layout/FavoriteModal';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  episodesContainer: {
+    flex: 1,
+  },
+});
 
 type Props = {
-  episodes: FavoriteEpisodeType[];
+  episodes: LatestEpisode[];
 };
 
 const FavoriteEpisodes: React.FC<Props> = ({episodes}) => {
-  console.log('favorite episodes', episodes);
   return (
-    <View>
-      <Text>Favorite episodes list</Text>
-      {episodes.map(episode => (
-        <Text>{episode.episode_name}</Text>
-      ))}
+    <View style={styles.container}>
+      <View style={styles.episodesContainer}>
+        <FlatList
+          ListEmptyComponent={<Text>No favorites added</Text>}
+          data={episodes.map(episode => episode)}
+          renderItem={({item}) => <EpisodeItem item={item} />}
+        />
+        <FavoriteModal />
+      </View>
     </View>
   );
 };

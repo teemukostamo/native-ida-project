@@ -11,7 +11,6 @@ export type ShowItemType = {
   title: string;
   post_date: string;
   excerpt: string;
-  post_type: string;
   taxonomies: {
     genres?: NameSlug[];
     channel: NameSlug[];

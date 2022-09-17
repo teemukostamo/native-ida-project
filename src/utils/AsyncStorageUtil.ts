@@ -1,8 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  FavoriteEpisodeType,
-  FavoriteShowType,
-} from '../contexts/favorites/types';
+import {ShowItemType} from '../contexts/shows/types';
+import {LatestEpisode} from '../contexts/latest/types';
 
 class FavoriteStorage {
   static namespace: string = 'favorites';
@@ -10,8 +8,8 @@ class FavoriteStorage {
   static getKey(key: string) {
     return `${this.namespace}:${key}`;
   }
+
   static async getFavoriteEpisodes() {
-    console.log(this.getKey('episodes'));
     const episodes = await AsyncStorage.getItem(this.getKey('episodes'));
     return episodes ? JSON.parse(episodes) : [];
   }
@@ -21,7 +19,7 @@ class FavoriteStorage {
     return shows ? JSON.parse(shows) : [];
   }
 
-  static async addEpisode(episode: FavoriteEpisodeType) {
+  static async addEpisode(episode: LatestEpisode) {
     const existingEpisodes = await this.getFavoriteEpisodes();
     const updatedEpisodes = [...existingEpisodes, episode];
 
@@ -31,7 +29,7 @@ class FavoriteStorage {
     );
   }
 
-  static async addShow(show: FavoriteShowType) {
+  static async addShow(show: ShowItemType) {
     const existingShows = await this.getFavoriteShows();
     const updatedShows = [...existingShows, show];
 
@@ -41,11 +39,10 @@ class FavoriteStorage {
     );
   }
 
-  static async removeEpisode(episodeToRemove: FavoriteEpisodeType) {
+  static async removeEpisode(episodeToRemove: LatestEpisode) {
     const existingEpisodes = await this.getFavoriteEpisodes();
     const updatedEpisodes = existingEpisodes.filter(
-      (episode: FavoriteEpisodeType) =>
-        episode.episode_id !== episodeToRemove.episode_id,
+      (episode: LatestEpisode) => episode.ID !== episodeToRemove.ID,
     );
 
     await AsyncStorage.setItem(
@@ -54,10 +51,10 @@ class FavoriteStorage {
     );
   }
 
-  static async removeShow(showToRemove: FavoriteShowType) {
+  static async removeShow(showToRemove: ShowItemType) {
     const existingShows = await this.getFavoriteShows();
     const updatedShows = existingShows.filter(
-      (show: FavoriteShowType) => show.show_id !== showToRemove.show_id,
+      (show: ShowItemType) => show?.ID !== showToRemove?.ID,
     );
 
     await AsyncStorage.setItem(

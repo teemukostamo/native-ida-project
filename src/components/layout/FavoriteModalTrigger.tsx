@@ -18,44 +18,14 @@ const styles = StyleSheet.create({
   },
 });
 
-interface NameSlug {
-  name: string;
-  slug: string;
-}
-
 type Props = {
-  channel: string | null;
-  episode_name?: string | null;
-  episode_id?: string | null;
-  episode_image?: string | null;
-  episode_time?: string | null;
-  episode_slug?: string | null;
-  show_name: string | null;
-  show_id: string | null;
-  show_image?: string | null;
-  show_slug: string | null;
-  share_url: string | null;
-  mixcloud?: string | null;
-  genres?: NameSlug[] | null;
+  item: any;
 };
 
-const FavoriteModalTrigger: React.FC<Props> = ({
-  channel,
-  episode_id,
-  episode_name,
-  episode_image,
-  episode_slug,
-  episode_time,
-  show_id,
-  show_name,
-  show_slug,
-  show_image,
-  share_url,
-  mixcloud,
-  genres,
-}) => {
+const FavoriteModalTrigger: React.FC<Props> = ({item}) => {
   const {dispatch} = useContext(AppContext);
 
+  const channel = item.taxonomies.channel[0].slug;
   return (
     <View
       style={[
@@ -70,19 +40,7 @@ const FavoriteModalTrigger: React.FC<Props> = ({
         onPress={() =>
           openModal(dispatch, {
             isOpen: true,
-            channel,
-            episode_name,
-            episode_id,
-            episode_image,
-            episode_slug,
-            episode_time,
-            show_id,
-            show_name,
-            show_slug,
-            show_image,
-            share_url,
-            mixcloud,
-            genres,
+            item,
           })
         }
         icon="dots-horizontal"

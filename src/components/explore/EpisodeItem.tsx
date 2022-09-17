@@ -80,36 +80,7 @@ const EpisodeItem: React.FC<Props> = ({item}) => {
           }}
           resizeMode="cover"
           style={styles.image}>
-          <FavoriteModalTrigger
-            channel={channel}
-            episode_id={item.ID}
-            episode_name={item.show_title ? item.show_title : item.title}
-            episode_image={
-              item.featured_image
-                ? item.featured_image.sizes.medium_large
-                : '/assets/images/ida-logo-1024.png'
-            }
-            episode_time={
-              item?.episode_time?.episode_start
-                ? format(
-                    parseISO(item.episode_time.episode_start),
-                    'dd.MM.yyyy',
-                  )
-                : 'unknown'
-            }
-            episode_slug={item.slug}
-            show_name={item.show_title}
-            show_id={item.related_show_ID.toString()}
-            show_image={
-              item.featured_image
-                ? item.featured_image.sizes.medium_large
-                : '/assets/images/ida-logo-1024.png'
-            }
-            show_slug={item.related_show_slug}
-            share_url="google.com"
-            mixcloud={item.mixcloud}
-            genres={item.taxonomies.genres}
-          />
+          <FavoriteModalTrigger item={item} />
           <MixcloudPlayButton item={item} />
           <GenreButtons channel={channel} genres={item.taxonomies.genres} />
         </ImageBackground>

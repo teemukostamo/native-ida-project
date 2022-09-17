@@ -28,13 +28,13 @@ export const favoritesReducer = (state: FavoritesType, action: ActionTypes) => {
       return {
         ...state,
         episodes: state.episodes.filter(
-          episode => episode.episode_id !== action.data.episode_id,
+          episode => episode.ID !== action.data.ID,
         ),
       };
     case REMOVE_SHOW:
       return {
         ...state,
-        shows: state.shows.filter(show => show.show_id !== action.data.show_id),
+        shows: state.shows.filter(show => show?.ID !== action.data.show_id),
       };
     default:
       return state;

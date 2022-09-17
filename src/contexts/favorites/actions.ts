@@ -7,7 +7,10 @@ import {
   REMOVE_EPISODE,
   REMOVE_SHOW,
 } from './reducer';
-import {FavoriteEpisodeType, FavoriteShowType} from './types';
+
+import {ShowItemType} from '../shows/types';
+import {LatestEpisode} from '../latest/types';
+
 import FavoriteStorage from '../../utils/AsyncStorageUtil';
 
 export const getFavorites = async (dispatch: Dispatch<ActionTypes>) => {
@@ -24,7 +27,7 @@ export const getFavorites = async (dispatch: Dispatch<ActionTypes>) => {
 
 export const addFavoriteShow = async (
   dispatch: Dispatch<ActionTypes>,
-  data: FavoriteShowType,
+  data: ShowItemType,
 ) => {
   await FavoriteStorage.addShow(data);
   dispatch({
@@ -35,7 +38,7 @@ export const addFavoriteShow = async (
 
 export const removeFavoriteShow = async (
   dispatch: Dispatch<ActionTypes>,
-  data: FavoriteShowType,
+  data: ShowItemType,
 ) => {
   await FavoriteStorage.removeShow(data);
   dispatch({
@@ -46,7 +49,7 @@ export const removeFavoriteShow = async (
 
 export const addFavoriteEpisode = async (
   dispatch: Dispatch<ActionTypes>,
-  data: FavoriteEpisodeType,
+  data: LatestEpisode,
 ) => {
   await FavoriteStorage.addEpisode(data);
   dispatch({
@@ -57,9 +60,8 @@ export const addFavoriteEpisode = async (
 
 export const removeFavoriteEpisode = async (
   dispatch: Dispatch<ActionTypes>,
-  data: FavoriteEpisodeType,
+  data: LatestEpisode,
 ) => {
-  console.log('remove episode', data);
   await FavoriteStorage.removeEpisode(data);
   dispatch({
     type: REMOVE_EPISODE,

@@ -26,7 +26,6 @@ export interface LatestEpisode {
     genres?: NameSlug[];
     channel?: NameSlug[];
   };
-  post_type: string;
   tracklist?: string;
   code?: string;
 }

@@ -12,9 +12,6 @@ import theme from '../../theme';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // flexDirection: 'column',
-    // justifyContent: 'flex-end',
-    // alignItems: 'center',
   },
   linksContainer: {
     flexDirection: 'row',
@@ -42,8 +39,6 @@ const styles = StyleSheet.create({
 const MyIdaView = () => {
   const {state} = useContext(AppContext);
   const [selectedView, setSelectedView] = useState('episodes');
-
-  console.log('myida state', state.favorites);
 
   return (
     <View style={styles.container}>

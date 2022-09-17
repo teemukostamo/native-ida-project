@@ -1,10 +1,9 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-
-import {FavoriteEpisodeType} from '../../contexts/favorites/types';
+import {LatestEpisode} from '../../contexts/latest/types';
 
 type Props = {
-  episodes: FavoriteEpisodeType[];
+  episodes: LatestEpisode[];
 };
 
 const PlayHistory: React.FC<Props> = ({episodes}) => {
