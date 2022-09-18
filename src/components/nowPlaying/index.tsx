@@ -17,7 +17,7 @@ import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {
-    height: 55,
+    height: 70,
     backgroundColor: theme.colors.gray,
     flexDirection: 'row',
   },

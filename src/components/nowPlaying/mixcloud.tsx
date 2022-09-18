@@ -13,7 +13,6 @@ const Mixcloud = () => {
   };
 
   if (nowPlaying.mixcloud) {
-    // const mixcloudId = nowPlaying.mixcloud.replaceAll('/', '%2F');
     const streamUrl = `https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&light=1&autoplay=1&feed=%2F${nowPlaying.mixcloud}`;
 
     return (
@@ -31,7 +30,7 @@ const Mixcloud = () => {
                   <head>
                   <meta name="viewport" content="width=device-width, initial-scale=1">
                   </head>
-                  <body>
+                  <body style="overflow: hidden;">
                   <div>
                   <iframe
                       id="mixcloud"
