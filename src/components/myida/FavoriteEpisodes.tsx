@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, FlatList, StyleSheet} from 'react-native';
-import {LatestEpisode} from '../../contexts/latest/types';
+import {LatestEpisode} from '~src/contexts/latest/types';
 
 import EpisodeItem from '../episodes/EpisodeItem';
 import FavoriteModal from '../layout/FavoriteModal';

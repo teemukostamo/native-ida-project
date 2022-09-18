@@ -1,23 +1,23 @@
 import React, {useContext, useState} from 'react';
 import {useTrackPlayerEvents, Event, State} from 'react-native-track-player';
 
-import {AppContext} from '../../contexts/main';
+import {View, StyleSheet, Pressable} from 'react-native';
+import {Text, IconButton} from 'react-native-paper';
 import {
+  closeNowPlaying,
   stopPlayerPress,
   onTallinnPlayPress,
   onHelsinkiPlayPress,
-} from '../../contexts/nowPlaying/actions';
-
-import {View, StyleSheet} from 'react-native';
-import {Text, IconButton} from 'react-native-paper';
+} from '~src/contexts/nowPlaying/actions';
+import {AppContext} from '~src/contexts/main';
 
 import Mixcloud from './mixcloud';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {
-    height: 55,
+    height: 70,
     backgroundColor: theme.colors.gray,
     flexDirection: 'row',
   },
@@ -26,13 +26,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  closeButtonContainer: {
+    position: 'absolute',
+    backgroundColor: theme.colors.darkGray,
+    paddingHorizontal: 5,
+    top: -22,
+    left: 353,
+  },
+  closeButtonIcon: {
+    color: theme.colors.gray,
+    fontSize: 25,
+  },
   playButtonContainer: {
     alignSelf: 'flex-end',
     marginBottom: 12,
     flex: 1,
   },
   studioText: {
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
     margin: 5,
     flex: 5,
   },
@@ -77,6 +88,7 @@ const NowPlayingBar = () => {
       {nowPlaying.streamType === 'live' ? (
         <View style={styles.flexContainer}>
           <Text style={styles.studioText}>
+            {/* take now playing artist from from schedule state */}
             Now playing {nowPlaying.show_title?.toUpperCase()} by{' '}
             {nowPlaying.artist} from {nowPlaying.studio?.toUpperCase()}
           </Text>
@@ -88,7 +100,14 @@ const NowPlayingBar = () => {
           />
         </View>
       ) : (
-        <Mixcloud />
+        <View style={styles.flexContainer}>
+          <Mixcloud />
+          <Pressable
+            onPress={() => closeNowPlaying(dispatch)}
+            style={styles.closeButtonContainer}>
+            <Text style={styles.closeButtonIcon}>X</Text>
+          </Pressable>
+        </View>
       )}
     </View>
   ) : null;

@@ -4,9 +4,9 @@ import {Title, IconButton} from 'react-native-paper';
 import {useLocation, useNavigate} from 'react-router-native';
 import ExploreViewSelector from './ExploreViewSelector';
 
-import {getViewNameFromLocation} from '../../utils/utils';
+import {getViewNameFromLocation} from '~src/utils/utils';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {

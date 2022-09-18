@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import FavoriteStorage from '../../src/utils/AsyncStorageUtil';
+import FavoriteStorage from '~src/utils/AsyncStorageUtil';
 
 import shows from '../../__test_helpers__/mockdata/shows';
 import episodes from '../../__test_helpers__/mockdata/episodes';

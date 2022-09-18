@@ -15,10 +15,10 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {AppContext} from '../../contexts/main';
-import {setGenre} from '../../contexts/filters/actions';
+import {AppContext} from '~src/contexts/main';
+import {setGenre} from '~src/contexts/filters/actions';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 import {DropdownOptionType} from '../layout/types';
 
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'left',
     marginLeft: 5,
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
     textTransform: 'uppercase',
     color: theme.colors.backdrop,
     letterSpacing: 1,
@@ -45,11 +45,11 @@ const styles = StyleSheet.create({
     marginRight: 7,
   },
   dropdown: {
+    ...theme.fonts.light,
     marginLeft: 10,
     position: 'absolute',
     backgroundColor: '#fff',
     width: '95%',
-    fontFamily: 'Menlo-Bold',
     height: 400,
   },
   overlay: {

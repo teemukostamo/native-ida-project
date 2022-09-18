@@ -6,6 +6,9 @@ import {
   ADD_EPISODE,
   REMOVE_EPISODE,
   REMOVE_SHOW,
+  ADD_TO_HISTORY,
+  REMOVE_FROM_HISTORY,
+  CLEAR_HISTORY,
 } from './reducer';
 
 import {ShowItemType} from '../shows/types';
@@ -16,11 +19,13 @@ import FavoriteStorage from '../../utils/AsyncStorageUtil';
 export const getFavorites = async (dispatch: Dispatch<ActionTypes>) => {
   const episodes = await FavoriteStorage.getFavoriteEpisodes();
   const shows = await FavoriteStorage.getFavoriteShows();
+  const history = await FavoriteStorage.getPlayHistory();
   dispatch({
     type: GET_FAVORITES,
     data: {
       shows,
       episodes,
+      history,
     },
   });
 };
@@ -66,5 +71,34 @@ export const removeFavoriteEpisode = async (
   dispatch({
     type: REMOVE_EPISODE,
     data,
+  });
+};
+
+export const addToPlayHistory = async (
+  dispatch: Dispatch<ActionTypes>,
+  data: LatestEpisode,
+) => {
+  await FavoriteStorage.addToPlayHistory(data);
+  dispatch({
+    type: ADD_TO_HISTORY,
+    data,
+  });
+};
+
+export const removeFromPlayHistory = async (
+  dispatch: Dispatch<ActionTypes>,
+  data: LatestEpisode,
+) => {
+  await FavoriteStorage.removeFromPlayHistory(data);
+  dispatch({
+    type: REMOVE_FROM_HISTORY,
+    data,
+  });
+};
+
+export const clearPlayHistory = (dispatch: Dispatch<ActionTypes>) => {
+  FavoriteStorage.clearPlayHistory();
+  dispatch({
+    type: CLEAR_HISTORY,
   });
 };

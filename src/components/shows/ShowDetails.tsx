@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import {Title} from 'react-native-paper';
-import theme from '../../theme';
+import theme from '~src/theme';
 import GenreButtons from '../layout/GenreButtons';
-import {stripHtmlTags} from '../../utils/utils';
+import {stripHtmlTags} from '~src/utils/utils';
 
 const styles = StyleSheet.create({
   coverImage: {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.accent,
   },
   showArtistText: {
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
   },
   showArtistTextHelsinki: {
     color: theme.colors.gray,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
   },
   descriptionTextStyle: {
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
     fontSize: 14,
     marginTop: 5,
   },

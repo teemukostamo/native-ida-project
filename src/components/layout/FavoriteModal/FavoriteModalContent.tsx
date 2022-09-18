@@ -1,9 +1,9 @@
 import React from 'react';
-import {StyleSheet, Pressable, View, Platform} from 'react-native';
+import {StyleSheet, Pressable, View} from 'react-native';
 import {Text} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import theme from '../../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   contentContainer: {
@@ -16,10 +16,10 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   text: {
+    ...theme.fonts.light,
     marginLeft: 30,
     fontSize: 25,
     color: theme.colors.gray,
-    fontFamily: Platform.OS === 'ios' ? 'Menlo-Bold' : 'FavoritMono-Regular',
     textTransform: 'uppercase',
   },
 });

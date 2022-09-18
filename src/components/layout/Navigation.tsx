@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {Appbar, Text} from 'react-native-paper';
 import {useNavigate} from 'react-router-native';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {

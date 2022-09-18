@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 
-import useEpisodes from '../../hooks/useEpisodes';
+import useEpisodes from '~src/hooks/useEpisodes';
 import EpisodeItem from '../episodes/EpisodeItem';
 import Loading from '../layout/Loading';
 import Error from '../layout/Error';
 import Filters from '../layout/Filters';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 import FavoriteModal from '../layout/FavoriteModal';
 
 const styles = StyleSheet.create({
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.gray,
   },
   searchInput: {
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
     margin: 10,
     backgroundColor: theme.colors.primary,
     paddingVertical: 2,

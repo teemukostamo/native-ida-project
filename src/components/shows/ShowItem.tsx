@@ -3,10 +3,10 @@ import {View, StyleSheet, ImageBackground} from 'react-native';
 import {useNavigate} from 'react-router-native';
 import {Title} from 'react-native-paper';
 
-import {ShowItemType} from '../../contexts/shows/types';
+import {ShowItemType} from '~src/contexts/shows/types';
 import Error from '../layout/Error';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 import GenreButtons from '../layout/GenreButtons';
 import FavoriteModalTrigger from '../layout/FavoriteModalTrigger';
 
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     alignSelf: 'flex-start',
     paddingHorizontal: 3,
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
     fontWeight: 'bold',
     color: theme.colors.gray,
   },
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   showDateText: {
     marginTop: 8,
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
   },
   showTitleText: {
     margin: 1,

@@ -9,7 +9,7 @@ import {StyleSheet, Text, TouchableOpacity, Modal, View} from 'react-native';
 import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigate} from 'react-router-native';
-import theme from '../../theme';
+import theme from '~src/theme';
 
 import {DropdownOptionType} from '../layout/types';
 
@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   buttonText: {
+    ...theme.fonts.light,
     flex: 1,
     textAlign: 'left',
     marginLeft: 5,
-    fontFamily: 'Menlo-Bold',
     textTransform: 'uppercase',
     color: theme.colors.backdrop,
     letterSpacing: 1,
@@ -40,11 +40,11 @@ const styles = StyleSheet.create({
     marginLeft: 100,
   },
   dropdown: {
+    ...theme.fonts.light,
     marginLeft: 10,
     position: 'absolute',
     backgroundColor: '#fff',
     width: '95%',
-    fontFamily: 'Menlo-Bold',
   },
   overlay: {
     width: '100%',
@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
     marginTop: -10,
   },
   itemText: {
+    ...theme.fonts.regular,
     color: theme.colors.backdrop,
-    fontFamily: 'ida-Regular',
     fontSize: 18,
   },
 });

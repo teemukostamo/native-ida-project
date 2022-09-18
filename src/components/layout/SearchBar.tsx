@@ -1,9 +1,9 @@
 import React, {useContext, useState} from 'react';
 import {StyleSheet, TextInput} from 'react-native';
-import {AppContext} from '../../contexts/main';
-import {setSearchQuery} from '../../contexts/filters/actions';
+import {AppContext} from '~src/contexts/main';
+import {setSearchQuery} from '~src/contexts/filters/actions';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.gray,
   },
   searchInput: {
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
     margin: 10,
     backgroundColor: theme.colors.primary,
     paddingVertical: 2,

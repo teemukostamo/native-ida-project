@@ -51,11 +51,11 @@ const fontConfig = {
       fontWeight: fontWeights.normal,
     },
     light: {
-      fontFamily: 'Ida-Regular',
+      fontFamily: 'FavoritMono-Regular',
       fontWeight: fontWeights.normal,
     },
     thin: {
-      fontFamily: 'sans-serif-thin',
+      fontFamily: 'Ida-Regular',
       fontWeight: fontWeights.normal,
     },
   },

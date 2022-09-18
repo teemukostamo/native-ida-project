@@ -1,15 +1,15 @@
 import React from 'react';
-import {View, StyleSheet, Platform} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Text} from 'react-native-paper';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   textContainer: {
     margin: 10,
   },
   text: {
-    fontFamily: Platform.OS === 'ios' ? 'Menlo-Bold' : 'FavoritMono-Regular',
+    ...theme.fonts.light,
   },
   tallinn: {
     color: theme.colors.primary,

@@ -4,7 +4,7 @@ import {View, StyleSheet} from 'react-native';
 import Tallinn from './Tallinn';
 import Helsinki from './Helsinki';
 import Loading from '../layout/Loading';
-import {AppContext} from '../../contexts/main';
+import {AppContext} from '~src/contexts/main';
 
 const styles = StyleSheet.create({
   liveContainer: {

@@ -8,7 +8,7 @@ import {LatestEpisode} from '../../contexts/latest/types';
 import MixcloudPlayButton from '../layout/MixcloudPlayButton';
 import FavoriteModalTrigger from '../layout/FavoriteModalTrigger';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   showDateText: {
     marginTop: 8,
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
   },
   showTitleText: {
     margin: 1,

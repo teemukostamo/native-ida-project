@@ -1,11 +1,12 @@
 import React, {useContext} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {IconButton} from 'react-native-paper';
-import {LatestEpisode} from '../../contexts/latest/types';
-import {AppContext} from '../../contexts/main';
-import {onPlayMixcloudPress} from '../../contexts/nowPlaying/actions';
+import {LatestEpisode} from '~src/contexts/latest/types';
+import {AppContext} from '~src/contexts/main';
+import {onPlayMixcloudPress} from '~src/contexts/nowPlaying/actions';
+import {addToPlayHistory} from '~src/contexts/favorites/actions';
 
-import theme from '../../theme';
+import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   imageContentContainer: {
@@ -40,6 +41,16 @@ const MixcloudPlayButton: React.FC<Props> = ({item}) => {
       ? item.taxonomies.channel[0].slug
       : '';
 
+  const onPlayPress = () => {
+    addToPlayHistory(dispatch, item);
+    onPlayMixcloudPress(
+      dispatch,
+      item.show_title,
+      item.related_show_artist,
+      item.mixcloud,
+    );
+  };
+
   return (
     <View style={styles.imageContentContainer}>
       <IconButton
@@ -54,14 +65,7 @@ const MixcloudPlayButton: React.FC<Props> = ({item}) => {
             : styles.playButtonTallinn,
         ]}
         size={50}
-        onPress={() =>
-          onPlayMixcloudPress(
-            dispatch,
-            item.show_title,
-            item.related_show_artist,
-            item.mixcloud,
-          )
-        }
+        onPress={() => onPlayPress()}
       />
     </View>
   );

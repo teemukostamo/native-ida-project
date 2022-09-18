@@ -3,13 +3,14 @@ import {
   PLAY_TALLINN,
   PLAY_MIXCLOUD,
   STOP,
+  CLOSE_NOW_PLAYING,
 } from './nowPlaying/reducer';
 
 import {FETCH_LIVE_SHOWS} from './live/reducer';
 import {LiveShows} from './live/types';
 
 import {FETCH_LATEST_SHOWS} from './latest/reducer';
-import {LatestEpisodes} from './latest/types';
+import {LatestEpisodes, LatestEpisode} from './latest/types';
 
 import {FETCH_FULL_SCHEDULE} from './schedule/reducer';
 import {FullSchedule} from './schedule/types';
@@ -26,12 +27,11 @@ import {
   ADD_SHOW,
   REMOVE_EPISODE,
   REMOVE_SHOW,
+  ADD_TO_HISTORY,
+  REMOVE_FROM_HISTORY,
+  CLEAR_HISTORY,
 } from './favorites/reducer';
-import {
-  FavoritesType,
-  FavoriteEpisodeType,
-  FavoriteShowType,
-} from './favorites/types';
+import {FavoritesType} from './favorites/types';
 
 import {
   SET_SEARCH_QUERY,
@@ -70,7 +70,7 @@ interface StartPlayerAction {
 }
 
 interface StopPlayerAction {
-  type: typeof STOP;
+  type: typeof STOP | typeof CLOSE_NOW_PLAYING;
 }
 
 interface SetFilterAction {
@@ -101,17 +101,25 @@ interface OpenModalAction {
 
 interface AddRemoveFavoriteShowAction {
   type: typeof ADD_SHOW | typeof REMOVE_SHOW;
-  data: FavoriteShowType;
+  data: ShowItemType;
 }
 
 interface AddRemoveFavoriteEpisodeAction {
-  type: typeof ADD_EPISODE | typeof REMOVE_EPISODE;
-  data: FavoriteEpisodeType;
+  type:
+    | typeof ADD_EPISODE
+    | typeof REMOVE_EPISODE
+    | typeof ADD_TO_HISTORY
+    | typeof REMOVE_FROM_HISTORY;
+  data: LatestEpisode;
 }
 
 interface GetFavoritesAction {
   type: typeof GET_FAVORITES;
   data: FavoritesType;
+}
+
+interface ClearPlayHistory {
+  type: typeof CLEAR_HISTORY;
 }
 
 type ActionTypes =
@@ -128,6 +136,7 @@ type ActionTypes =
   | OpenModalAction
   | AddRemoveFavoriteShowAction
   | AddRemoveFavoriteEpisodeAction
-  | GetFavoritesAction;
+  | GetFavoritesAction
+  | ClearPlayHistory;
 
 export default ActionTypes;
