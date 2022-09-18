@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   showDateText: {
     marginTop: 8,
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
   },
   showTitleText: {
     margin: 1,

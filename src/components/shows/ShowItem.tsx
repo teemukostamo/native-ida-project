@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     alignSelf: 'flex-start',
     paddingHorizontal: 3,
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
     fontWeight: 'bold',
     color: theme.colors.gray,
   },
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   showDateText: {
     marginTop: 8,
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
   },
   showTitleText: {
     margin: 1,

@@ -63,6 +63,7 @@ const EpisodePage: React.FC = () => {
   };
 
   isEpisodeDetailsError && <Error />;
+
   if (isEpisodeDetailsLoading) {
     return (
       <View style={styles.container}>
@@ -72,8 +73,6 @@ const EpisodePage: React.FC = () => {
       </View>
     );
   }
-
-  console.log(episodeDetails);
 
   if (episodeDetails.data) {
     const episodeItem = {

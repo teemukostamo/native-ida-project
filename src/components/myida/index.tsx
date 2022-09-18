@@ -24,13 +24,11 @@ const styles = StyleSheet.create({
   },
   linkText: {
     letterSpacing: 2,
-    fontWeight: '900',
     fontSize: 20,
     color: theme.colors.darkGray,
   },
   linkTextSelected: {
     letterSpacing: 2,
-    fontWeight: '900',
     fontSize: 20,
     color: theme.colors.green,
   },
@@ -39,7 +37,7 @@ const styles = StyleSheet.create({
 const MyIdaView = () => {
   const {state} = useContext(AppContext);
   const [selectedView, setSelectedView] = useState('episodes');
-  console.log('state.favorites.history', state.favorites.history);
+
   return (
     <View style={styles.container}>
       <View style={styles.linksContainer}>

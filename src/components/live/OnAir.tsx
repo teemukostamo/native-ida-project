@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   liveTextStyle: {
+    ...theme.fonts.light,
     backgroundColor: 'rgba(52, 52, 52, 0.6)',
     position: 'relative',
     bottom: 125,
@@ -50,7 +51,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     alignSelf: 'flex-start',
     paddingHorizontal: 3,
-    fontFamily: 'Menlo-Bold',
     fontWeight: 'bold',
     color: theme.colors.gray,
   },

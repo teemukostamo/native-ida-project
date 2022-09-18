@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.accent,
   },
   showArtistText: {
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
   },
   showArtistTextHelsinki: {
     color: theme.colors.gray,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
   },
   descriptionTextStyle: {
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
     fontSize: 14,
     marginTop: 5,
   },

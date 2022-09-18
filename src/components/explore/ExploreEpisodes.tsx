@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.gray,
   },
   searchInput: {
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
     margin: 10,
     backgroundColor: theme.colors.primary,
     paddingVertical: 2,

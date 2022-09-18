@@ -22,14 +22,12 @@ const styles = StyleSheet.create({
   },
   studioNameTallinn: {
     fontSize: 25,
-    fontWeight: '900',
     alignSelf: 'center',
     marginBottom: 10,
     color: theme.colors.primary,
   },
   studioNameHelsinki: {
     fontSize: 25,
-    fontWeight: '900',
     alignSelf: 'center',
     marginBottom: 10,
     color: theme.colors.accent,
@@ -60,23 +58,23 @@ const styles = StyleSheet.create({
   },
   timeTextTallinn: {
     color: theme.colors.primary,
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
   },
   timeTextHelsinki: {
     color: theme.colors.accent,
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
   },
   titleContainer: {
     paddingLeft: 30,
     width: 310,
   },
   titleTextTallinn: {
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
     color: theme.colors.primary,
     flexShrink: 1,
   },
   titleTextHelsinki: {
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
     flex: 1,
     flexWrap: 'wrap',
     color: theme.colors.accent,

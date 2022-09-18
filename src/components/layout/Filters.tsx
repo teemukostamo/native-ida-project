@@ -17,9 +17,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   filterBtn: {
+    ...theme.fonts.light,
     alignSelf: 'flex-start',
     color: theme.colors.gray,
-    fontFamily: 'Menlo-Bold',
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 8,

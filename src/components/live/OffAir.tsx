@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Platform} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Title, Text} from 'react-native-paper';
 import theme from '~src/theme';
 
@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   nextShowHelsinki: {
+    ...theme.fonts.light,
     color: theme.colors.gray,
-    fontFamily: 'Menlo-Bold',
     marginLeft: 10,
   },
   nextShowHelsinkiTitle: {
@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
     color: theme.colors.text,
   },
   nextShowTallinn: {
+    ...theme.fonts.light,
     color: theme.colors.text,
-    fontFamily: Platform.OS === 'ios' ? 'Menlo-Bold' : 'FavoritMono-Regular',
     marginLeft: 10,
   },
 });

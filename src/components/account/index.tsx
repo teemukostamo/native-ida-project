@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   linkText: {
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
     letterSpacing: 4,
     fontWeight: '900',
     fontSize: 24,

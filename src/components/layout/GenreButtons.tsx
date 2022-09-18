@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   textStyle: {
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
     margin: 3,
     marginVertical: 5,
     paddingVertical: 1,

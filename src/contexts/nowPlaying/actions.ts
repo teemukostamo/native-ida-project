@@ -1,6 +1,12 @@
 import {Dispatch} from 'react';
 import ActionTypes from '../actionTypes';
-import {PLAY_TALLINN, PLAY_HELSINKI, PLAY_MIXCLOUD, STOP} from './reducer';
+import {
+  PLAY_TALLINN,
+  PLAY_HELSINKI,
+  PLAY_MIXCLOUD,
+  STOP,
+  CLOSE_NOW_PLAYING,
+} from './reducer';
 import {HELSINKI_LIVE_URL, TALLINN_LIVE_URL} from '../../constants';
 
 import {startPlayback, stopPlayback} from '../../components/trackPlayer';
@@ -57,6 +63,13 @@ export const onPlayMixcloudPress = (
 export const stopPlayerPress = (dispatch: Dispatch<ActionTypes>) => {
   dispatch({
     type: STOP,
+  });
+  stopPlayback();
+};
+
+export const closeNowPlaying = (dispatch: Dispatch<ActionTypes>) => {
+  dispatch({
+    type: CLOSE_NOW_PLAYING,
   });
   stopPlayback();
 };

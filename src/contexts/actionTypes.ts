@@ -3,6 +3,7 @@ import {
   PLAY_TALLINN,
   PLAY_MIXCLOUD,
   STOP,
+  CLOSE_NOW_PLAYING,
 } from './nowPlaying/reducer';
 
 import {FETCH_LIVE_SHOWS} from './live/reducer';
@@ -69,7 +70,7 @@ interface StartPlayerAction {
 }
 
 interface StopPlayerAction {
-  type: typeof STOP;
+  type: typeof STOP | typeof CLOSE_NOW_PLAYING;
 }
 
 interface SetFilterAction {

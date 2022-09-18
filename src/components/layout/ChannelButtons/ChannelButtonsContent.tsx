@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   textStyle: {
-    fontFamily: 'Menlo-Bold',
+    ...theme.fonts.light,
     marginHorizontal: 15,
     paddingVertical: 4,
     paddingHorizontal: 8,
