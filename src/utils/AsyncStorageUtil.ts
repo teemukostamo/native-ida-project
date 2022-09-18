@@ -77,9 +77,41 @@ class FavoriteStorage {
     );
   }
 
+  static async getPlayHistory() {
+    const episodes = await AsyncStorage.getItem(this.getKey('history'));
+    return episodes ? JSON.parse(episodes) : [];
+  }
+
+  static async addToPlayHistory(episode: LatestEpisode) {
+    const existingEpisodes = await this.getFavoriteEpisodes();
+    const updatedEpisodes = [...existingEpisodes, episode];
+
+    await AsyncStorage.setItem(
+      this.getKey('history'),
+      JSON.stringify(updatedEpisodes),
+    );
+  }
+
+  static async removeFromPlayHistory(episodeToRemove: LatestEpisode) {
+    const existingEpisodes = await this.getFavoriteEpisodes();
+    const updatedEpisodes = existingEpisodes.filter(
+      (episode: LatestEpisode) => episode.ID !== episodeToRemove.ID,
+    );
+
+    await AsyncStorage.setItem(
+      this.getKey('history'),
+      JSON.stringify(updatedEpisodes),
+    );
+  }
+
+  static clearPlayHistory() {
+    AsyncStorage.removeItem(this.getKey('history'));
+  }
+
   static removeFavorites() {
     AsyncStorage.removeItem(this.getKey('episodes'));
     AsyncStorage.removeItem(this.getKey('shows'));
+    AsyncStorage.removeItem(this.getKey('history'));
   }
 }
 

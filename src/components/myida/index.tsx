@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 const MyIdaView = () => {
   const {state} = useContext(AppContext);
   const [selectedView, setSelectedView] = useState('episodes');
-
+  console.log('state.favorites.history', state.favorites.history);
   return (
     <View style={styles.container}>
       <View style={styles.linksContainer}>
@@ -87,7 +87,7 @@ const MyIdaView = () => {
         <FavoriteShows shows={state.favorites.shows} />
       )}
       {selectedView === 'history' && (
-        <PlayHistory episodes={state.favorites.episodes} />
+        <PlayHistory episodes={state.favorites.history} />
       )}
     </View>
   );

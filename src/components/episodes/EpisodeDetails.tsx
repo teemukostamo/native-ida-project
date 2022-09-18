@@ -6,6 +6,8 @@ import GenreButtons from '../layout/GenreButtons';
 import {stripHtmlTags, decodeHtmlCharCodes} from '~src/utils/utils';
 import {onPlayMixcloudPress} from '~src/contexts/nowPlaying/actions';
 import {AppContext} from '~src/contexts/main';
+import {addToPlayHistory} from '~src/contexts/favorites/actions';
+import {LatestEpisode} from '~src/contexts/latest/types';
 
 const styles = StyleSheet.create({
   coverImage: {
@@ -74,106 +76,109 @@ const styles = StyleSheet.create({
   },
 });
 
-type Genre = {
-  name?: string;
-  slug?: string;
-};
-
 type Props = {
-  imageUrl?: string;
-  channel: string;
-  artist?: string;
-  title: string;
-  mixcloud: string;
-  tracklist?: string;
-  genres?: Genre[];
+  item: LatestEpisode;
 };
 
-const EpisodeDetails: React.FC<Props> = ({
-  imageUrl,
-  channel,
-  artist = 'unknown artist',
-  title,
-  tracklist,
-  mixcloud,
-  genres,
-}) => {
+const EpisodeDetails: React.FC<Props> = ({item}) => {
   const {dispatch} = useContext(AppContext);
 
-  const imageSrc = imageUrl
+  const imageSrc = item.featured_image?.url
     ? {
-        uri: imageUrl,
+        uri: item.featured_image?.url,
       }
     : require('../../../assets/images/ida-logo-1024.png');
 
-  return (
-    <View style={styles.imageContainer}>
-      <ImageBackground
-        source={imageSrc}
-        resizeMode="cover"
-        style={styles.image}>
-        <View style={styles.imageContentContainer}>
-          <IconButton
-            icon="play"
-            color={
-              channel === 'helsinki'
-                ? theme.colors.accent
-                : theme.colors.primary
-            }
-            style={[
-              styles.playButton,
-              channel === 'helsinki'
-                ? styles.playButtonHelsinki
-                : styles.playButtonTallinn,
-            ]}
-            size={50}
-            onPress={() =>
-              onPlayMixcloudPress(dispatch, title, artist, mixcloud)
-            }
-          />
-        </View>
-      </ImageBackground>
-      <View
-        style={[
-          styles.showInfoContainer,
-          channel === 'tallinn'
-            ? styles.showInfoContainerTallinn
-            : styles.showInfoContainerHelsinki,
-        ]}>
-        <Text
-          style={[
-            styles.showArtistText,
-            channel === 'tallinn'
-              ? styles.showArtistTextTallinn
-              : styles.showArtistTextHelsinki,
-          ]}>
-          {artist ? artist : ''}
-        </Text>
-        <Title
-          style={
-            channel === 'tallinn'
-              ? styles.showTitleTextTallinn
-              : styles.showTitleTextHelsinki
-          }>
-          {title}
-        </Title>
-        <GenreButtons channel={channel} genres={genres} />
-        {tracklist &&
-          tracklist.split('\n').map(tracklist_item => (
-            <Text
-              key={tracklist_item}
+  const onPlayPress = (episodeItem: LatestEpisode) => {
+    addToPlayHistory(dispatch, episodeItem);
+    onPlayMixcloudPress(
+      dispatch,
+      episodeItem.title,
+      episodeItem.related_show_artist,
+      episodeItem.mixcloud,
+    );
+  };
+
+  if (item) {
+    console.log('item', item);
+    console.log('item', item.taxonomies);
+    console.log('item', item.taxonomies.channel);
+
+    const channel = item.taxonomies.channel
+      ? item.taxonomies.channel[0].slug
+      : 'all';
+
+    const genres = item.taxonomies.genres ? item.taxonomies.genres : [];
+
+    return (
+      <View style={styles.imageContainer}>
+        <ImageBackground
+          source={imageSrc}
+          resizeMode="cover"
+          style={styles.image}>
+          <View style={styles.imageContentContainer}>
+            <IconButton
+              icon="play"
+              color={
+                channel === 'helsinki'
+                  ? theme.colors.accent
+                  : theme.colors.primary
+              }
               style={[
-                styles.descriptionTextStyle,
-                channel === 'tallinn'
-                  ? styles.descriptionTextStyleTallinn
-                  : styles.descriptionTextStyleHelsinki,
-              ]}>
-              {decodeHtmlCharCodes(stripHtmlTags(tracklist_item))}
-            </Text>
-          ))}
+                styles.playButton,
+                channel === 'helsinki'
+                  ? styles.playButtonHelsinki
+                  : styles.playButtonTallinn,
+              ]}
+              size={50}
+              onPress={() => onPlayPress(item)}
+            />
+          </View>
+        </ImageBackground>
+        <View
+          style={[
+            styles.showInfoContainer,
+            channel === 'tallinn'
+              ? styles.showInfoContainerTallinn
+              : styles.showInfoContainerHelsinki,
+          ]}>
+          <Text
+            style={[
+              styles.showArtistText,
+              channel === 'tallinn'
+                ? styles.showArtistTextTallinn
+                : styles.showArtistTextHelsinki,
+            ]}>
+            {item.related_show_artist ? item.related_show_artist : ''}
+          </Text>
+          <Title
+            style={
+              channel === 'tallinn'
+                ? styles.showTitleTextTallinn
+                : styles.showTitleTextHelsinki
+            }>
+            {item.title}
+          </Title>
+          <GenreButtons channel={channel} genres={genres} />
+          {item.tracklist &&
+            item.tracklist.split('\n').map(tracklist_item => (
+              <Text
+                key={tracklist_item}
+                style={[
+                  styles.descriptionTextStyle,
+                  channel === 'tallinn'
+                    ? styles.descriptionTextStyleTallinn
+                    : styles.descriptionTextStyleHelsinki,
+                ]}>
+                {decodeHtmlCharCodes(stripHtmlTags(tracklist_item))}
+              </Text>
+            ))}
+        </View>
       </View>
-    </View>
-  );
+    );
+  }
+
+  return null;
 };
 
 export default EpisodeDetails;

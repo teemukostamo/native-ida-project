@@ -6,6 +6,9 @@ export const ADD_SHOW = 'ADD_SHOW';
 export const REMOVE_SHOW = 'REMOVE_SHOW';
 export const ADD_EPISODE = 'ADD_EPISODE';
 export const REMOVE_EPISODE = 'REMOVE_EPISODE';
+export const ADD_TO_HISTORY = 'ADD_TO_HISTORY';
+export const REMOVE_FROM_HISTORY = 'REMOVE_FROM_HISTORY';
+export const CLEAR_HISTORY = 'CLEAR_HISTORY';
 
 export const favoritesReducer = (state: FavoritesType, action: ActionTypes) => {
   switch (action.type) {
@@ -34,7 +37,22 @@ export const favoritesReducer = (state: FavoritesType, action: ActionTypes) => {
     case REMOVE_SHOW:
       return {
         ...state,
-        shows: state.shows.filter(show => show?.ID !== action.data.show_id),
+        shows: state.shows.filter(show => show?.ID !== action.data?.ID),
+      };
+    case ADD_TO_HISTORY:
+      return {
+        ...state,
+        history: [...state.history, action.data],
+      };
+    case REMOVE_FROM_HISTORY:
+      return {
+        ...state,
+        history: state.history.filter(episode => episode.ID !== action.data.ID),
+      };
+    case CLEAR_HISTORY:
+      return {
+        ...state,
+        history: [],
       };
     default:
       return state;
@@ -44,4 +62,5 @@ export const favoritesReducer = (state: FavoritesType, action: ActionTypes) => {
 export const initialFavoritesState = {
   shows: [],
   episodes: [],
+  history: [],
 };

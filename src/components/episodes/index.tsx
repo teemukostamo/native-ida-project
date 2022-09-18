@@ -73,11 +73,24 @@ const EpisodePage: React.FC = () => {
     );
   }
 
+  console.log(episodeDetails);
+
   if (episodeDetails.data) {
-    const channel = episodeDetails.data.taxonomies.channel[0].slug;
-    const genres = episodeDetails.data.taxonomies.genres
-      ? episodeDetails.data.taxonomies.genres
-      : [];
+    const episodeItem = {
+      ID: episodeDetails.data.ID,
+      slug: episodeDetails.data.slug,
+      title: episodeDetails.data.title,
+      episode_time: episodeDetails.data.episode_time,
+      episode_timestamps: episodeDetails.data.episode_time,
+      mixcloud: episodeDetails.data.mixcloud,
+      show_title: episodeDetails.data.show_title,
+      featured_image: episodeDetails.data.featured_image,
+      related_show_ID: episodeDetails.data.related_show_id,
+      related_show_artist: episodeDetails.data.related_show_artist,
+      related_show_slug: episodeDetails.data.related_show_slug,
+      taxonomies: episodeDetails.data.taxonomies,
+      tracklist: episodeDetails.data.tracklist,
+    };
 
     return (
       <View style={styles.container}>
@@ -85,17 +98,7 @@ const EpisodePage: React.FC = () => {
         <View style={styles.episodesContainer}>
           <FlatList
             ListEmptyComponent={<Loading />}
-            ListHeaderComponent={
-              <EpisodeDetails
-                channel={channel}
-                artist={episodeDetails.data.related_show_artist}
-                title={episodeDetails.data.title}
-                tracklist={episodeDetails.data.tracklist}
-                mixcloud={episodeDetails.data.mixcloud}
-                imageUrl={episodeDetails?.data.featured_image?.url}
-                genres={genres}
-              />
-            }
+            ListHeaderComponent={<EpisodeDetails item={episodeItem} />}
             data={episodes?.pages.map(page => page).flat()}
             renderItem={({item}) => <EpisodeItem item={item} />}
             onEndReached={() => fetchMore()}
