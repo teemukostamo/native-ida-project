@@ -6,6 +6,7 @@ import BackButton from '../layout/BackButton';
 import FavoriteStorage from '~src/utils/AsyncStorageUtil';
 
 import theme from '~src/theme';
+import {useNavigate} from 'react-router-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,6 +26,8 @@ const styles = StyleSheet.create({
 });
 
 const Account = () => {
+  let navigate = useNavigate();
+
   return (
     <View style={styles.container}>
       <TouchableOpacity>
@@ -33,13 +36,10 @@ const Account = () => {
       <TouchableOpacity>
         <Text style={styles.linkText}>CREATE ACCOUNT</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.linkText}>ABOUT IDA</Text>
+      <TouchableOpacity onPress={() => navigate('/about')}>
+        <Text style={styles.linkText}>ABOUT</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.linkText}>ABOUT APP</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigate('/support')}>
         <Text style={styles.linkText}>SUPPORT</Text>
       </TouchableOpacity>
       <TouchableOpacity>

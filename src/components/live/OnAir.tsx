@@ -42,17 +42,18 @@ const styles = StyleSheet.create({
     margin: 5,
     alignItems: 'stretch',
   },
+  liveTextContainer: {
+    flex: 1,
+    flexDirection: 'column',
+  },
   liveTextStyle: {
     ...theme.fonts.light,
     backgroundColor: 'rgba(52, 52, 52, 0.6)',
-    position: 'relative',
-    bottom: 125,
-    marginLeft: 3,
     marginTop: 5,
-    alignSelf: 'flex-start',
     paddingHorizontal: 3,
     fontWeight: 'bold',
     color: theme.colors.gray,
+    alignSelf: 'flex-start',
   },
 });
 
@@ -103,9 +104,11 @@ const OnAir: React.FC<Props> = ({studio, nowPlaying, liveShow}) => {
             source={image}
             resizeMode="cover"
             style={styles.image}>
-            <Text style={styles.liveTextStyle}>
-              Live in {studio.toUpperCase()}
-            </Text>
+            <View style={styles.liveTextContainer}>
+              <Text style={styles.liveTextStyle}>
+                Live in {studio.toUpperCase()}
+              </Text>
+            </View>
           </ImageBackground>
         </View>
         <View style={styles.titleContainer}>
