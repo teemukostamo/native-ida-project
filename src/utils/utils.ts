@@ -31,6 +31,13 @@ export const getViewNameFromLocation = (pathName = '/') => {
   if (pathName === '/account') {
     return 'account';
   }
+  if (pathName === '/about') {
+    return 'about';
+  }
+  if (pathName === '/support') {
+    return 'support';
+  }
+
   return '';
 };
 

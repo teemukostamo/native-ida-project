@@ -6,6 +6,7 @@ import BackButton from '../layout/BackButton';
 import FavoriteStorage from '~src/utils/AsyncStorageUtil';
 
 import theme from '~src/theme';
+import {useNavigate} from 'react-router-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,18 +14,21 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
+    backgroundColor: theme.colors.primary,
   },
   linkText: {
     ...theme.fonts.light,
     letterSpacing: 4,
     fontWeight: '900',
     fontSize: 24,
-    color: theme.colors.darkGray,
+    color: theme.colors.accent,
     margin: 20,
   },
 });
 
 const Account = () => {
+  let navigate = useNavigate();
+
   return (
     <View style={styles.container}>
       <TouchableOpacity>
@@ -33,20 +37,17 @@ const Account = () => {
       <TouchableOpacity>
         <Text style={styles.linkText}>CREATE ACCOUNT</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.linkText}>ABOUT IDA</Text>
+      <TouchableOpacity onPress={() => navigate('/about')}>
+        <Text style={styles.linkText}>ABOUT</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.linkText}>ABOUT APP</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigate('/support')}>
         <Text style={styles.linkText}>SUPPORT</Text>
       </TouchableOpacity>
       <TouchableOpacity>
         <Text style={styles.linkText}>SETTINGS</Text>
       </TouchableOpacity>
 
-      {/* Temporary for dev puposes. Reload app after to update state also  */}
+      {/* Temporary for dev puposes. Reload app after clear to update state also  */}
       <TouchableOpacity onPress={() => FavoriteStorage.removeFavorites()}>
         <Text style={styles.linkText}>CLEAR ASYNC STORAGE</Text>
       </TouchableOpacity>

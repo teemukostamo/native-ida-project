@@ -4,6 +4,8 @@ import {NativeRouter, Route, Routes, Navigate} from 'react-router-native';
 import {useTrackPlayerEvents, Event} from 'react-native-track-player';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
+import AboutView from './components/about';
+import SupportView from './components/support';
 import Navigation from './components/layout/Navigation';
 import NowPlayingBar from './components/nowPlaying';
 import LiveView from './components/live';
@@ -93,6 +95,8 @@ const App = () => {
                 <Route path="/schedule" element={<ScheduleView />} />
                 <Route path="/myida" element={<MyIdaView />} />
                 <Route path="/account" element={<AccountView />} />
+                <Route path="/about" element={<AboutView />} />
+                <Route path="/support" element={<SupportView />} />
                 <Route path="shows" element={<ExploreShows />} />
                 <Route path="episodes" element={<ExploreEpisodes />} />
                 <Route path="/shows/:slug/:id" element={<ShowPage />} />

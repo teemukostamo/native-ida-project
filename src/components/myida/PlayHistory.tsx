@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import {LatestEpisode} from '~src/contexts/latest/types';
 import EpisodeItem from '../episodes/EpisodeItem';
 import FavoriteModal from '../layout/FavoriteModal';
+import EmptyListPlaceholder from './EmptyListPlaceholder';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,7 +23,9 @@ const PlayHistory: React.FC<Props> = ({episodes}) => {
     <View style={styles.container}>
       <View style={styles.episodesContainer}>
         <FlatList
-          ListEmptyComponent={<Text>No play history</Text>}
+          ListEmptyComponent={
+            <EmptyListPlaceholder text="No episodes listened to yet" />
+          }
           data={episodes.map(episode => episode)}
           renderItem={({item}) => <EpisodeItem item={item} />}
         />

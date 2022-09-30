@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   accountIconStyle: {
-    marginRight: 10,
     bottom: 15,
   },
 });

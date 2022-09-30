@@ -1,4 +1,4 @@
-interface Channel {
+export interface Taxonomies {
   name: string;
   slug: string;
 }
@@ -60,7 +60,8 @@ export type LiveShowData =
       show_image: Image;
       episode_image?: Image;
       taxonomies: {
-        channel: Array<Channel>;
+        channel: Array<Taxonomies>;
+        genres?: Array<Taxonomies>;
       };
     }
   | FalseType;

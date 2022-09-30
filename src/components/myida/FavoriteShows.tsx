@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, FlatList, StyleSheet, Text} from 'react-native';
+import {View, FlatList, StyleSheet} from 'react-native';
 
 import ShowItem from '../shows/ShowItem';
 import {ShowItemType} from '~src/contexts/shows/types';
 import FavoriteModal from '../layout/FavoriteModal';
+import EmptyListPlaceholder from './EmptyListPlaceholder';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,7 +20,9 @@ const FavoriteShows: React.FC<Props> = ({shows}) => {
   return (
     <View style={styles.container}>
       <FlatList
-        ListEmptyComponent={<Text>No favorites added</Text>}
+        ListEmptyComponent={
+          <EmptyListPlaceholder text="No favorite shows added" />
+        }
         data={shows.map(show => show)}
         renderItem={({item}) => <ShowItem item={item} />}
         // keyExtractor={item => item.ID}

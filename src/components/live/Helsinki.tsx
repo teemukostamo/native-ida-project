@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {Text} from 'react-native-paper';
 
 import {LiveShows} from '~src/contexts/live/types';
 import {NowPlayingState} from '~src/contexts/nowPlaying/types';
@@ -26,11 +25,12 @@ interface Props {
 const Helsinki: React.FC<Props> = ({liveState, nowPlaying}) => {
   return liveState && liveState.helsinki ? (
     <View style={styles.container}>
-      {liveState.helsinki.live_show ? (
+      {liveState?.helsinki.live_show ? (
         <OnAir
           liveShow={liveState?.helsinki.live_show}
           nowPlaying={nowPlaying}
           studio="helsinki"
+          genres={liveState.helsinki.live_show.taxonomies.genres ?? []}
         />
       ) : liveState.helsinki.next_show ? (
         <OffAir
@@ -44,12 +44,7 @@ const Helsinki: React.FC<Props> = ({liveState, nowPlaying}) => {
         <Offline channel="helsinki" />
       )}
     </View>
-  ) : (
-    //some data loading spinner here
-    <View>
-      <Text>loading schedule</Text>
-    </View>
-  );
+  ) : null;
 };
 
 export default Helsinki;

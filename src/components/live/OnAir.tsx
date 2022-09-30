@@ -5,6 +5,7 @@ import {AppContext} from '~src/contexts/main';
 
 import {NowPlayingState} from '~src/contexts/nowPlaying/types';
 import {LiveShowData} from '~src/contexts/live/types';
+import GenreButtonsContent from '../layout/GenreButtons/GenreButtonsContent';
 
 import {
   stopPlayerPress,
@@ -42,27 +43,60 @@ const styles = StyleSheet.create({
     margin: 5,
     alignItems: 'stretch',
   },
+  liveTextContainer: {
+    flex: 1,
+    flexDirection: 'column',
+  },
   liveTextStyle: {
     ...theme.fonts.light,
     backgroundColor: 'rgba(52, 52, 52, 0.6)',
-    position: 'relative',
-    bottom: 125,
-    marginLeft: 3,
     marginTop: 5,
-    alignSelf: 'flex-start',
     paddingHorizontal: 3,
     fontWeight: 'bold',
     color: theme.colors.gray,
+    alignSelf: 'flex-start',
+  },
+  liveShowArtistTextHelsinki: {
+    ...theme.fonts.light,
+    marginTop: 8,
+    color: theme.colors.gray,
+  },
+  liveShowArtistTextTallinn: {
+    ...theme.fonts.light,
+    marginTop: 8,
+    color: theme.colors.text,
+  },
+  channelStyleHelsinki: {
+    backgroundColor: theme.colors.primary,
+    color: theme.colors.accent,
+  },
+  channelStyleTallinn: {
+    backgroundColor: theme.colors.blue,
+    color: theme.colors.primary,
+  },
+  genreStyleHelsinki: {
+    backgroundColor: theme.colors.gray,
+    color: theme.colors.accent,
+  },
+  genreStyleTallinn: {
+    backgroundColor: theme.colors.text,
+    color: theme.colors.primary,
   },
 });
+
+interface Taxonomies {
+  name: string;
+  slug: string;
+}
 
 interface Props {
   studio: string;
   nowPlaying: NowPlayingState;
   liveShow: LiveShowData;
+  genres: Taxonomies[];
 }
 
-const OnAir: React.FC<Props> = ({studio, nowPlaying, liveShow}) => {
+const OnAir: React.FC<Props> = ({studio, nowPlaying, liveShow, genres}) => {
   const {dispatch} = useContext(AppContext);
 
   if (liveShow) {
@@ -103,13 +137,29 @@ const OnAir: React.FC<Props> = ({studio, nowPlaying, liveShow}) => {
             source={image}
             resizeMode="cover"
             style={styles.image}>
-            <Text style={styles.liveTextStyle}>
-              Live in {studio.toUpperCase()}
-            </Text>
+            <View style={styles.liveTextContainer}>
+              <Text style={styles.liveTextStyle}>
+                Live in {studio.toUpperCase()}
+              </Text>
+            </View>
+            <GenreButtonsContent
+              channel={studio}
+              genres={genres}
+              setChannel={() => {}}
+              setGenre={() => {}}
+            />
           </ImageBackground>
         </View>
         <View style={styles.titleContainer}>
           <View style={styles.titleTextContainer}>
+            <Text
+              style={
+                studio === 'helsinki'
+                  ? styles.liveShowArtistTextHelsinki
+                  : styles.liveShowArtistTextTallinn
+              }>
+              {liveShow.artist}
+            </Text>
             <Title
               style={{
                 color:
@@ -117,13 +167,6 @@ const OnAir: React.FC<Props> = ({studio, nowPlaying, liveShow}) => {
               }}>
               {liveShow.show_title}
             </Title>
-            <Text
-              style={{
-                color:
-                  studio === 'helsinki' ? theme.colors.gray : theme.colors.text,
-              }}>
-              {liveShow.artist}
-            </Text>
           </View>
           <IconButton
             style={styles.playButton}

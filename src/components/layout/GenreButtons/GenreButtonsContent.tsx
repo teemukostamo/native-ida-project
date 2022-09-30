@@ -1,13 +1,10 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
-import {AppContext} from '~src/contexts/main';
-import {setGenre, setChannel} from '~src/contexts/filters/actions';
 
 import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   container: {
-    //    backgroundColor: theme.colors.gray,
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
@@ -47,14 +44,19 @@ type Genre = {
 type Props = {
   channel: string;
   genres?: Genre[];
+  setChannel: (channel: string) => void;
+  setGenre: (name: string, slug: string) => void;
 };
 
-const GenreButtons: React.FC<Props> = ({channel, genres}) => {
-  const {dispatch} = useContext(AppContext);
-
+const GenreButtonsContent: React.FC<Props> = ({
+  channel,
+  genres,
+  setChannel,
+  setGenre,
+}) => {
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => setChannel(dispatch, channel)}>
+      <Pressable onPress={() => setChannel(channel)}>
         <Text
           style={[
             styles.textStyle,
@@ -69,9 +71,7 @@ const GenreButtons: React.FC<Props> = ({channel, genres}) => {
         <Pressable
           key={genre.slug}
           onPress={() =>
-            genre.name &&
-            genre.slug &&
-            setGenre(dispatch, genre.name, genre.slug)
+            genre.name && genre.slug && setGenre(genre.name, genre.slug)
           }>
           <Text
             style={[
@@ -88,4 +88,4 @@ const GenreButtons: React.FC<Props> = ({channel, genres}) => {
   );
 };
 
-export default GenreButtons;
+export default GenreButtonsContent;

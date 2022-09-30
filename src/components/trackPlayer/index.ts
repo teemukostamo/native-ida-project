@@ -2,12 +2,16 @@ import TrackPlayer, {TrackType} from 'react-native-track-player';
 
 export const setupPlayer = async () => {
   const buffer = 0.5;
-  await TrackPlayer.setupPlayer({
-    playBuffer: buffer,
-    minBuffer: buffer * 2,
-    maxBuffer: buffer * 2,
-    waitForBuffer: true,
-  });
+  try {
+    await TrackPlayer.setupPlayer({
+      playBuffer: buffer,
+      minBuffer: buffer * 2,
+      maxBuffer: buffer * 2,
+      waitForBuffer: true,
+    });
+  } catch (error) {
+    console.log('setupPlayer Error: ', error);
+  }
 };
 
 export const startPlayback = async (
