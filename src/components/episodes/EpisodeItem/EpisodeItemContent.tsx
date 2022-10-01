@@ -1,12 +1,11 @@
 import React from 'react';
 import {View, StyleSheet, ImageBackground} from 'react-native';
 import {Text, Title} from 'react-native-paper';
-import {useNavigate} from 'react-router-native';
 import {format, parseISO} from 'date-fns';
-import GenreButtons from '../layout/GenreButtons';
-import {LatestEpisode} from '../../contexts/latest/types';
-import MixcloudPlayButton from '../layout/MixcloudPlayButton';
-import FavoriteModalTrigger from '../layout/FavoriteModalTrigger';
+import GenreButtons from '../../layout/GenreButtons';
+import {LatestEpisode} from '../../../contexts/latest/types';
+import MixcloudPlayButton from '../../layout/MixcloudPlayButton';
+import FavoriteModalTrigger from '../../layout/FavoriteModalTrigger';
 
 import theme from '~src/theme';
 
@@ -45,15 +44,10 @@ const styles = StyleSheet.create({
 
 type Props = {
   item: LatestEpisode;
+  handlePress: () => void;
 };
 
-const EpisodeItem: React.FC<Props> = ({item}) => {
-  let navigate = useNavigate();
-
-  const handlePress = () => {
-    navigate(`/episodes/${item.slug}/${item.related_show_ID}`);
-  };
-
+const EpisodeItemContent: React.FC<Props> = ({item, handlePress}) => {
   if (item?.code === 'not_found') {
     return null;
   }
@@ -110,4 +104,4 @@ const EpisodeItem: React.FC<Props> = ({item}) => {
   );
 };
 
-export default EpisodeItem;
+export default EpisodeItemContent;

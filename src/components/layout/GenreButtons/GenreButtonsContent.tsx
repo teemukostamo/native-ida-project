@@ -69,6 +69,7 @@ const GenreButtonsContent: React.FC<Props> = ({
       </Pressable>
       {genres?.map(genre => (
         <Pressable
+          accessibilityLabel={`Select ${genre.name} genre`}
           key={genre.slug}
           onPress={() =>
             genre.name && genre.slug && setGenre(genre.name, genre.slug)

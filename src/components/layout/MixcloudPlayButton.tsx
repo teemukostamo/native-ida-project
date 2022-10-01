@@ -66,6 +66,7 @@ const MixcloudPlayButton: React.FC<Props> = ({item}) => {
         ]}
         size={50}
         onPress={() => onPlayPress()}
+        accessibilityLabel="Play on MixCloud"
       />
     </View>
   );

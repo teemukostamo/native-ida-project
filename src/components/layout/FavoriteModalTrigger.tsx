@@ -44,6 +44,7 @@ const FavoriteModalTrigger: React.FC<Props> = ({item}) => {
           })
         }
         icon="dots-horizontal"
+        accessibilityLabel="Press to save to favorites"
       />
     </View>
   );

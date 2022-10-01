@@ -6,7 +6,7 @@ import Dropdown from './Dropdown';
 import SearchBar from './SearchBar';
 import {GENRE_OPTIONS} from '~src/constants';
 import {clearFilters} from '~src/contexts/filters/actions';
-import {areFiltersSet} from '~src/utils/utils';
+import {areFiltersSet} from '~src/utils/common';
 
 import theme from '~src/theme';
 import {AppContext} from '~src/contexts/main';

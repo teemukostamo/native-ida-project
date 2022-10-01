@@ -43,6 +43,7 @@ const FavoriteModalContent: React.FC<Props> = ({
     {!pathName.endsWith('/shows') && (
       <Pressable
         testID="save-episode-link"
+        accessibilityLabel="Save episode to favorites"
         style={styles.itemContainer}
         onPress={() => handleEpisode()}>
         <Icon
@@ -57,6 +58,7 @@ const FavoriteModalContent: React.FC<Props> = ({
     )}
     <Pressable
       testID="save-show-link"
+      accessibilityLabel="Save show to favorites"
       style={styles.itemContainer}
       onPress={() => handleShow()}>
       <Icon
@@ -69,7 +71,7 @@ const FavoriteModalContent: React.FC<Props> = ({
       </Text>
     </Pressable>
     <Pressable
-      testID="share-link"
+      accessibilityLabel="Share"
       style={styles.itemContainer}
       onPress={() => console.log('pressed')}>
       <Icon color={theme.colors.green} size={30} name="share-square-o" />
@@ -78,6 +80,7 @@ const FavoriteModalContent: React.FC<Props> = ({
     {pathName.includes('/episodes') && (
       <Pressable
         testID="more-from-host-link"
+        accessibilityLabel="Find more from host"
         style={styles.itemContainer}
         onPress={() => console.log('pressed')}>
         <Icon color={theme.colors.green} size={30} name="headphones" />

@@ -1,7 +1,7 @@
 import {useContext, useState} from 'react';
 import {useInfiniteQuery} from '@tanstack/react-query';
 import {AppContext} from '../contexts/main';
-import {filterEpisodesUrlBuilder} from '../utils/utils';
+import {filterEpisodesUrlBuilder} from '../utils/urlBuilders';
 
 const useEpisodes = () => {
   const [pageNumber, setPageNumber] = useState(1);

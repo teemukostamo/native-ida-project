@@ -1,12 +1,9 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import {IconButton, Title} from 'react-native-paper';
 import theme from '~src/theme';
-import GenreButtons from '../layout/GenreButtons';
-import {stripHtmlTags, decodeHtmlCharCodes} from '~src/utils/utils';
-import {onPlayMixcloudPress} from '~src/contexts/nowPlaying/actions';
-import {AppContext} from '~src/contexts/main';
-import {addToPlayHistory} from '~src/contexts/favorites/actions';
+import GenreButtons from '../../layout/GenreButtons';
+import {stripHtmlTags, decodeHtmlCharCodes} from '~src/utils/common';
 import {LatestEpisode} from '~src/contexts/latest/types';
 
 const styles = StyleSheet.create({
@@ -78,32 +75,16 @@ const styles = StyleSheet.create({
 
 type Props = {
   item: LatestEpisode;
+  onPlayPress: (episodeItem: LatestEpisode) => void;
 };
 
-const EpisodeDetails: React.FC<Props> = ({item}) => {
-  const {dispatch} = useContext(AppContext);
-
-  const imageSrc = item.featured_image?.url
-    ? {
-        uri: item.featured_image?.url,
-      }
-    : require('../../../assets/images/ida-logo-1024.png');
-
-  const onPlayPress = (episodeItem: LatestEpisode) => {
-    addToPlayHistory(dispatch, episodeItem);
-    onPlayMixcloudPress(
-      dispatch,
-      episodeItem.title,
-      episodeItem.related_show_artist,
-      episodeItem.mixcloud,
-    );
-  };
-
+const EpisodeDetailsContent: React.FC<Props> = ({item, onPlayPress}) => {
   if (item) {
-    console.log('item', item);
-    console.log('item', item.taxonomies);
-    console.log('item', item.taxonomies.channel);
-
+    const imageSrc = item.featured_image?.url
+      ? {
+          uri: item.featured_image?.url,
+        }
+      : require('../../../../assets/images/ida-logo-1024.png');
     const channel = item.taxonomies.channel
       ? item.taxonomies.channel[0].slug
       : 'all';
@@ -181,4 +162,4 @@ const EpisodeDetails: React.FC<Props> = ({item}) => {
   return null;
 };
 
-export default EpisodeDetails;
+export default EpisodeDetailsContent;

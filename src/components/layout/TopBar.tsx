@@ -4,7 +4,7 @@ import {Title, IconButton} from 'react-native-paper';
 import {useLocation, useNavigate} from 'react-router-native';
 import ExploreViewSelector from './ExploreViewSelector';
 
-import {getViewNameFromLocation} from '~src/utils/utils';
+import {getViewNameFromLocation} from '~src/utils/common';
 
 import theme from '~src/theme';
 

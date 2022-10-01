@@ -2,7 +2,7 @@ import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Appbar, Text} from 'react-native-paper';
 import {useLocation, useNavigate} from 'react-router-native';
-import {getViewNameFromLocation} from '~src/utils/utils';
+import {getViewNameFromLocation} from '~src/utils/common';
 
 import theme from '~src/theme';
 

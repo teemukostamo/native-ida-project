@@ -21,7 +21,7 @@ import TopBar from './components/layout/TopBar';
 import {AppContext, mainReducer, initialState} from './contexts/main';
 import {getLiveShows} from './contexts/live/actions';
 import {getFullSchedule} from './contexts/schedule/actions';
-import {getMsToNextHour} from './utils/utils';
+import {getMsToNextHour} from './utils/common';
 
 import {setupPlayer} from './components/trackPlayer';
 
