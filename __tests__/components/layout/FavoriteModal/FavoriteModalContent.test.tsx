@@ -6,6 +6,7 @@ describe('FavoriteModalContent', () => {
   it('renders links to favorite episode and show', async () => {
     const handleShow = jest.fn();
     const handleEpisode = jest.fn();
+    const handleCloseModal = jest.fn();
 
     const {getByText} = await render(
       <FavoriteModalContent
@@ -14,6 +15,8 @@ describe('FavoriteModalContent', () => {
         episodeIsFavorite={false}
         handleEpisode={handleEpisode}
         handleShow={handleShow}
+        handleCloseModal={handleCloseModal}
+        isOpen={true}
       />,
     );
 
@@ -32,6 +35,7 @@ describe('FavoriteModalContent', () => {
   it('does not render episode link when item is show', async () => {
     const handleShow = jest.fn();
     const handleEpisode = jest.fn();
+    const handleCloseModal = jest.fn();
 
     const {getByText, queryByText} = await render(
       <FavoriteModalContent
@@ -40,6 +44,8 @@ describe('FavoriteModalContent', () => {
         episodeIsFavorite={false}
         handleEpisode={handleEpisode}
         handleShow={handleShow}
+        handleCloseModal={handleCloseModal}
+        isOpen={true}
       />,
     );
 
@@ -56,6 +62,7 @@ describe('FavoriteModalContent', () => {
   it('unfavorites episode if episode is already a favorite', async () => {
     const handleShow = jest.fn();
     const handleEpisode = jest.fn();
+    const handleCloseModal = jest.fn();
 
     const {getByText, queryByText} = await render(
       <FavoriteModalContent
@@ -64,6 +71,8 @@ describe('FavoriteModalContent', () => {
         episodeIsFavorite={true}
         handleEpisode={handleEpisode}
         handleShow={handleShow}
+        handleCloseModal={handleCloseModal}
+        isOpen={true}
       />,
     );
 
@@ -81,6 +90,7 @@ describe('FavoriteModalContent', () => {
   it('unfavorite show is show is already favorite', async () => {
     const handleShow = jest.fn();
     const handleEpisode = jest.fn();
+    const handleCloseModal = jest.fn();
 
     const {getByText, queryByText} = await render(
       <FavoriteModalContent
@@ -89,6 +99,8 @@ describe('FavoriteModalContent', () => {
         episodeIsFavorite={false}
         handleEpisode={handleEpisode}
         handleShow={handleShow}
+        handleCloseModal={handleCloseModal}
+        isOpen={true}
       />,
     );
 

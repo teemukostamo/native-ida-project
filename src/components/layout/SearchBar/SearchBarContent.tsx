@@ -1,7 +1,5 @@
-import React, {useContext, useState} from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import {StyleSheet, TextInput} from 'react-native';
-import {AppContext} from '~src/contexts/main';
-import {setSearchQuery} from '~src/contexts/filters/actions';
 
 import theme from '~src/theme';
 
@@ -21,10 +19,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const SearchBar: React.FC = () => {
-  const {state, dispatch} = useContext(AppContext);
-  const [value, setValue] = useState(state.filters.searchQuery);
+type Props = {
+  onSubmit: (value: string) => void;
+  setValue: Dispatch<SetStateAction<string>>;
+  value: string;
+};
 
+const SearchBarContent: React.FC<Props> = ({onSubmit, setValue, value}) => {
   return (
     <TextInput
       style={styles.searchInput}
@@ -34,9 +35,9 @@ const SearchBar: React.FC = () => {
       inlineImageLeft="search_icon"
       inlineImagePadding={4}
       clearButtonMode="always"
-      onSubmitEditing={() => setSearchQuery(dispatch, value)}
+      onSubmitEditing={() => onSubmit(value)}
     />
   );
 };
 
-export default SearchBar;
+export default SearchBarContent;

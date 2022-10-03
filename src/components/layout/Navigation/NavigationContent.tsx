@@ -1,8 +1,6 @@
 import * as React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Appbar, Text} from 'react-native-paper';
-import {useLocation, useNavigate} from 'react-router-native';
-import {getViewNameFromLocation} from '~src/utils/common';
 
 import theme from '~src/theme';
 
@@ -32,18 +30,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const Navigation = () => {
-  let navigate = useNavigate();
-  let location = useLocation();
-
-  const viewName = getViewNameFromLocation(location.pathname);
-
+type Props = {
+  onNavigate: (route: string) => void;
+  viewName: string;
+};
+const NavigationContent: React.FC<Props> = ({onNavigate, viewName}) => {
   return (
     <Appbar style={styles.container}>
       <View style={styles.itemContainer}>
         <Appbar.Action
+          accessibilityLabel="Navigate to live"
           icon="music"
-          onPress={() => navigate('/', {replace: true})}
+          onPress={() => onNavigate('/')}
           color={
             viewName === 'live' ? theme.colors.green : theme.colors.backdrop
           }
@@ -57,8 +55,9 @@ const Navigation = () => {
       </View>
       <View style={styles.itemContainer}>
         <Appbar.Action
+          accessibilityLabel="Navigate to schedule"
           icon="calendar-star"
-          onPress={() => navigate('/schedule', {replace: true})}
+          onPress={() => onNavigate('/schedule')}
           color={
             viewName === 'schedule' ? theme.colors.green : theme.colors.backdrop
           }
@@ -74,8 +73,9 @@ const Navigation = () => {
       </View>
       <View style={styles.itemContainer}>
         <Appbar.Action
+          accessibilityLabel="Navigate to explore"
           icon="album"
-          onPress={() => navigate('/episodes', {replace: true})}
+          onPress={() => onNavigate('/episodes')}
           color={
             viewName === 'episodes' || viewName === 'shows'
               ? theme.colors.green
@@ -93,8 +93,9 @@ const Navigation = () => {
       </View>
       <View style={styles.itemContainer}>
         <Appbar.Action
+          accessibilityLabel="Navigate to my ida"
           icon="account-circle"
-          onPress={() => navigate('/myida', {replace: true})}
+          onPress={() => onNavigate('/myida')}
           color={
             viewName === 'my ida' ? theme.colors.green : theme.colors.backdrop
           }
@@ -110,4 +111,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default NavigationContent;

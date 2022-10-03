@@ -1,8 +1,6 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {IconButton} from 'react-native-paper';
-import {AppContext} from '~src/contexts/main';
-import {openModal} from '~src/contexts/favoriteModal/actions';
 
 import theme from '~src/theme';
 
@@ -19,13 +17,14 @@ const styles = StyleSheet.create({
 });
 
 type Props = {
-  item: any;
+  handlePress: () => void;
+  channel: string;
 };
 
-const FavoriteModalTrigger: React.FC<Props> = ({item}) => {
-  const {dispatch} = useContext(AppContext);
-
-  const channel = item.taxonomies.channel[0].slug;
+const FavoriteModalTriggerContent: React.FC<Props> = ({
+  handlePress,
+  channel,
+}) => {
   return (
     <View
       style={[
@@ -37,12 +36,7 @@ const FavoriteModalTrigger: React.FC<Props> = ({item}) => {
           channel === 'tallinn' ? theme.colors.primary : theme.colors.accent
         }
         size={30}
-        onPress={() =>
-          openModal(dispatch, {
-            isOpen: true,
-            item,
-          })
-        }
+        onPress={() => handlePress()}
         icon="dots-horizontal"
         accessibilityLabel="Press to save to favorites"
       />
@@ -50,4 +44,4 @@ const FavoriteModalTrigger: React.FC<Props> = ({item}) => {
   );
 };
 
-export default FavoriteModalTrigger;
+export default FavoriteModalTriggerContent;

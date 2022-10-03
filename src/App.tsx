@@ -23,7 +23,7 @@ import {getLiveShows} from './contexts/live/actions';
 import {getFullSchedule} from './contexts/schedule/actions';
 import {getMsToNextHour} from './utils/common';
 
-import {setupPlayer} from './components/trackPlayer';
+import {setupPlayer} from './services/trackPlayer';
 
 import theme from './theme';
 import {getFavorites} from './contexts/favorites/actions';

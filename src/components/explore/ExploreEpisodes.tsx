@@ -50,7 +50,7 @@ const ExploreEpisodes: React.FC = () => {
       <FlatList
         data={data?.pages.map(page => page).flat()}
         renderItem={({item}) => <EpisodeItem item={item} />}
-        // keyExtractor={item => item.id}
+        keyExtractor={item => item.ID}
         onEndReached={() => fetchMore()}
         ListFooterComponent={isFetching ? <Loading /> : null}
         refreshing={isFetching}

@@ -1,17 +1,8 @@
-import React, {
-  FC,
-  MutableRefObject,
-  ReactElement,
-  useRef,
-  useState,
-} from 'react';
+import React, {MutableRefObject} from 'react';
 import {StyleSheet, Text, TouchableOpacity, Modal, View} from 'react-native';
 import {Title} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {useNavigate} from 'react-router-native';
 import theme from '~src/theme';
-
-import {DropdownOptionType} from '../layout/types';
 
 const styles = StyleSheet.create({
   pageTitleStyle: {
@@ -63,48 +54,32 @@ const styles = StyleSheet.create({
   },
 });
 
-const ExploreViewSelector: FC = () => {
-  let navigate = useNavigate();
-  const DropdownButton = useRef() as MutableRefObject<TouchableOpacity>;
-  const [visible, setVisible] = useState(false);
-  const [selected, setSelected] = useState({
-    label: 'EXPLORE EPISODES',
-    value: 'episodes',
-  });
-  const [dropdownTop, setDropdownTop] = useState(0);
+type DropdownItem = {
+  label: string;
+  value: string;
+};
 
-  const toggleDropdown = (): void => {
-    visible ? setVisible(false) : openDropdown();
-  };
+type Props = {
+  DropdownButton: MutableRefObject<TouchableOpacity>;
+  toggleDropdown: () => void;
+  visible: boolean;
+  dropdownTop: number;
+  onItemPress: (item: DropdownItem) => void;
+  setVisible: (visibility: boolean) => void;
+  selected: DropdownItem;
+};
 
-  const openDropdown = (): void => {
-    DropdownButton.current.measure(
-      (
-        _fx: number,
-        _fy: number,
-        _w: number,
-        h: number,
-        _px: number,
-        py: number,
-      ) => {
-        setDropdownTop(py + h);
-      },
-    );
-    setVisible(true);
-  };
-
-  const onSelect = (item: {label: string; value: string}) => {
-    navigate(`/${item.value}`);
-  };
-
-  const onItemPress = (item: DropdownOptionType): void => {
-    setSelected(item);
-    onSelect(item);
-    setVisible(false);
-  };
-
-  const renderDropdown = (): ReactElement<any, any> => {
-    return (
+const ExploreViewSelectorContent: React.FC<Props> = ({
+  DropdownButton,
+  dropdownTop,
+  toggleDropdown,
+  setVisible,
+  onItemPress,
+  selected,
+  visible,
+}) => {
+  return (
+    <TouchableOpacity ref={DropdownButton} onPress={toggleDropdown}>
       <Modal visible={visible} transparent animationType="none">
         <TouchableOpacity
           style={styles.overlay}
@@ -130,20 +105,12 @@ const ExploreViewSelector: FC = () => {
           </View>
         </TouchableOpacity>
       </Modal>
-    );
-  };
-
-  return (
-    <>
-      <TouchableOpacity ref={DropdownButton} onPress={toggleDropdown}>
-        {renderDropdown()}
-        <Title style={styles.pageTitleStyle}>
-          {selected && selected.label}
-          <Icon style={styles.icon} name="chevron-down" />
-        </Title>
-      </TouchableOpacity>
-    </>
+      <Title style={styles.pageTitleStyle}>
+        {selected && selected.label}
+        <Icon style={styles.icon} name="chevron-down" />
+      </Title>
+    </TouchableOpacity>
   );
 };
 
-export default ExploreViewSelector;
+export default ExploreViewSelectorContent;

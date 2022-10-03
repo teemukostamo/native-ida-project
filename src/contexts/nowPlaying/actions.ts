@@ -9,7 +9,7 @@ import {
 } from './reducer';
 import {HELSINKI_LIVE_URL, TALLINN_LIVE_URL} from '../../constants';
 
-import {startPlayback, stopPlayback} from '../../components/trackPlayer';
+import {startPlayback, stopPlayback} from '../../services/trackPlayer';
 
 export const onTallinnPlayPress = async (
   dispatch: Dispatch<ActionTypes>,

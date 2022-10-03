@@ -1,15 +1,11 @@
-import React, {useContext, useState} from 'react';
+import React from 'react';
 import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 
-import ChannelButtons from './ChannelButtons';
-import Dropdown from './Dropdown';
-import SearchBar from './SearchBar';
-import {GENRE_OPTIONS} from '~src/constants';
-import {clearFilters} from '~src/contexts/filters/actions';
-import {areFiltersSet} from '~src/utils/common';
+import ChannelButtons from '../ChannelButtons';
+import GenreDropdown from '../GenreDropdown';
+import SearchBar from '../SearchBar';
 
 import theme from '~src/theme';
-import {AppContext} from '~src/contexts/main';
 
 const styles = StyleSheet.create({
   filterBtnContainer: {
@@ -37,11 +33,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const Filters: React.FC = () => {
-  const [showFilters, setShowFilters] = useState(false);
-  const {state, dispatch} = useContext(AppContext);
-  const filtersSet = areFiltersSet(state.filters);
+type Props = {
+  showFilters: boolean;
+  filtersSet: boolean;
+  setShowFilters: (value: boolean) => void;
+  handleClearFilters: () => void;
+};
 
+const FiltersContent: React.FC<Props> = ({
+  setShowFilters,
+  showFilters,
+  filtersSet,
+  handleClearFilters,
+}) => {
   return (
     <View>
       <View style={styles.filterBtnContainer}>
@@ -55,7 +59,7 @@ const Filters: React.FC = () => {
           </Text>
         </TouchableOpacity>
         {filtersSet && (
-          <TouchableOpacity onPress={() => clearFilters(dispatch)}>
+          <TouchableOpacity onPress={() => handleClearFilters()}>
             <Text style={[styles.filterBtn, styles.filterSet]}>
               CLEAR FILTERS
             </Text>
@@ -65,7 +69,7 @@ const Filters: React.FC = () => {
       {showFilters && (
         <View>
           <SearchBar />
-          <Dropdown data={GENRE_OPTIONS} label={'GENRES'} />
+          <GenreDropdown />
           <ChannelButtons />
         </View>
       )}
@@ -73,4 +77,4 @@ const Filters: React.FC = () => {
   );
 };
 
-export default Filters;
+export default FiltersContent;
