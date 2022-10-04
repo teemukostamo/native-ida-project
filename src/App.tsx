@@ -7,7 +7,7 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import AboutView from './components/about';
 import SupportView from './components/support';
 import Navigation from './components/layout/Navigation';
-import NowPlayingBar from './components/nowPlaying';
+import NowPlaying from './components/nowPlaying';
 import LiveView from './components/live';
 import ScheduleView from './components/schedule';
 import MyIdaView from './components/myida';
@@ -103,7 +103,7 @@ const App = () => {
                 <Route path="/episodes/:slug/:id" element={<EpisodePage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
-              <NowPlayingBar />
+              <NowPlaying />
               <Navigation />
             </SafeAreaView>
           </QueryClientProvider>

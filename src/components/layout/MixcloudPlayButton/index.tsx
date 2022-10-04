@@ -25,6 +25,7 @@ const MixcloudPlayButton: React.FC<Props> = ({item}) => {
       item.show_title,
       item.related_show_artist,
       item.mixcloud,
+      channel,
     );
   };
 

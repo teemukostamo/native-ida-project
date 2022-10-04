@@ -12,6 +12,9 @@ type Props = {
 const EpisodeDetails: React.FC<Props> = ({item}) => {
   const {dispatch} = useContext(AppContext);
 
+  const channel =
+    (item.taxonomies.channel && item.taxonomies.channel[0].slug) || '';
+
   const onPlayPress = (episodeItem: LatestEpisode) => {
     addToPlayHistory(dispatch, episodeItem);
     onPlayMixcloudPress(
@@ -19,6 +22,7 @@ const EpisodeDetails: React.FC<Props> = ({item}) => {
       episodeItem.title,
       episodeItem.related_show_artist,
       episodeItem.mixcloud,
+      channel,
     );
   };
 

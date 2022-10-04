@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: 5,
   },
   titleTextContainer: {
     flex: 1,
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
   },
   playButton: {
     alignSelf: 'flex-end',
-    marginBottom: 12,
+    marginBottom: 1,
   },
   liveInContainer: {
     margin: 5,
@@ -112,20 +113,40 @@ const OnAir: React.FC<Props> = ({studio, nowPlaying, liveShow, genres}) => {
           stopPlayerPress(dispatch);
         } else {
           if (studio === 'helsinki') {
-            onHelsinkiPlayPress(dispatch, liveShow.show_title, liveShow.artist);
+            onHelsinkiPlayPress(
+              dispatch,
+              liveShow.show_title,
+              liveShow.artist,
+              image.uri,
+            );
           }
           if (studio === 'tallinn') {
-            onTallinnPlayPress(dispatch, liveShow.show_title, liveShow.artist);
+            onTallinnPlayPress(
+              dispatch,
+              liveShow.show_title,
+              liveShow.artist,
+              image.uri,
+            );
           }
         }
       }
 
       if (!nowPlaying.nowPlaying) {
         if (studio === 'tallinn') {
-          onTallinnPlayPress(dispatch, liveShow.show_title, liveShow.artist);
+          onTallinnPlayPress(
+            dispatch,
+            liveShow.show_title,
+            liveShow.artist,
+            image.uri,
+          );
         }
         if (studio === 'helsinki') {
-          onHelsinkiPlayPress(dispatch, liveShow.show_title, liveShow.artist);
+          onHelsinkiPlayPress(
+            dispatch,
+            liveShow.show_title,
+            liveShow.artist,
+            image.uri,
+          );
         }
       }
     };
@@ -138,16 +159,16 @@ const OnAir: React.FC<Props> = ({studio, nowPlaying, liveShow, genres}) => {
             resizeMode="cover"
             style={styles.image}>
             <View style={styles.liveTextContainer}>
-              <Text style={styles.liveTextStyle}>
+              {/* <Text style={styles.liveTextStyle}>
                 Live in {studio.toUpperCase()}
-              </Text>
+              </Text> */}
+              <GenreButtonsContent
+                channel={studio}
+                genres={genres}
+                setChannel={() => {}}
+                setGenre={() => {}}
+              />
             </View>
-            <GenreButtonsContent
-              channel={studio}
-              genres={genres}
-              setChannel={() => {}}
-              setGenre={() => {}}
-            />
           </ImageBackground>
         </View>
         <View style={styles.titleContainer}>
@@ -169,6 +190,10 @@ const OnAir: React.FC<Props> = ({studio, nowPlaying, liveShow, genres}) => {
             </Title>
           </View>
           <IconButton
+            color={
+              studio === 'helsinki' ? theme.colors.gray : theme.colors.text
+            }
+            size={30}
             style={styles.playButton}
             icon={
               nowPlaying.nowPlaying && nowPlaying.studio === studio

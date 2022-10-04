@@ -18,7 +18,7 @@ export const startPlayback = async (
   url: string,
   show_title: string,
   artist: string,
-  // imageUrl: string,
+  image: string,
 ) => {
   await TrackPlayer.reset();
   await TrackPlayer.add([
@@ -28,7 +28,7 @@ export const startPlayback = async (
       type: TrackType.Default,
       title: show_title,
       artist,
-      // artwork: imageUrl,
+      artwork: image,
     },
   ]);
   await TrackPlayer.play();
