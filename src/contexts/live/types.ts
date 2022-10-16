@@ -68,13 +68,13 @@ export type LiveShowData =
 
 export type LiveShows = {
   tallinn: {
-    live_show: LiveShowData;
-    next_show: NextShow;
+    live_show: LiveShowData | FalseType;
+    next_show: NextShow | FalseType;
     video_stream: string;
   };
   helsinki: {
     live_show: LiveShowData | FalseType;
-    next_show: NextShow;
+    next_show: NextShow | FalseType;
     video_stream: string;
   };
 } | null;

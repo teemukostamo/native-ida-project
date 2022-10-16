@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const ShowPage: React.FC = () => {
+const ShowView: React.FC = () => {
   const [pageNumber, setPageNumber] = useState(1);
   let {slug, id} = useParams();
 
@@ -109,4 +109,4 @@ const ShowPage: React.FC = () => {
   return null;
 };
 
-export default ShowPage;
+export default ShowView;

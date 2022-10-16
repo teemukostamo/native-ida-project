@@ -8,7 +8,6 @@ describe('About', () => {
     const {getByText} = await render(<Account />);
     expect(getByText('LOGIN')).toBeDefined();
     expect(getByText('ABOUT')).toBeDefined();
-    expect(getByText('CREATE ACCOUNT')).toBeDefined();
     expect(getByText('SUPPORT')).toBeDefined();
     expect(getByText('SETTINGS')).toBeDefined();
   });

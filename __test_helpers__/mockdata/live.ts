@@ -34,3 +34,16 @@ export const offAir = {
     video_stream: 'https://www.mixcloud.com/live/IDA_RAADIO/',
   },
 };
+
+export const offline = {
+  tallinn: {
+    live_show: false,
+    next_show: false,
+    video_stream: '',
+  },
+  helsinki: {
+    live_show: false,
+    next_show: false,
+    video_stream: 'https://www.mixcloud.com/live/IDA_RAADIO/',
+  },
+};

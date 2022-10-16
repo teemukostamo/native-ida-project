@@ -1,17 +1,10 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {View, ImageBackground, StyleSheet} from 'react-native';
 import {Title, Text, IconButton} from 'react-native-paper';
-import {AppContext} from '~src/contexts/main';
 
 import {NowPlayingState} from '~src/contexts/nowPlaying/types';
 import {LiveShowData} from '~src/contexts/live/types';
-import GenreButtonsContent from '../layout/GenreButtons/GenreButtonsContent';
-
-import {
-  stopPlayerPress,
-  onTallinnPlayPress,
-  onHelsinkiPlayPress,
-} from '~src/contexts/nowPlaying/actions';
+import GenreButtonsContent from '../../layout/GenreButtons/GenreButtonsContent';
 
 import theme from '~src/theme';
 
@@ -95,60 +88,21 @@ interface Props {
   nowPlaying: NowPlayingState;
   liveShow: LiveShowData;
   genres: Taxonomies[];
+  handlePress: () => void;
 }
 
-const OnAir: React.FC<Props> = ({studio, nowPlaying, liveShow, genres}) => {
-  const {dispatch} = useContext(AppContext);
-
+const OnAirContent: React.FC<Props> = ({
+  studio,
+  nowPlaying,
+  liveShow,
+  genres,
+  handlePress,
+}) => {
   if (liveShow) {
     const image = {
       uri: liveShow.episode_image
         ? liveShow.episode_image.url
         : liveShow.show_image.url,
-    };
-
-    const handlePress = () => {
-      if (nowPlaying.nowPlaying) {
-        if (studio === nowPlaying.studio) {
-          stopPlayerPress(dispatch);
-        } else {
-          if (studio === 'helsinki') {
-            onHelsinkiPlayPress(
-              dispatch,
-              liveShow.show_title,
-              liveShow.artist,
-              image.uri,
-            );
-          }
-          if (studio === 'tallinn') {
-            onTallinnPlayPress(
-              dispatch,
-              liveShow.show_title,
-              liveShow.artist,
-              image.uri,
-            );
-          }
-        }
-      }
-
-      if (!nowPlaying.nowPlaying) {
-        if (studio === 'tallinn') {
-          onTallinnPlayPress(
-            dispatch,
-            liveShow.show_title,
-            liveShow.artist,
-            image.uri,
-          );
-        }
-        if (studio === 'helsinki') {
-          onHelsinkiPlayPress(
-            dispatch,
-            liveShow.show_title,
-            liveShow.artist,
-            image.uri,
-          );
-        }
-      }
     };
 
     return (
@@ -159,9 +113,6 @@ const OnAir: React.FC<Props> = ({studio, nowPlaying, liveShow, genres}) => {
             resizeMode="cover"
             style={styles.image}>
             <View style={styles.liveTextContainer}>
-              {/* <Text style={styles.liveTextStyle}>
-                Live in {studio.toUpperCase()}
-              </Text> */}
               <GenreButtonsContent
                 channel={studio}
                 genres={genres}
@@ -206,7 +157,8 @@ const OnAir: React.FC<Props> = ({studio, nowPlaying, liveShow, genres}) => {
       </View>
     );
   }
+
   return null;
 };
 
-export default OnAir;
+export default OnAirContent;

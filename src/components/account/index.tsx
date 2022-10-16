@@ -35,21 +35,18 @@ const Account = () => {
         <Text style={styles.linkText}>LOGIN</Text>
       </TouchableOpacity>
       <TouchableOpacity>
-        <Text style={styles.linkText}>CREATE ACCOUNT</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigate('/about')}>
-        <Text style={styles.linkText}>ABOUT</Text>
+        <Text style={styles.linkText}>SETTINGS</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigate('/support')}>
         <Text style={styles.linkText}>SUPPORT</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.linkText}>SETTINGS</Text>
+      <TouchableOpacity onPress={() => navigate('/about')}>
+        <Text style={styles.linkText}>ABOUT</Text>
       </TouchableOpacity>
 
-      {/* Temporary for dev puposes. Reload app after clear to update state also  */}
+      {/* Clears async storage. Reload app after clear to update state also  */}
       <TouchableOpacity onPress={() => FavoriteStorage.removeFavorites()}>
-        <Text style={styles.linkText}>CLEAR ASYNC STORAGE</Text>
+        <Text style={styles.linkText}>CLEAR HISTORY AND FAVORITES</Text>
       </TouchableOpacity>
       <BackButton />
     </View>
