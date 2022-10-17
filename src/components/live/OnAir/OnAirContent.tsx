@@ -141,6 +141,7 @@ const OnAirContent: React.FC<Props> = ({
             </Title>
           </View>
           <IconButton
+            accessibilityLabel={`Play live stream from ${studio}`}
             color={
               studio === 'helsinki' ? theme.colors.gray : theme.colors.text
             }
