@@ -47,18 +47,15 @@ const App = () => {
     let isMounted = true;
     if (isMounted) {
       getLiveShows(dispatch);
-      //getLatestEpisodes(dispatch);
       getFullSchedule(dispatch);
       getFavorites(dispatch);
 
       setTimeout(() => {
         getLiveShows(dispatch);
-        //getLatestEpisodes(dispatch);
         console.log('fetched shows at the next hour at: ', new Date());
 
         setInterval(() => {
           getLiveShows(dispatch);
-          //getLatestEpisodes(dispatch);
           console.log('fetched shows at every hour at: ', new Date());
         }, 3600000);
       }, getMsToNextHour());
