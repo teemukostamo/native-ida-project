@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Image, StyleSheet, Pressable} from 'react-native';
 import {Text, IconButton} from 'react-native-paper';
 
-import Mixcloud from './Mixcloud';
+import MixcloudPlayer from './MixcloudPlayer';
 
 import theme from '~src/theme';
 
@@ -177,7 +177,7 @@ const NowPlayingBar: React.FC<Props> = ({
         </View>
       ) : (
         <View style={styles.flexContainer}>
-          <Mixcloud />
+          <MixcloudPlayer />
           <Pressable
             accessibilityLabel="Close player"
             onPress={() => handleCloseNowPlaying()}

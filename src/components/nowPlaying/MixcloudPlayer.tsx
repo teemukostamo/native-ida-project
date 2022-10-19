@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {WebView} from 'react-native-webview';
 import {AppContext} from '~src/contexts/main';
 
-const Mixcloud = () => {
+const MixcloudPlayer = () => {
   const {state} = useContext(AppContext);
   const {nowPlaying} = state;
 
@@ -52,4 +52,4 @@ const Mixcloud = () => {
   return null;
 };
 
-export default Mixcloud;
+export default MixcloudPlayer;
