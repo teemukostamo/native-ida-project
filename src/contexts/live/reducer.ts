@@ -11,5 +11,3 @@ export const liveShowsReducer = (state: LiveShows, action: ActionTypes) => {
       return state;
   }
 };
-
-export const initialLiveState = {};

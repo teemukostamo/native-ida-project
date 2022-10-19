@@ -5,6 +5,7 @@ export const PLAY_HELSINKI = 'PLAY_HELSINKI';
 export const PLAY_TALLINN = 'PLAY_TALLINN';
 export const PLAY_MIXCLOUD = 'PLAY_MIXCLOUD';
 export const STOP = 'STOP';
+export const CLOSE_NOW_PLAYING = 'CLOSE_NOW_PLAYING';
 
 export const nowPlayingReducer = (
   state: NowPlayingState,
@@ -20,6 +21,7 @@ export const nowPlayingReducer = (
         studio: 'helsinki',
         show_title: action.data.show_title,
         artist: action.data.artist,
+        image: action.data.image,
       };
     case PLAY_TALLINN:
       return {
@@ -30,6 +32,7 @@ export const nowPlayingReducer = (
         studio: 'tallinn',
         show_title: action.data.show_title,
         artist: action.data.artist,
+        image: action.data.image,
       };
     case PLAY_MIXCLOUD:
       return {
@@ -37,15 +40,20 @@ export const nowPlayingReducer = (
         nowPlaying: true,
         showNowPlayingBar: true,
         streamType: 'mixcloud',
-        studio: null,
+        studio: action.data.studio,
         show_title: action.data.show_title,
         artist: action.data.artist,
         mixcloud: action.data.mixcloud,
       };
-    case 'STOP':
+    case STOP:
       return {
         ...state,
         nowPlaying: false,
+      };
+    case CLOSE_NOW_PLAYING:
+      return {
+        ...state,
+        ...initialNowPlaying,
       };
     default:
       return state;
@@ -60,4 +68,5 @@ export const initialNowPlaying = {
   show_title: null,
   artist: null,
   mixcloud: null,
+  image: null,
 };

@@ -1,4 +1,4 @@
-interface Channel {
+export interface Taxonomies {
   name: string;
   slug: string;
 }
@@ -8,23 +8,23 @@ interface EpisodeTime {
   episode_end: string;
 }
 
-interface Sizes {
-  thumbnail: string;
-  thumbnail_width: number;
-  thumbnail_height: number;
-  medium: string;
-  medium_width: number;
-  medium_height: number;
-  medium_large: string;
-  medium_large_width: number;
-  medium_large_height: number;
-  large: string;
-  large_width: number;
-  large_height: number;
-  thumbnail_lqip: string;
-  thumbnail_lqip_width: number;
-  thumbnail_lqip_height: number;
-}
+// interface Sizes {
+//   thumbnail: string;
+//   thumbnail_width: number;
+//   thumbnail_height: number;
+//   medium: string;
+//   medium_width: number;
+//   medium_height: number;
+//   medium_large: string;
+//   medium_large_width: number;
+//   medium_large_height: number;
+//   large: string;
+//   large_width: number;
+//   large_height: number;
+//   thumbnail_lqip: string;
+//   thumbnail_lqip_width: number;
+//   thumbnail_lqip_height: number;
+// }
 
 export interface Image {
   ID: number;
@@ -36,7 +36,7 @@ export interface Image {
   width: number;
   height: number;
   srcset: string;
-  sizes: Sizes;
+  sizes: any;
 }
 
 interface NextShow {
@@ -60,20 +60,21 @@ export type LiveShowData =
       show_image: Image;
       episode_image?: Image;
       taxonomies: {
-        channel: Array<Channel>;
+        channel: Array<Taxonomies>;
+        genres?: Array<Taxonomies>;
       };
     }
   | FalseType;
 
 export type LiveShows = {
   tallinn: {
-    live_show: LiveShowData;
-    next_show: NextShow;
+    live_show: LiveShowData | FalseType;
+    next_show: NextShow | FalseType;
     video_stream: string;
   };
   helsinki: {
     live_show: LiveShowData | FalseType;
-    next_show: NextShow;
+    next_show: NextShow | FalseType;
     video_stream: string;
   };
 } | null;

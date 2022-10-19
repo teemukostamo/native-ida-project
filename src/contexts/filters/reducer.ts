@@ -37,6 +37,7 @@ export const filtersReducer = (state: FiltersType, action: ActionTypes) => {
       return state;
   }
 };
+
 export const initialFiltersState = {
   channel: 'all',
   searchQuery: '',

@@ -1,47 +1,27 @@
 import React, {useContext, useState} from 'react';
 import {useTrackPlayerEvents, Event, State} from 'react-native-track-player';
-
-import {AppContext} from '../../contexts/main';
 import {
+  closeNowPlaying,
   stopPlayerPress,
   onTallinnPlayPress,
   onHelsinkiPlayPress,
-} from '../../contexts/nowPlaying/actions';
+} from '~src/contexts/nowPlaying/actions';
+import {AppContext} from '~src/contexts/main';
 
-import {View, StyleSheet} from 'react-native';
-import {Text, IconButton} from 'react-native-paper';
+import NowPlayingBar from './NowPlayingBar';
 
-import Mixcloud from './mixcloud';
-
-import theme from '../../theme';
-
-const styles = StyleSheet.create({
-  container: {
-    height: 55,
-    backgroundColor: theme.colors.gray,
-    flexDirection: 'row',
-  },
-  flexContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  playButtonContainer: {
-    alignSelf: 'flex-end',
-    marginBottom: 12,
-    flex: 1,
-  },
-  studioText: {
-    fontFamily: 'Menlo-Bold',
-    margin: 5,
-    flex: 5,
-  },
-});
-
-const NowPlayingBar = () => {
+const NowPlaying = () => {
   const {state, dispatch} = useContext(AppContext);
   const [buffering, setBuffering] = useState(false);
-  const {nowPlaying} = state;
+  const {
+    studio,
+    showNowPlayingBar,
+    nowPlaying,
+    show_title,
+    artist,
+    image,
+    streamType,
+  } = state.nowPlaying;
 
   useTrackPlayerEvents([Event.PlaybackState], async event => {
     console.log('event state', event);
@@ -53,45 +33,48 @@ const NowPlayingBar = () => {
   });
 
   const handlePress = () => {
-    if (nowPlaying.nowPlaying) {
+    if (nowPlaying) {
       stopPlayerPress(dispatch);
     }
 
-    if (
-      !nowPlaying.nowPlaying &&
-      nowPlaying.studio &&
-      nowPlaying.show_title &&
-      nowPlaying.artist
-    ) {
-      if (nowPlaying.studio === 'helsinki') {
-        onHelsinkiPlayPress(dispatch, nowPlaying.show_title, nowPlaying.artist);
+    if (!nowPlaying && studio && show_title) {
+      if (studio === 'helsinki') {
+        onHelsinkiPlayPress(
+          dispatch,
+          show_title,
+          artist || 'Unknown artist',
+          image || 'image not found',
+        );
       }
-      if (nowPlaying.studio === 'tallinn') {
-        onTallinnPlayPress(dispatch, nowPlaying.show_title, nowPlaying.artist);
+      if (studio === 'tallinn') {
+        onTallinnPlayPress(
+          dispatch,
+          show_title,
+          artist || 'Unknown artist',
+          image || 'image not found',
+        );
       }
     }
   };
 
-  return nowPlaying.showNowPlayingBar ? (
-    <View style={styles.container}>
-      {nowPlaying.streamType === 'live' ? (
-        <View style={styles.flexContainer}>
-          <Text style={styles.studioText}>
-            Now playing {nowPlaying.show_title?.toUpperCase()} by{' '}
-            {nowPlaying.artist} from {nowPlaying.studio?.toUpperCase()}
-          </Text>
-          <IconButton
-            icon={
-              buffering ? 'loading' : !nowPlaying.nowPlaying ? 'play' : 'stop'
-            }
-            onPress={() => handlePress()}
-          />
-        </View>
-      ) : (
-        <Mixcloud />
-      )}
-    </View>
-  ) : null;
+  const handleCloseNowPlaying = () => {
+    closeNowPlaying(dispatch);
+  };
+
+  return (
+    <NowPlayingBar
+      handlePress={handlePress}
+      handleCloseNowPlaying={handleCloseNowPlaying}
+      showNowPlayingBar={showNowPlayingBar}
+      buffering={buffering}
+      studio={studio}
+      nowPlaying={nowPlaying}
+      show_title={show_title}
+      artist={artist}
+      image={image}
+      streamType={streamType}
+    />
+  );
 };
 
-export default NowPlayingBar;
+export default NowPlaying;

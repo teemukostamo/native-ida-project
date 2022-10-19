@@ -6,4 +6,5 @@ export interface NowPlayingState {
   show_title: string | null;
   artist: string | null;
   mixcloud: string | null;
+  image: string | null;
 }

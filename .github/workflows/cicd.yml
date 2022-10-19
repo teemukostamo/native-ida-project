@@ -6,9 +6,6 @@ on:
       - develop
       - main
     types: [opened, synchronize]
-  push:
-    branches:
-      - develop
 
 jobs:
   test:

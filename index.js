@@ -8,6 +8,7 @@ import {Provider as PaperProvider} from 'react-native-paper';
 import {name as appName} from './app.json';
 import App from './src/App';
 import TrackPlayer from 'react-native-track-player';
+import {PlaybackService} from '~src/services/trackPlayer/PlaybackService';
 
 import theme from './src/theme';
 
@@ -21,4 +22,4 @@ export default function Main() {
 
 AppRegistry.registerComponent(appName, () => Main);
 
-TrackPlayer.registerPlaybackService(() => require('./service.js'));
+TrackPlayer.registerPlaybackService(() => PlaybackService);

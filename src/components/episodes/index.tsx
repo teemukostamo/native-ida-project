@@ -2,24 +2,25 @@ import React, {useState} from 'react';
 import {View, StyleSheet, FlatList, Text} from 'react-native';
 import {useParams} from 'react-router-native';
 import {useInfiniteQuery, useQuery} from '@tanstack/react-query';
-import theme from '../../theme';
+import theme from '~src/theme';
 import Error from '../layout/Error';
-import EpisodeItem from '../explore/EpisodeItem';
+import EpisodeItem from './EpisodeItem';
 import Loading from '../layout/Loading';
 import EpisodeDetails from './EpisodeDetails';
 import BackButton from '../layout/BackButton';
+import FavoriteModal from '../layout/FavoriteModal';
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.gray,
     flex: 1,
   },
-  epidodesContainer: {
+  episodesContainer: {
     flex: 1,
   },
 });
 
-const EpisodePage: React.FC = () => {
+const EpisodeView: React.FC = () => {
   let {slug, id} = useParams();
 
   const [pageNumber, setPageNumber] = useState(1);
@@ -62,6 +63,7 @@ const EpisodePage: React.FC = () => {
   };
 
   isEpisodeDetailsError && <Error />;
+
   if (isEpisodeDetailsLoading) {
     return (
       <View style={styles.container}>
@@ -73,33 +75,36 @@ const EpisodePage: React.FC = () => {
   }
 
   if (episodeDetails.data) {
-    const channel = episodeDetails.data.taxonomies.channel[0].slug;
-    const genres = episodeDetails.data.taxonomies.genres
-      ? episodeDetails.data.taxonomies.genres
-      : [];
+    const episodeItem = {
+      ID: episodeDetails.data.ID,
+      slug: episodeDetails.data.slug,
+      title: episodeDetails.data.title,
+      episode_time: episodeDetails.data.episode_time,
+      episode_timestamps: episodeDetails.data.episode_time,
+      mixcloud: episodeDetails.data.mixcloud,
+      show_title: episodeDetails.data.show_title,
+      featured_image: episodeDetails.data.featured_image,
+      related_show_ID: episodeDetails.data.related_show_id,
+      related_show_artist: episodeDetails.data.related_show_artist,
+      related_show_slug: episodeDetails.data.related_show_slug,
+      taxonomies: episodeDetails.data.taxonomies,
+      tracklist: episodeDetails.data.tracklist,
+    };
 
     return (
       <View style={styles.container}>
         <BackButton />
-        <View style={styles.epidodesContainer}>
+        <View style={styles.episodesContainer}>
           <FlatList
             ListEmptyComponent={<Loading />}
-            ListHeaderComponent={
-              <EpisodeDetails
-                channel={channel}
-                artist={episodeDetails.data.related_show_artist}
-                title={episodeDetails.data.title}
-                tracklist={episodeDetails.data.tracklist}
-                mixcloud={episodeDetails.data.mixcloud}
-                imageUrl={episodeDetails?.data.featured_image?.url}
-                genres={genres}
-              />
-            }
+            ListHeaderComponent={<EpisodeDetails item={episodeItem} />}
             data={episodes?.pages.map(page => page).flat()}
             renderItem={({item}) => <EpisodeItem item={item} />}
             onEndReached={() => fetchMore()}
             refreshing={isFetching}
+            ListFooterComponent={isFetching ? <Loading /> : null}
           />
+          <FavoriteModal />
         </View>
       </View>
     );
@@ -108,4 +113,4 @@ const EpisodePage: React.FC = () => {
   return null;
 };
 
-export default EpisodePage;
+export default EpisodeView;

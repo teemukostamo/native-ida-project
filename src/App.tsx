@@ -4,25 +4,29 @@ import {NativeRouter, Route, Routes, Navigate} from 'react-router-native';
 import {useTrackPlayerEvents, Event} from 'react-native-track-player';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
+import AboutView from './components/about';
+import SupportView from './components/support';
 import Navigation from './components/layout/Navigation';
-import NowPlayingBar from './components/nowPlaying';
+import NowPlaying from './components/nowPlaying';
 import LiveView from './components/live';
 import ScheduleView from './components/schedule';
 import MyIdaView from './components/myida';
+import AccountView from './components/account';
 import ShowPage from './components/shows';
 import EpisodePage from './components/episodes';
-import Shows from './components/explore/Shows';
-import Episodes from './components/explore/Episodes';
+import ExploreShows from './components/explore/ExploreShows';
+import ExploreEpisodes from './components/explore/ExploreEpisodes';
 import TopBar from './components/layout/TopBar';
 
 import {AppContext, mainReducer, initialState} from './contexts/main';
 import {getLiveShows} from './contexts/live/actions';
 import {getFullSchedule} from './contexts/schedule/actions';
-import {getMsToNextHour} from './utils';
+import {getMsToNextHour} from './utils/common';
 
-import {setupPlayer} from './components/trackPlayer';
+import {setupPlayer} from './services/trackPlayer';
 
 import theme from './theme';
+import {getFavorites} from './contexts/favorites/actions';
 
 const queryClient = new QueryClient();
 
@@ -43,17 +47,15 @@ const App = () => {
     let isMounted = true;
     if (isMounted) {
       getLiveShows(dispatch);
-      //getLatestEpisodes(dispatch);
       getFullSchedule(dispatch);
+      getFavorites(dispatch);
 
       setTimeout(() => {
         getLiveShows(dispatch);
-        //getLatestEpisodes(dispatch);
         console.log('fetched shows at the next hour at: ', new Date());
 
         setInterval(() => {
           getLiveShows(dispatch);
-          //getLatestEpisodes(dispatch);
           console.log('fetched shows at every hour at: ', new Date());
         }, 3600000);
       }, getMsToNextHour());
@@ -89,13 +91,16 @@ const App = () => {
                 <Route path="/" element={<LiveView />} />
                 <Route path="/schedule" element={<ScheduleView />} />
                 <Route path="/myida" element={<MyIdaView />} />
-                <Route path="shows" element={<Shows />} />
-                <Route path="episodes" element={<Episodes />} />
+                <Route path="/account" element={<AccountView />} />
+                <Route path="/about" element={<AboutView />} />
+                <Route path="/support" element={<SupportView />} />
+                <Route path="shows" element={<ExploreShows />} />
+                <Route path="episodes" element={<ExploreEpisodes />} />
                 <Route path="/shows/:slug/:id" element={<ShowPage />} />
                 <Route path="/episodes/:slug/:id" element={<EpisodePage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
-              <NowPlayingBar />
+              <NowPlaying />
               <Navigation />
             </SafeAreaView>
           </QueryClientProvider>

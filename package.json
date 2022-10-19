@@ -7,10 +7,12 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest --transformIgnorePatterns",
+    "test:watch": "jest --transformIgnorePatterns --watch",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prepare": "husky install"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.17.10",
     "@react-native-community/slider": "^4.2.4",
     "@tanstack/react-query": "^4.0.10",
     "date-fns": "^2.29.1",
@@ -36,6 +38,7 @@
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
     "babel-jest": "^26.6.3",
+    "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^7.32.0",
     "eslint-plugin-jest": "^26.6.0",
     "husky": "^8.0.1",
