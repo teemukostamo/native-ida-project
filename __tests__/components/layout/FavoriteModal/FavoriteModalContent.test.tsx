@@ -3,17 +3,20 @@ import FavoriteModalContent from '~src/components/layout/FavoriteModal/FavoriteM
 import {render, fireEvent} from '../../../../__test_helpers__/testUtils';
 
 describe('FavoriteModalContent', () => {
-  it('renders links to favorite episode and show', () => {
+  it('renders links to favorite episode and show', async () => {
     const handleShow = jest.fn();
     const handleEpisode = jest.fn();
+    const handleCloseModal = jest.fn();
 
-    const {getByText} = render(
+    const {getByText} = await render(
       <FavoriteModalContent
         pathName="/episodes"
         showIsFavorite={false}
         episodeIsFavorite={false}
         handleEpisode={handleEpisode}
         handleShow={handleShow}
+        handleCloseModal={handleCloseModal}
+        isOpen={true}
       />,
     );
 
@@ -29,17 +32,20 @@ describe('FavoriteModalContent', () => {
     expect(handleShow).toHaveBeenCalledTimes(1);
   });
 
-  it('does not render episode link when item is show', () => {
+  it('does not render episode link when item is show', async () => {
     const handleShow = jest.fn();
     const handleEpisode = jest.fn();
+    const handleCloseModal = jest.fn();
 
-    const {getByText, queryByText} = render(
+    const {getByText, queryByText} = await render(
       <FavoriteModalContent
         pathName="/shows"
         showIsFavorite={false}
         episodeIsFavorite={false}
         handleEpisode={handleEpisode}
         handleShow={handleShow}
+        handleCloseModal={handleCloseModal}
+        isOpen={true}
       />,
     );
 
@@ -53,17 +59,20 @@ describe('FavoriteModalContent', () => {
     expect(handleShow).toHaveBeenCalledTimes(1);
   });
 
-  it('unfavorites episode if episode is already a favorite', () => {
+  it('unfavorites episode if episode is already a favorite', async () => {
     const handleShow = jest.fn();
     const handleEpisode = jest.fn();
+    const handleCloseModal = jest.fn();
 
-    const {getByText, queryByText} = render(
+    const {getByText, queryByText} = await render(
       <FavoriteModalContent
         pathName="/episodes"
         showIsFavorite={false}
         episodeIsFavorite={true}
         handleEpisode={handleEpisode}
         handleShow={handleShow}
+        handleCloseModal={handleCloseModal}
+        isOpen={true}
       />,
     );
 
@@ -78,17 +87,20 @@ describe('FavoriteModalContent', () => {
     expect(handleEpisode).toHaveBeenCalledTimes(1);
   });
 
-  it('unfavorite show is show is already favorite', () => {
+  it('unfavorite show is show is already favorite', async () => {
     const handleShow = jest.fn();
     const handleEpisode = jest.fn();
+    const handleCloseModal = jest.fn();
 
-    const {getByText, queryByText} = render(
+    const {getByText, queryByText} = await render(
       <FavoriteModalContent
         pathName="/shows"
         showIsFavorite={true}
         episodeIsFavorite={false}
         handleEpisode={handleEpisode}
         handleShow={handleShow}
+        handleCloseModal={handleCloseModal}
+        isOpen={true}
       />,
     );
 

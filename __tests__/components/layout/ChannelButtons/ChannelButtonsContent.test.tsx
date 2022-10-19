@@ -1,12 +1,11 @@
 import React from 'react';
-// import ChannelButtonsContent from '../../../../src/components/layout/ChannelButtons/ChannelButtonsContent';
 import ChannelButtonsContent from '~src/components/layout/ChannelButtons/ChannelButtonsContent';
-import {render, fireEvent} from '../../../../__test_helpers__/testUtils';
+import {render, fireEvent} from '~__test_helpers__/testUtils';
 
 describe('ChannelButtons', () => {
-  it('renders channel buttons', () => {
+  it('renders channel buttons', async () => {
     const handleChange = jest.fn();
-    const {getByText, getByTestId} = render(
+    const {getByText, getByTestId} = await render(
       <ChannelButtonsContent channel="all" handleChange={handleChange} />,
     );
 

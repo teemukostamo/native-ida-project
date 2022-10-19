@@ -7,7 +7,7 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import AboutView from './components/about';
 import SupportView from './components/support';
 import Navigation from './components/layout/Navigation';
-import NowPlayingBar from './components/nowPlaying';
+import NowPlaying from './components/nowPlaying';
 import LiveView from './components/live';
 import ScheduleView from './components/schedule';
 import MyIdaView from './components/myida';
@@ -21,9 +21,9 @@ import TopBar from './components/layout/TopBar';
 import {AppContext, mainReducer, initialState} from './contexts/main';
 import {getLiveShows} from './contexts/live/actions';
 import {getFullSchedule} from './contexts/schedule/actions';
-import {getMsToNextHour} from './utils/utils';
+import {getMsToNextHour} from './utils/common';
 
-import {setupPlayer} from './components/trackPlayer';
+import {setupPlayer} from './services/trackPlayer';
 
 import theme from './theme';
 import {getFavorites} from './contexts/favorites/actions';
@@ -47,18 +47,15 @@ const App = () => {
     let isMounted = true;
     if (isMounted) {
       getLiveShows(dispatch);
-      //getLatestEpisodes(dispatch);
       getFullSchedule(dispatch);
       getFavorites(dispatch);
 
       setTimeout(() => {
         getLiveShows(dispatch);
-        //getLatestEpisodes(dispatch);
         console.log('fetched shows at the next hour at: ', new Date());
 
         setInterval(() => {
           getLiveShows(dispatch);
-          //getLatestEpisodes(dispatch);
           console.log('fetched shows at every hour at: ', new Date());
         }, 3600000);
       }, getMsToNextHour());
@@ -103,7 +100,7 @@ const App = () => {
                 <Route path="/episodes/:slug/:id" element={<EpisodePage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
-              <NowPlayingBar />
+              <NowPlaying />
               <Navigation />
             </SafeAreaView>
           </QueryClientProvider>

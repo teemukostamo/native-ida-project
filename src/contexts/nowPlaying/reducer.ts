@@ -21,6 +21,7 @@ export const nowPlayingReducer = (
         studio: 'helsinki',
         show_title: action.data.show_title,
         artist: action.data.artist,
+        image: action.data.image,
       };
     case PLAY_TALLINN:
       return {
@@ -31,6 +32,7 @@ export const nowPlayingReducer = (
         studio: 'tallinn',
         show_title: action.data.show_title,
         artist: action.data.artist,
+        image: action.data.image,
       };
     case PLAY_MIXCLOUD:
       return {
@@ -38,7 +40,7 @@ export const nowPlayingReducer = (
         nowPlaying: true,
         showNowPlayingBar: true,
         streamType: 'mixcloud',
-        studio: null,
+        studio: action.data.studio,
         show_title: action.data.show_title,
         artist: action.data.artist,
         mixcloud: action.data.mixcloud,
@@ -66,4 +68,5 @@ export const initialNowPlaying = {
   show_title: null,
   artist: null,
   mixcloud: null,
+  image: null,
 };

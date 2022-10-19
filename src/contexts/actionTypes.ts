@@ -66,6 +66,8 @@ interface StartPlayerAction {
     artist: string;
     show_title: string;
     mixcloud: string | null;
+    image: string | null;
+    studio: string;
   };
 }
 

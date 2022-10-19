@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     ...theme.fonts.light,
   },
   tallinn: {
-    color: theme.colors.primary,
+    color: theme.colors.text,
   },
   helsinki: {
     color: theme.colors.gray,
@@ -23,18 +23,16 @@ type Props = {
   channel: string;
 };
 
-const Offline: React.FC<Props> = ({channel}) => {
-  return (
-    <View style={styles.textContainer}>
-      <Text
-        style={[
-          styles.text,
-          channel === 'tallinn' ? styles.tallinn : styles.helsinki,
-        ]}>
-        Offline
-      </Text>
-    </View>
-  );
-};
+const Offline: React.FC<Props> = ({channel}) => (
+  <View style={styles.textContainer}>
+    <Text
+      style={[
+        styles.text,
+        channel === 'tallinn' ? styles.tallinn : styles.helsinki,
+      ]}>
+      Offline
+    </Text>
+  </View>
+);
 
 export default Offline;

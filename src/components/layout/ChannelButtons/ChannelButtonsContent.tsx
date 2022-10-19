@@ -44,7 +44,10 @@ type Props = {
 
 const ChannelButtonsContent: React.FC<Props> = ({handleChange, channel}) => (
   <View style={styles.container}>
-    <Pressable testID="channel-all-btn" onPress={() => handleChange('all')}>
+    <Pressable
+      accessibilityLabel="Show all content"
+      testID="channel-all-btn"
+      onPress={() => handleChange('all')}>
       <Text
         style={[
           styles.textStyle,
@@ -56,6 +59,7 @@ const ChannelButtonsContent: React.FC<Props> = ({handleChange, channel}) => (
       </Text>
     </Pressable>
     <Pressable
+      accessibilityLabel="Show Tallinn content"
       testID="channel-tallinn-btn"
       onPress={() => handleChange('tallinn')}>
       <Text
@@ -69,6 +73,7 @@ const ChannelButtonsContent: React.FC<Props> = ({handleChange, channel}) => (
       </Text>
     </Pressable>
     <Pressable
+      accessibilityLabel="Show Helsinki content"
       testID="channel-helsinki-btn"
       onPress={() => handleChange('helsinki')}>
       <Text

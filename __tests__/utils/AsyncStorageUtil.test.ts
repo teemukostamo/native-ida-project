@@ -14,6 +14,9 @@ describe('FavoritesStorage', () => {
 
     await FavoriteStorage.getFavoriteShows();
     expect(AsyncStorage.getItem).toBeCalledWith('favorites:shows');
+
+    await FavoriteStorage.getPlayHistory();
+    expect(AsyncStorage.getItem).toBeCalledWith('favorites:history');
   });
 
   it('adds shows to storage', async () => {

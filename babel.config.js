@@ -6,6 +6,7 @@ module.exports = {
       {
         alias: {
           '~src': './src',
+          '~__test_helpers__': './__test_helpers__',
         },
       },
     ],

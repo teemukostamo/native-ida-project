@@ -4,7 +4,6 @@ import {useNavigate} from 'react-router-native';
 import {Title} from 'react-native-paper';
 
 import {ShowItemType} from '~src/contexts/shows/types';
-import Error from '../layout/Error';
 
 import theme from '~src/theme';
 import GenreButtons from '../layout/GenreButtons';
@@ -87,56 +86,53 @@ const ShowItem: React.FC<Props> = ({item}) => {
     return null;
   }
 
-  if (item) {
-    const handlePress = () => {
-      navigate(`/shows/${item.slug}/${item.ID}`);
-    };
+  const handlePress = () => {
+    navigate(`/shows/${item?.slug}/${item?.ID}`);
+  };
 
-    const channel =
-      item.taxonomies && item.taxonomies.channel
-        ? item.taxonomies.channel[0].slug
-        : '';
+  const channel =
+    item?.taxonomies && item.taxonomies.channel
+      ? item.taxonomies.channel[0].slug
+      : '';
 
-    return (
-      <View
-        style={[
-          styles.cardContainer,
-          channel === 'helsinki'
-            ? styles.cardContainerHelsinki
-            : styles.cardContainerTallinn,
-        ]}>
-        <ImageBackground
-          source={{
-            uri: item.featured_image
-              ? item.featured_image.sizes.medium_large
-              : '/assets/images/ida-logo-1024.png',
-          }}
-          resizeMode="cover"
-          style={styles.image}>
-          <View style={styles.modalTriggerContainer}>
-            <FavoriteModalTrigger item={item} />
-          </View>
-          <View style={styles.genreButtonsContainer}>
-            <GenreButtons channel={channel} genres={item.taxonomies.genres} />
-          </View>
-        </ImageBackground>
-        <View style={styles.titleContainer}>
-          <View style={styles.titleTextContainer}>
-            <Title
-              onPress={() => handlePress()}
-              style={[
-                styles.showTitleText,
-                channel === 'helsinki' && {color: theme.colors.gray},
-              ]}>
-              {item.title}
-            </Title>
-          </View>
+  return (
+    <View
+      testID="show-item-container"
+      style={[
+        styles.cardContainer,
+        channel === 'helsinki'
+          ? styles.cardContainerHelsinki
+          : styles.cardContainerTallinn,
+      ]}>
+      <ImageBackground
+        source={{
+          uri: item?.featured_image
+            ? item.featured_image.sizes.medium_large
+            : '/assets/images/ida-logo-1024.png',
+        }}
+        resizeMode="cover"
+        style={styles.image}>
+        <View style={styles.modalTriggerContainer}>
+          <FavoriteModalTrigger item={item} />
+        </View>
+        <View style={styles.genreButtonsContainer}>
+          <GenreButtons channel={channel} genres={item?.taxonomies.genres} />
+        </View>
+      </ImageBackground>
+      <View style={styles.titleContainer}>
+        <View style={styles.titleTextContainer}>
+          <Title
+            onPress={() => handlePress()}
+            style={[
+              styles.showTitleText,
+              channel === 'helsinki' && {color: theme.colors.gray},
+            ]}>
+            {item?.title}
+          </Title>
         </View>
       </View>
-    );
-  }
-
-  return <Error />;
+    </View>
+  );
 };
 
 export default ShowItem;

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const EpisodePage: React.FC = () => {
+const EpisodeView: React.FC = () => {
   let {slug, id} = useParams();
 
   const [pageNumber, setPageNumber] = useState(1);
@@ -113,4 +113,4 @@ const EpisodePage: React.FC = () => {
   return null;
 };
 
-export default EpisodePage;
+export default EpisodeView;

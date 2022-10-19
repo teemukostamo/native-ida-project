@@ -1,6 +1,4 @@
 import React, {useContext} from 'react';
-import {Modal, Portal, Provider} from 'react-native-paper';
-
 import {AppContext} from '~src/contexts/main';
 import {closeModal} from '~src/contexts/favoriteModal/actions';
 import {
@@ -12,22 +10,6 @@ import {
 import FavoriteModalContent from './FavoriteModalContent';
 
 import {useLocation} from 'react-router-native';
-import {StyleSheet} from 'react-native';
-import theme from '~src/theme';
-
-const styles = StyleSheet.create({
-  modalContainer: {
-    backgroundColor: theme.colors.darkGray,
-    height: 300,
-    alignSelf: 'stretch',
-    top: 182,
-    zIndex: 9999,
-    elevation: 9999,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-  },
-});
 
 const FavoriteModal = () => {
   const {state, dispatch} = useContext(AppContext);
@@ -68,22 +50,15 @@ const FavoriteModal = () => {
   const location = useLocation();
 
   return (
-    <Provider>
-      <Portal>
-        <Modal
-          visible={isOpen}
-          onDismiss={() => handleCloseModal()}
-          contentContainerStyle={styles.modalContainer}>
-          <FavoriteModalContent
-            pathName={location.pathname}
-            showIsFavorite={showIsFavorite}
-            episodeIsFavorite={episodeIsFavorite}
-            handleShow={handleShow}
-            handleEpisode={handleEpisode}
-          />
-        </Modal>
-      </Portal>
-    </Provider>
+    <FavoriteModalContent
+      pathName={location.pathname}
+      showIsFavorite={showIsFavorite}
+      episodeIsFavorite={episodeIsFavorite}
+      handleShow={handleShow}
+      handleEpisode={handleEpisode}
+      isOpen={isOpen}
+      handleCloseModal={handleCloseModal}
+    />
   );
 };
 
