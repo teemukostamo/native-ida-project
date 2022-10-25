@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Text} from 'react-native-paper';
-import BackButton from '../layout/BackButton';
 
 import FavoriteStorage from '~src/utils/AsyncStorageUtil';
 
@@ -48,7 +47,6 @@ const Account = () => {
       <TouchableOpacity onPress={() => FavoriteStorage.removeFavorites()}>
         <Text style={styles.linkText}>CLEAR HISTORY AND FAVORITES</Text>
       </TouchableOpacity>
-      <BackButton />
     </View>
   );
 };

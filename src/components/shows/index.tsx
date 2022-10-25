@@ -7,7 +7,6 @@ import Error from '../layout/Error';
 import EpisodeItem from '../episodes/EpisodeItem';
 import Loading from '../layout/Loading';
 import ShowDetails from './ShowDetails';
-import BackButton from '../layout/BackButton';
 import FavoriteModal from '../layout/FavoriteModal';
 
 const styles = StyleSheet.create({
@@ -80,7 +79,6 @@ const ShowView: React.FC = () => {
 
     return (
       <View style={styles.container}>
-        <BackButton />
         <View style={styles.epidodesContainer}>
           <FlatList
             ListEmptyComponent={<Loading />}
