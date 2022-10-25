@@ -7,6 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest --transformIgnorePatterns",
+    "test:ci": "jest --transformIgnorePatterns --forceExit",
     "test:watch": "jest --transformIgnorePatterns --watch --detectOpenHandles",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prepare": "husky install"
