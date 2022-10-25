@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.gray,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    height: 40,
   },
   pageTitleStyle: {
     color: theme.colors.backdrop,
@@ -21,6 +22,7 @@ const styles = StyleSheet.create({
   idaStyle: {
     color: theme.colors.backdrop,
     marginRight: 10,
+    marginLeft: 10,
   },
   accountIconStyle: {
     bottom: 15,
@@ -30,17 +32,48 @@ const styles = StyleSheet.create({
 const TopBar: React.FC = () => {
   const location = useLocation();
   let navigate = useNavigate();
-
   const viewName = getViewNameFromLocation(location.pathname);
 
-  return (
-    <View style={styles.container}>
-      {viewName === 'shows' || viewName === 'episodes' ? (
-        <ExploreViewSelector />
-      ) : (
+  if (
+    location.pathname.split('/').length > 2 ||
+    viewName === 'account' ||
+    viewName === 'about' ||
+    viewName === 'support'
+  ) {
+    return (
+      <View style={styles.container}>
+        <IconButton
+          onPress={() => navigate(-1)}
+          accessibilityLabel="Go back"
+          icon="chevron-left"
+          color="white"
+          size={30}
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={{
+            alignSelf: 'flex-end',
+            top: 3,
+            padding: 1,
+          }}
+        />
         <Title style={styles.pageTitleStyle}>{viewName}</Title>
-      )}
-      {viewName === 'my ida' ? (
+        <Title style={styles.idaStyle}>IDA</Title>
+      </View>
+    );
+  }
+
+  if (viewName === 'shows' || viewName === 'episodes') {
+    return (
+      <View style={styles.container}>
+        <ExploreViewSelector />
+        <Title style={styles.idaStyle}>IDA</Title>
+      </View>
+    );
+  }
+
+  if (viewName === 'my ida') {
+    return (
+      <View style={styles.container}>
+        <Title style={styles.idaStyle}>IDA</Title>
         <View style={styles.accountIconStyle}>
           <IconButton
             size={30}
@@ -49,9 +82,14 @@ const TopBar: React.FC = () => {
             onPress={() => navigate('/account')}
           />
         </View>
-      ) : (
-        <Title style={styles.idaStyle}>IDA</Title>
-      )}
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.container}>
+      <Title style={styles.pageTitleStyle}>{viewName}</Title>
+      <Title style={styles.idaStyle}>IDA</Title>
     </View>
   );
 };

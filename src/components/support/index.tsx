@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Text, Title} from 'react-native-paper';
-import BackButton from '../layout/BackButton';
 
 import theme from '~src/theme';
 
@@ -51,7 +50,6 @@ const SupportView = () => {
         <Text style={styles.textContent}>BIC/SWIFT: NDEAFIHH</Text>
         <Text style={styles.textContent}>Mobilepay number: 92555</Text>
       </View>
-      <BackButton />
     </View>
   );
 };
