@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '16.x'
       - name: Install node modules
-        run: npm install
+        run: npm install --legacy-peer-deps
       - name: lint
         run: npm run lint
       - name: test
