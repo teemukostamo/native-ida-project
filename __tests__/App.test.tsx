@@ -1,20 +1,19 @@
-// import React from 'react';
-// import App from '~src/App';
-// import {render} from '@testing-library/react-native';
+import React from 'react';
+import App from '~src/App';
+import {render} from '@testing-library/react-native';
 
 describe('App', () => {
-  it('renders', () => {
-    expect(1 + 1).toBe(2);
-    // const {getByText} = render(<App />);
+  it('renders', async () => {
+    const {findByText} = render(<App />);
 
-    // const liveNavigation = getByText('Live');
-    // const exploreNavigation = getByText('Explore');
-    // const myIdaNavigation = getByText('My Ida');
-    // const scheduleNavigation = getByText('Schedule');
+    const liveNavigation = await findByText('Live');
+    const exploreNavigation = await findByText('Explore');
+    const myIdaNavigation = await findByText('My Ida');
+    const scheduleNavigation = await findByText('Schedule');
 
-    // expect(liveNavigation).toBeDefined();
-    // expect(exploreNavigation).toBeDefined();
-    // expect(myIdaNavigation).toBeDefined();
-    // expect(scheduleNavigation).toBeDefined();
+    expect(liveNavigation).toBeDefined();
+    expect(exploreNavigation).toBeDefined();
+    expect(myIdaNavigation).toBeDefined();
+    expect(scheduleNavigation).toBeDefined();
   });
 });
