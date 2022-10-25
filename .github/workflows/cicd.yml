@@ -5,6 +5,7 @@ on:
     branches:
       - develop
       - main
+      - rn-070-upgrade
     types: [opened, synchronize]
 
 jobs:
