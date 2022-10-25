@@ -99,6 +99,7 @@ type Props = {
   artist: string | null;
   image: string | null;
   streamType: string | null;
+  location: string;
 };
 
 const NowPlayingBar: React.FC<Props> = ({
@@ -112,14 +113,15 @@ const NowPlayingBar: React.FC<Props> = ({
   artist,
   image,
   streamType,
+  location,
 }) => {
-  return showNowPlayingBar ? (
-    <View
-      style={[
-        styles.container,
-        studio === 'helsinki' && styles.containerHelsinki,
-      ]}>
-      {streamType === 'live' ? (
+  if (showNowPlayingBar && streamType === 'live' && location !== '/') {
+    return (
+      <View
+        style={[
+          styles.container,
+          studio === 'helsinki' && styles.containerHelsinki,
+        ]}>
         <View style={styles.flexContainer}>
           {image && (
             <Image
@@ -175,7 +177,17 @@ const NowPlayingBar: React.FC<Props> = ({
             {studio?.toUpperCase()}
           </Text>
         </View>
-      ) : (
+      </View>
+    );
+  }
+
+  if (showNowPlayingBar && streamType === 'mixcloud') {
+    return (
+      <View
+        style={[
+          styles.container,
+          studio === 'helsinki' && styles.containerHelsinki,
+        ]}>
         <View style={styles.flexContainer}>
           <MixcloudPlayer />
           <Pressable
@@ -185,9 +197,11 @@ const NowPlayingBar: React.FC<Props> = ({
             <Text style={styles.closeButtonIcon}>X</Text>
           </Pressable>
         </View>
-      )}
-    </View>
-  ) : null;
+      </View>
+    );
+  }
+
+  return null;
 };
 
 export default NowPlayingBar;

@@ -1,5 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {useTrackPlayerEvents, Event, State} from 'react-native-track-player';
+import {useLocation} from 'react-router-native';
 import {
   closeNowPlaying,
   stopPlayerPress,
@@ -11,6 +12,7 @@ import {AppContext} from '~src/contexts/main';
 import NowPlayingBar from './NowPlayingBar';
 
 const NowPlaying = () => {
+  const location = useLocation();
   const {state, dispatch} = useContext(AppContext);
   const [buffering, setBuffering] = useState(false);
   const {
@@ -66,6 +68,7 @@ const NowPlaying = () => {
       handlePress={handlePress}
       handleCloseNowPlaying={handleCloseNowPlaying}
       showNowPlayingBar={showNowPlayingBar}
+      location={location.pathname}
       buffering={buffering}
       studio={studio}
       nowPlaying={nowPlaying}
