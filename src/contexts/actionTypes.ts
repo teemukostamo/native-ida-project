@@ -2,6 +2,7 @@ import {
   PLAY_HELSINKI,
   PLAY_TALLINN,
   PLAY_MIXCLOUD,
+  UPDATE_NOW_PLAYING,
   STOP,
   CLOSE_NOW_PLAYING,
 } from './nowPlaying/reducer';
@@ -124,6 +125,15 @@ interface ClearPlayHistory {
   type: typeof CLEAR_HISTORY;
 }
 
+interface UpdateNowPlaying {
+  type: typeof UPDATE_NOW_PLAYING;
+  data: {
+    show_title: string;
+    artist: string;
+    image: string;
+  };
+}
+
 type ActionTypes =
   | LiveShowsAction
   | LatestEpisodesAction
@@ -131,6 +141,7 @@ type ActionTypes =
   | ShowPageAction
   | StartPlayerAction
   | StopPlayerAction
+  | UpdateNowPlaying
   | SetFilterAction
   | SetGenresAction
   | ClearFiltersAction

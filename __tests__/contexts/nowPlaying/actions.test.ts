@@ -4,6 +4,7 @@ import {
   onPlayMixcloudPress,
   stopPlayerPress,
   closeNowPlaying,
+  updateNowPlaying,
 } from '~src/contexts/nowPlaying/actions';
 import {
   PLAY_HELSINKI,
@@ -11,6 +12,7 @@ import {
   PLAY_TALLINN,
   STOP,
   CLOSE_NOW_PLAYING,
+  UPDATE_NOW_PLAYING,
 } from '~src/contexts/nowPlaying/reducer';
 import {TALLINN_LIVE_URL, HELSINKI_LIVE_URL} from '~src/constants';
 
@@ -80,6 +82,39 @@ describe('nowplaying actions', () => {
       'DJ COOL BEANS',
       'www.image.com',
     );
+  });
+
+  it('updateNowPlaying', () => {
+    const mockDispatch = jest.fn();
+    onHelsinkiPlayPress(
+      mockDispatch,
+      'Music show',
+      'DJ COOL BEANS',
+      'www.image.com',
+    );
+
+    expect(mockDispatch).toBeCalled();
+    expect(mockDispatch).toBeCalledWith({
+      type: PLAY_HELSINKI,
+      data: {
+        show_title: 'Music show',
+        artist: 'DJ COOL BEANS',
+        image: 'www.image.com',
+        mixcloud: null,
+        studio: 'helsinki',
+      },
+    });
+
+    updateNowPlaying(mockDispatch, 'New Show', 'New DJ', 'www.newImage.com');
+
+    expect(mockDispatch).toBeCalledWith({
+      type: UPDATE_NOW_PLAYING,
+      data: {
+        show_title: 'New Show',
+        artist: 'New DJ',
+        image: 'www.newImage.com',
+      },
+    });
   });
 
   it('onPlayMixcloudPress', () => {
