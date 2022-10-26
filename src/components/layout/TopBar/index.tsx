@@ -16,11 +16,11 @@ const styles = StyleSheet.create({
     height: 40,
   },
   pageTitleStyle: {
-    color: theme.colors.backdrop,
+    color: theme.colors.darkGray,
     marginLeft: 10,
   },
   idaStyle: {
-    color: theme.colors.backdrop,
+    color: theme.colors.darkGray,
     marginRight: 10,
     marginLeft: 10,
   },
