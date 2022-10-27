@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   titleTextContainer: {
     flex: 1,
     marginLeft: 10,
+    justifyContent: 'space-evenly',
   },
   imageContainer: {
     flex: 5,
