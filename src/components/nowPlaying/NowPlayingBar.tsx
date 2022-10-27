@@ -47,11 +47,12 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 1,
     flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    marginLeft: 10,
   },
   showTitleText: {
     ...theme.fonts.regular,
     fontSize: 16,
-    margin: 5,
   },
   textColorGray: {
     color: theme.colors.gray,
@@ -59,8 +60,6 @@ const styles = StyleSheet.create({
   artistText: {
     ...theme.fonts.light,
     fontSize: 12,
-    marginLeft: 5,
-    marginBottom: 2,
   },
 
   channelText: {
@@ -132,6 +131,24 @@ const NowPlayingBar: React.FC<Props> = ({
               style={styles.thumbNail}
             />
           )}
+          <View style={styles.textContainer}>
+            <Text
+              style={[
+                styles.showTitleText,
+                studio === 'helsinki' && styles.textColorGray,
+              ]}>
+              {show_title}
+            </Text>
+            {artist ? (
+              <Text
+                style={[
+                  styles.artistText,
+                  studio === 'helsinki' && styles.textColorGray,
+                ]}>
+                {artist}
+              </Text>
+            ) : null}
+          </View>
           <IconButton
             accessibilityLabel={
               buffering
@@ -148,34 +165,6 @@ const NowPlayingBar: React.FC<Props> = ({
             icon={buffering ? 'loading' : !nowPlaying ? 'play' : 'stop'}
             onPress={() => handlePress()}
           />
-          <View style={styles.textContainer}>
-            <Text
-              style={[
-                styles.showTitleText,
-                studio === 'helsinki' && styles.textColorGray,
-              ]}>
-              {/* take now playing artist from from schedule state */}
-              {show_title?.toUpperCase()}
-            </Text>
-            {artist ? (
-              <Text
-                style={[
-                  styles.artistText,
-                  studio === 'helsinki' && styles.textColorGray,
-                ]}>
-                {artist}
-              </Text>
-            ) : null}
-          </View>
-          <Text
-            style={[
-              styles.channelText,
-              studio === 'helsinki'
-                ? styles.channelStyleHelsinki
-                : styles.channelStyleTallinn,
-            ]}>
-            {studio?.toUpperCase()}
-          </Text>
         </View>
       </View>
     );

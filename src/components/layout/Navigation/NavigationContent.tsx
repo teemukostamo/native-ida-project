@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   textStyle: {
     alignSelf: 'center',
     marginBottom: 20,
-    color: theme.colors.backdrop,
+    color: theme.colors.darkGray,
   },
   selectedTextStyle: {
     alignSelf: 'center',
@@ -43,7 +43,7 @@ const NavigationContent: React.FC<Props> = ({onNavigate, viewName}) => {
           icon="music"
           onPress={() => onNavigate('/')}
           color={
-            viewName === 'live' ? theme.colors.green : theme.colors.backdrop
+            viewName === 'live' ? theme.colors.green : theme.colors.darkGray
           }
         />
         <Text
@@ -59,7 +59,7 @@ const NavigationContent: React.FC<Props> = ({onNavigate, viewName}) => {
           icon="calendar-star"
           onPress={() => onNavigate('/schedule')}
           color={
-            viewName === 'schedule' ? theme.colors.green : theme.colors.backdrop
+            viewName === 'schedule' ? theme.colors.green : theme.colors.darkGray
           }
         />
         <Text
@@ -79,7 +79,7 @@ const NavigationContent: React.FC<Props> = ({onNavigate, viewName}) => {
           color={
             viewName === 'episodes' || viewName === 'shows'
               ? theme.colors.green
-              : theme.colors.backdrop
+              : theme.colors.darkGray
           }
         />
         <Text
@@ -97,7 +97,7 @@ const NavigationContent: React.FC<Props> = ({onNavigate, viewName}) => {
           icon="account-circle"
           onPress={() => onNavigate('/myida')}
           color={
-            viewName === 'my ida' ? theme.colors.green : theme.colors.backdrop
+            viewName === 'my ida' ? theme.colors.green : theme.colors.darkGray
           }
         />
         <Text
