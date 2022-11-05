@@ -27,6 +27,7 @@ describe('NowPlayingBar', () => {
         artist={artist}
         image={image}
         streamType={streamType}
+        location="episodes"
       />,
     );
 
@@ -57,11 +58,11 @@ describe('NowPlayingBar', () => {
         artist={artist}
         image={image}
         streamType={streamType}
+        location="episodes"
       />,
     );
 
-    expect(getByText(show_title.toUpperCase())).toBeDefined();
-    expect(getByText(studio.toUpperCase())).toBeDefined();
+    expect(getByText(show_title)).toBeDefined();
 
     const pause = getByLabelText('Pause stream');
     fireEvent.press(pause);
@@ -92,11 +93,11 @@ describe('NowPlayingBar', () => {
         artist={artist}
         image={image}
         streamType={streamType}
+        location="episodes"
       />,
     );
 
-    expect(getByText(show_title.toUpperCase())).toBeDefined();
-    expect(getByText(studio.toUpperCase())).toBeDefined();
+    expect(getByText(show_title)).toBeDefined();
 
     const play = getByLabelText('Play stream');
     fireEvent.press(play);
@@ -127,11 +128,11 @@ describe('NowPlayingBar', () => {
         artist={artist}
         image={image}
         streamType={streamType}
+        location="episodes"
       />,
     );
 
-    expect(queryByText(show_title.toUpperCase())).toBeNull();
-    expect(queryByText(studio.toUpperCase())).toBeNull();
+    expect(queryByText(show_title)).toBeNull();
 
     expect(queryByLabelText('Play stream')).toBeNull();
     expect(queryByLabelText('Pause stream')).toBeNull();
