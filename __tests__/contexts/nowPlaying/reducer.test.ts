@@ -4,6 +4,7 @@ import {
   PLAY_HELSINKI,
   PLAY_MIXCLOUD,
   PLAY_TALLINN,
+  UPDATE_NOW_PLAYING,
   STOP,
   CLOSE_NOW_PLAYING,
 } from '~src/contexts/nowPlaying/reducer';
@@ -49,6 +50,40 @@ describe('now playing reducer', () => {
       nowPlaying: true,
       showNowPlayingBar: true,
       streamType: 'live',
+    });
+  });
+
+  it('updates now playing state', () => {
+    const state = nowPlayingReducer(initialNowPlaying, {
+      type: PLAY_TALLINN,
+      data: {
+        ...playState,
+        studio: 'tallinn',
+      },
+    });
+
+    expect(state).toEqual({
+      ...playState,
+      studio: 'tallinn',
+      nowPlaying: true,
+      showNowPlayingBar: true,
+      streamType: 'live',
+    });
+
+    const newState = nowPlayingReducer(state, {
+      type: UPDATE_NOW_PLAYING,
+      data: {
+        show_title: 'New show',
+        artist: 'New Artist',
+        image: 'www.newImage.com',
+      },
+    });
+
+    expect(newState).toEqual({
+      ...state,
+      show_title: 'New show',
+      artist: 'New Artist',
+      image: 'www.newImage.com',
     });
   });
 

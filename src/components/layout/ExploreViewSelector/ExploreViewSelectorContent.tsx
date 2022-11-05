@@ -6,7 +6,7 @@ import theme from '~src/theme';
 
 const styles = StyleSheet.create({
   pageTitleStyle: {
-    color: theme.colors.backdrop,
+    color: theme.colors.darkGray,
     marginLeft: 10,
   },
   button: {

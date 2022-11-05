@@ -4,6 +4,7 @@ import {
   PLAY_TALLINN,
   PLAY_HELSINKI,
   PLAY_MIXCLOUD,
+  UPDATE_NOW_PLAYING,
   STOP,
   CLOSE_NOW_PLAYING,
 } from './reducer';
@@ -65,6 +66,22 @@ export const onPlayMixcloudPress = (
       mixcloud,
       image: null,
       studio,
+    },
+  });
+};
+
+export const updateNowPlaying = (
+  dispatch: Dispatch<ActionTypes>,
+  show_title: string,
+  artist: string,
+  image: string,
+) => {
+  dispatch({
+    type: UPDATE_NOW_PLAYING,
+    data: {
+      show_title,
+      artist,
+      image,
     },
   });
 };

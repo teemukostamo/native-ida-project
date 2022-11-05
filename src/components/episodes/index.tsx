@@ -7,7 +7,6 @@ import Error from '../layout/Error';
 import EpisodeItem from './EpisodeItem';
 import Loading from '../layout/Loading';
 import EpisodeDetails from './EpisodeDetails';
-import BackButton from '../layout/BackButton';
 import FavoriteModal from '../layout/FavoriteModal';
 
 const styles = StyleSheet.create({
@@ -93,7 +92,6 @@ const EpisodeView: React.FC = () => {
 
     return (
       <View style={styles.container}>
-        <BackButton />
         <View style={styles.episodesContainer}>
           <FlatList
             ListEmptyComponent={<Loading />}

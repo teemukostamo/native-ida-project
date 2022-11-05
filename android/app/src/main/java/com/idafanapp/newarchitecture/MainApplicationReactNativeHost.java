@@ -1,4 +1,4 @@
-package com.awesometsproject.newarchitecture;
+package com.idafanapp.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -16,12 +16,12 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.UIManager;
 import com.facebook.react.fabric.ComponentFactory;
 import com.facebook.react.fabric.CoreComponentsRegistry;
-import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
+import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.awesometsproject.BuildConfig;
-import com.awesometsproject.newarchitecture.components.MainComponentsRegistry;
-import com.awesometsproject.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.idafanapp.BuildConfig;
+import com.idafanapp.newarchitecture.components.MainComponentsRegistry;
+import com.idafanapp.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,7 +105,7 @@ public class MainApplicationReactNativeHost extends ReactNativeHost {
                 return new FabricJSIModuleProvider(
                     reactApplicationContext,
                     componentFactory,
-                    new EmptyReactNativeConfig(),
+                    ReactNativeConfig.DEFAULT_CONFIG,
                     viewManagerRegistry);
               }
             });

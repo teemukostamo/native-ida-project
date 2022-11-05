@@ -1,16 +1,19 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useTrackPlayerEvents, Event, State} from 'react-native-track-player';
+import {useLocation} from 'react-router-native';
 import {
   closeNowPlaying,
   stopPlayerPress,
   onTallinnPlayPress,
   onHelsinkiPlayPress,
+  updateNowPlaying,
 } from '~src/contexts/nowPlaying/actions';
 import {AppContext} from '~src/contexts/main';
 
 import NowPlayingBar from './NowPlayingBar';
 
 const NowPlaying = () => {
+  const location = useLocation();
   const {state, dispatch} = useContext(AppContext);
   const [buffering, setBuffering] = useState(false);
   const {
@@ -22,6 +25,39 @@ const NowPlaying = () => {
     image,
     streamType,
   } = state.nowPlaying;
+  const helsinki = state.live?.helsinki;
+  const tallinn = state.live?.tallinn;
+
+  useEffect(() => {
+    if (studio === 'helsinki' && helsinki?.live_show && show_title) {
+      if (helsinki.live_show.show_title !== show_title) {
+        updateNowPlaying(
+          dispatch,
+          helsinki.live_show.show_title,
+          helsinki.live_show.artist,
+          helsinki.live_show.show_image.url,
+        );
+      }
+    }
+
+    if (studio === 'tallinn' && tallinn?.live_show && show_title) {
+      if (tallinn.live_show.show_title !== show_title) {
+        updateNowPlaying(
+          dispatch,
+          tallinn.live_show.show_title,
+          tallinn.live_show.artist,
+          tallinn.live_show.show_image.url,
+        );
+      }
+    }
+  }, [
+    dispatch,
+    state.live,
+    helsinki?.live_show,
+    tallinn?.live_show,
+    show_title,
+    studio,
+  ]);
 
   useTrackPlayerEvents([Event.PlaybackState], async event => {
     console.log('event state', event);
@@ -66,6 +102,7 @@ const NowPlaying = () => {
       handlePress={handlePress}
       handleCloseNowPlaying={handleCloseNowPlaying}
       showNowPlayingBar={showNowPlayingBar}
+      location={location.pathname}
       buffering={buffering}
       studio={studio}
       nowPlaying={nowPlaying}

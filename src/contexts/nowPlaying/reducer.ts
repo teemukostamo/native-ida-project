@@ -4,6 +4,7 @@ import {NowPlayingState} from './types';
 export const PLAY_HELSINKI = 'PLAY_HELSINKI';
 export const PLAY_TALLINN = 'PLAY_TALLINN';
 export const PLAY_MIXCLOUD = 'PLAY_MIXCLOUD';
+export const UPDATE_NOW_PLAYING = 'UPDATE_NOW_PLAYING';
 export const STOP = 'STOP';
 export const CLOSE_NOW_PLAYING = 'CLOSE_NOW_PLAYING';
 
@@ -44,6 +45,13 @@ export const nowPlayingReducer = (
         show_title: action.data.show_title,
         artist: action.data.artist,
         mixcloud: action.data.mixcloud,
+      };
+    case UPDATE_NOW_PLAYING:
+      return {
+        ...state,
+        show_title: action.data.show_title,
+        artist: action.data.artist,
+        image: action.data.image,
       };
     case STOP:
       return {

@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "247030184060",
+    "project_id": "idafanapp",
+    "storage_bucket": "idafanapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247030184060:android:f4e9c128147722a5bff1f9",
+        "android_client_info": {
+          "package_name": "com.idafanapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247030184060-rd39495tohqv1288mogtce8t74vle34s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8JP-qBzlWB3YabyZPitZtbn27m0y1Zag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247030184060-rd39495tohqv1288mogtce8t74vle34s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "247030184060-htggdt0ou2fkf8g64de9b8igserg7di3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.IdaFanApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247030184060:android:85c8383c4802811bbff1f9",
+        "android_client_info": {
+          "package_name": "com.idafanapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247030184060-p2592mtnmiql2osbkotg0tknggcpf6c5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.idafanapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "247030184060-rd39495tohqv1288mogtce8t74vle34s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8JP-qBzlWB3YabyZPitZtbn27m0y1Zag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247030184060-rd39495tohqv1288mogtce8t74vle34s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "247030184060-htggdt0ou2fkf8g64de9b8igserg7di3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.IdaFanApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

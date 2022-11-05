@@ -5,6 +5,7 @@ on:
     branches:
       - develop
       - main
+      - rn-070-upgrade
     types: [opened, synchronize]
 
 jobs:
@@ -18,8 +19,8 @@ jobs:
         with:
           node-version: '16.x'
       - name: Install node modules
-        run: npm install
+        run: npm install --legacy-peer-deps
       - name: lint
         run: npm run lint
       - name: test
-        run: npm run test
+        run: npm run test:ci
