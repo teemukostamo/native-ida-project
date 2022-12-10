@@ -51,14 +51,16 @@ jobs:
           path: android/app/build/outputs/apk/release/
 
       - name: Distribute app via Firebase App Distribution
+        uses: w9jds/setup-firebase@main
+        with:
+          tools-version: 11.9.0
+          firebase_token: ${{ secrets.FIREBASE_TOKEN }}
         env:
           firebaseToken: ${{ secrets.FIREBASE_TOKEN }}
           firebaseGroups: ${{ secrets.FIREBASE_GROUPS }}
           firebaseAppId: ${{ secrets.FIREBASE_APP_ID }}
           notes: ${{ github.event.head_commit.message }}
         run: |
-          curl -sL https://firebase.tools | bash
-          export PATH="$(npm config get prefix):$PATH"
           firebase \
             appdistribution:distribute android/app/build/outputs/apk/release/app-release.apk \
             --app $firebaseAppId \
