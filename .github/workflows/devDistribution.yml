@@ -51,6 +51,7 @@ jobs:
           path: android/app/build/outputs/apk/release/
 
       - name: Distribute app via Firebase App Distribution
+        uses: actions/setup-node@master
         env:
           firebaseToken: ${{ secrets.FIREBASE_TOKEN }}
           firebaseGroups: ${{ secrets.FIREBASE_GROUPS }}
