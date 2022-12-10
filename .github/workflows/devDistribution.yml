@@ -52,18 +52,18 @@ jobs:
 
       - name: Distribute app via Firebase App Distribution
         uses: joinflux/firebase-tools@master
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_GROUPS: ${{ secrets.FIREBASE_GROUPS }}
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+          notes: ${{ github.event.head_commit.message }}
         with:
           args:
             appdistribution:distribute android/app/build/outputs/apk/release/app-release.apk \
-            --app $firebaseAppId \
+            --app $FIREBASE_APP_ID \
             --release-notes "$notes" \
-            --groups "$firebaseGroups" \
-            --token "$firebaseToken"
-        env:
-          firebaseToken: ${{ secrets.FIREBASE_TOKEN }}
-          firebaseGroups: ${{ secrets.FIREBASE_GROUPS }}
-          firebaseAppId: ${{ secrets.FIREBASE_APP_ID }}
-          notes: ${{ github.event.head_commit.message }}
+            --groups "$FIREBASE_GROUPS" \
+            --token "$FIREBASE_TOKEN"
 
       # - name: Distribute app via Firebase App Distribution
       #   env:
