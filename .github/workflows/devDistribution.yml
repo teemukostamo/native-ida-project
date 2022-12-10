@@ -57,7 +57,7 @@ jobs:
           firebaseAppId: ${{ secrets.FIREBASE_APP_ID }}
           notes: ${{ github.event.head_commit.message }}
         run: |
-          npm install -g firebase-tools
+          curl -sL https://firebase.tools | bash
           export PATH="$(npm config get prefix):$PATH"
           firebase \
             appdistribution:distribute android/app/build/outputs/apk/release/app-release.apk \
