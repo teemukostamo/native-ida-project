@@ -1,20 +1,27 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {useNavigate} from 'react-router-native';
-import {AppContext} from '~src/contexts/main';
+import useSchedule from '~src/hooks/useSchedule';
 import ScheduleContent from './ScheduleContent';
+import Loading from '../layout/Loading';
+import Error from '../layout/Error';
 
 const ScheduleView = () => {
-  const {state} = useContext(AppContext);
+  const {data, isError, isLoading} = useSchedule();
   let navigate = useNavigate();
-  const {fullSchedule} = state;
 
   const handlePress = (show_title: string, show_id: number) => {
     navigate(`/shows/${show_title}/${show_id}`);
   };
 
-  return (
-    <ScheduleContent fullSchedule={fullSchedule} handlePress={handlePress} />
-  );
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError) {
+    return <Error />;
+  }
+
+  return <ScheduleContent fullSchedule={data} handlePress={handlePress} />;
 };
 
 export default ScheduleView;

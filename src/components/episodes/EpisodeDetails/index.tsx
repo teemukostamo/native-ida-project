@@ -2,11 +2,11 @@ import React, {useContext} from 'react';
 import {onPlayMixcloudPress} from '~src/contexts/nowPlaying/actions';
 import {AppContext} from '~src/contexts/main';
 import {addToPlayHistory} from '~src/contexts/favorites/actions';
-import {LatestEpisode} from '~src/contexts/latest/types';
+import {EpisodeItemType} from '~src/schemas/episode';
 import EpisodeDetailsContent from './EpisodeDetailsContent';
 
 type Props = {
-  item: LatestEpisode;
+  item: EpisodeItemType;
 };
 
 const EpisodeDetails: React.FC<Props> = ({item}) => {
@@ -15,7 +15,7 @@ const EpisodeDetails: React.FC<Props> = ({item}) => {
   const channel =
     (item.taxonomies.channel && item.taxonomies.channel[0].slug) || '';
 
-  const onPlayPress = (episodeItem: LatestEpisode) => {
+  const onPlayPress = (episodeItem: EpisodeItemType) => {
     addToPlayHistory(dispatch, episodeItem);
     onPlayMixcloudPress(
       dispatch,

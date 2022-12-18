@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {ShowItemType} from '../contexts/shows/types';
-import {LatestEpisode} from '../contexts/latest/types';
+import {ShowItemType} from '~src/schemas/show';
+import {EpisodeItemType} from '~src/schemas/episode';
 
 class FavoriteStorage {
   static namespace: string = 'favorites';
@@ -19,12 +19,12 @@ class FavoriteStorage {
     return shows ? JSON.parse(shows) : [];
   }
 
-  static async addEpisode(episode: LatestEpisode) {
+  static async addEpisode(episode: EpisodeItemType) {
     const existingEpisodes = await this.getFavoriteEpisodes();
 
     if (
       !existingEpisodes.some(
-        (existingEpisode: LatestEpisode) => existingEpisode.ID === episode.ID,
+        (existingEpisode: EpisodeItemType) => existingEpisode.ID === episode.ID,
       )
     ) {
       const updatedEpisodes = [...existingEpisodes, episode];
@@ -53,10 +53,10 @@ class FavoriteStorage {
     }
   }
 
-  static async removeEpisode(episodeToRemove: LatestEpisode) {
+  static async removeEpisode(episodeToRemove: EpisodeItemType) {
     const existingEpisodes = await this.getFavoriteEpisodes();
     const updatedEpisodes = existingEpisodes.filter(
-      (episode: LatestEpisode) => episode.ID !== episodeToRemove.ID,
+      (episode: EpisodeItemType) => episode.ID !== episodeToRemove.ID,
     );
 
     await AsyncStorage.setItem(
@@ -82,7 +82,7 @@ class FavoriteStorage {
     return episodes ? JSON.parse(episodes) : [];
   }
 
-  static async addToPlayHistory(episode: LatestEpisode) {
+  static async addToPlayHistory(episode: EpisodeItemType) {
     const existingEpisodes = await this.getFavoriteEpisodes();
     const updatedEpisodes = [...existingEpisodes, episode];
 
@@ -92,10 +92,10 @@ class FavoriteStorage {
     );
   }
 
-  static async removeFromPlayHistory(episodeToRemove: LatestEpisode) {
+  static async removeFromPlayHistory(episodeToRemove: EpisodeItemType) {
     const existingEpisodes = await this.getFavoriteEpisodes();
     const updatedEpisodes = existingEpisodes.filter(
-      (episode: LatestEpisode) => episode.ID !== episodeToRemove.ID,
+      (episode: EpisodeItemType) => episode.ID !== episodeToRemove.ID,
     );
 
     await AsyncStorage.setItem(

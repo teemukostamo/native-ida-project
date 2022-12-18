@@ -3,7 +3,7 @@ import {View, StyleSheet, ImageBackground} from 'react-native';
 import {Text, Title} from 'react-native-paper';
 import {format, parseISO} from 'date-fns';
 import GenreButtons from '../../layout/GenreButtons';
-import {LatestEpisode} from '../../../contexts/latest/types';
+import {EpisodeItemType} from '~src/schemas/episode';
 import MixcloudPlayButton from '../../layout/MixcloudPlayButton';
 import FavoriteModalTrigger from '../../layout/FavoriteModalTrigger';
 
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 });
 
 type Props = {
-  item: LatestEpisode;
+  item: EpisodeItemType;
   handlePress: () => void;
 };
 

@@ -9,6 +9,7 @@ import Filters from '../layout/Filters';
 
 import theme from '~src/theme';
 import FavoriteModal from '../layout/FavoriteModal';
+import {EpisodeSchema} from '~src/schemas/episode';
 
 const styles = StyleSheet.create({
   container: {
@@ -44,18 +45,33 @@ const ExploreEpisodes: React.FC = () => {
     );
   }
 
+  if (data && data.pages) {
+    try {
+      return (
+        <View style={styles.container}>
+          <Filters />
+          <FlatList
+            data={data?.pages.map(page => page).flat()}
+            renderItem={({item}) => (
+              <EpisodeItem item={EpisodeSchema.parse(item)} />
+            )}
+            keyExtractor={item => item.ID}
+            onEndReached={() => fetchMore()}
+            ListFooterComponent={isFetching ? <Loading /> : null}
+            refreshing={isFetching}
+          />
+          <FavoriteModal />
+        </View>
+      );
+    } catch (error) {
+      console.log('error with episodes: ', error);
+      return <Error />;
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <Filters />
-      <FlatList
-        data={data?.pages.map(page => page).flat()}
-        renderItem={({item}) => <EpisodeItem item={item} />}
-        keyExtractor={item => item.ID}
-        onEndReached={() => fetchMore()}
-        ListFooterComponent={isFetching ? <Loading /> : null}
-        refreshing={isFetching}
-      />
-      <FavoriteModal />
+      <Loading />
     </View>
   );
 };

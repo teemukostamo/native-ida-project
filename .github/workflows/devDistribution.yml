@@ -21,10 +21,10 @@ jobs:
           node-version: '16.x'
       - name: Install node modules
         run: npm install --legacy-peer-deps
-      # - name: lint
-      #   run: npm run lint
-      # - name: test
-      #   run: npm run test:ci
+      - name: lint
+        run: npm run lint
+      - name: test
+        run: npm run test:ci
       - name: Cache Gradle Wrapper
         uses: actions/cache@v2
         with:

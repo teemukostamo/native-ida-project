@@ -11,8 +11,8 @@ import {
   CLEAR_HISTORY,
 } from './reducer';
 
-import {ShowItemType} from '../shows/types';
-import {LatestEpisode} from '../latest/types';
+import {ShowItemType} from '~src/schemas/show';
+import {EpisodeItemType} from '~src/schemas/episode';
 
 import FavoriteStorage from '../../utils/AsyncStorageUtil';
 
@@ -54,7 +54,7 @@ export const removeFavoriteShow = async (
 
 export const addFavoriteEpisode = async (
   dispatch: Dispatch<ActionTypes>,
-  data: LatestEpisode,
+  data: EpisodeItemType,
 ) => {
   await FavoriteStorage.addEpisode(data);
   dispatch({
@@ -65,7 +65,7 @@ export const addFavoriteEpisode = async (
 
 export const removeFavoriteEpisode = async (
   dispatch: Dispatch<ActionTypes>,
-  data: LatestEpisode,
+  data: EpisodeItemType,
 ) => {
   await FavoriteStorage.removeEpisode(data);
   dispatch({
@@ -76,7 +76,7 @@ export const removeFavoriteEpisode = async (
 
 export const addToPlayHistory = async (
   dispatch: Dispatch<ActionTypes>,
-  data: LatestEpisode,
+  data: EpisodeItemType,
 ) => {
   await FavoriteStorage.addToPlayHistory(data);
   dispatch({
@@ -87,7 +87,7 @@ export const addToPlayHistory = async (
 
 export const removeFromPlayHistory = async (
   dispatch: Dispatch<ActionTypes>,
-  data: LatestEpisode,
+  data: EpisodeItemType,
 ) => {
   await FavoriteStorage.removeFromPlayHistory(data);
   dispatch({

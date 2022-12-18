@@ -3,7 +3,7 @@ import {View, StyleSheet, ImageBackground} from 'react-native';
 import {useNavigate} from 'react-router-native';
 import {Title} from 'react-native-paper';
 
-import {ShowItemType} from '~src/contexts/shows/types';
+import {ShowItemType} from '~src/schemas/show';
 
 import theme from '~src/theme';
 import GenreButtons from '../layout/GenreButtons';

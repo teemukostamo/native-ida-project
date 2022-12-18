@@ -1,7 +1,7 @@
-import {LatestEpisode} from '../latest/types';
-import {ShowItemType} from '../shows/types';
+import {EpisodeItemType} from '~src/schemas/episode';
+import {ShowItemType} from '~src/schemas/show';
 
 export type FavoriteModalType = {
   isOpen: boolean;
-  item: LatestEpisode | ShowItemType | null;
+  item: EpisodeItemType | ShowItemType | null;
 };
