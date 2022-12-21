@@ -8,8 +8,6 @@ import {
 } from './nowPlaying/reducer';
 import {EpisodeItemType} from '~src/schemas/episode';
 import {ShowItemType} from '~src/schemas/show';
-import {FETCH_LIVE_SHOWS} from './live/reducer';
-import {LiveShows} from './live/types';
 
 import {OPEN_MODAL, CLOSE_MODAL} from './favoriteModal/reducer';
 import {FavoriteModalType} from './favoriteModal/types';
@@ -32,11 +30,6 @@ import {
   SET_GENRE,
   CLEAR_FILTERS,
 } from './filters/reducer';
-
-interface LiveShowsAction {
-  type: typeof FETCH_LIVE_SHOWS;
-  data: LiveShows;
-}
 
 interface StartPlayerAction {
   type: typeof PLAY_HELSINKI | typeof PLAY_TALLINN | typeof PLAY_MIXCLOUD;
@@ -112,7 +105,6 @@ interface UpdateNowPlaying {
 }
 
 type ActionTypes =
-  | LiveShowsAction
   | StartPlayerAction
   | StopPlayerAction
   | UpdateNowPlaying

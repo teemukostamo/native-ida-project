@@ -1,8 +1,5 @@
 import {createContext, Dispatch} from 'react';
 
-import {LiveShows} from './live/types';
-import {liveShowsReducer} from './live/reducer';
-
 import {NowPlayingState} from './nowPlaying/types';
 import {initialNowPlaying, nowPlayingReducer} from './nowPlaying/reducer';
 
@@ -22,7 +19,6 @@ import ActionTypes from './actionTypes';
 
 type InitialStateType = {
   nowPlaying: NowPlayingState;
-  live: LiveShows;
   filters: FiltersType;
   favoriteModal: FavoriteModalType;
   favorites: FavoritesType;
@@ -37,11 +33,10 @@ export const initialState = {
 };
 
 export const mainReducer = (
-  {nowPlaying, live, filters, favoriteModal, favorites}: InitialStateType,
+  {nowPlaying, filters, favoriteModal, favorites}: InitialStateType,
   action: ActionTypes,
 ) => ({
   nowPlaying: nowPlayingReducer(nowPlaying, action),
-  live: liveShowsReducer(live, action),
   filters: filtersReducer(filters, action),
   favoriteModal: favoriteModalReducer(favoriteModal, action),
   favorites: favoritesReducer(favorites, action),

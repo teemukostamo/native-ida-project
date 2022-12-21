@@ -4,6 +4,7 @@ import useSchedule from '~src/hooks/useSchedule';
 import ScheduleContent from './ScheduleContent';
 import Loading from '../layout/Loading';
 import Error from '../layout/Error';
+import {FullScheduleSchema} from '~src/schemas/schedule';
 
 const ScheduleView = () => {
   const {data, isError, isLoading} = useSchedule();
@@ -21,7 +22,17 @@ const ScheduleView = () => {
     return <Error />;
   }
 
-  return <ScheduleContent fullSchedule={data} handlePress={handlePress} />;
+  try {
+    return (
+      <ScheduleContent
+        fullSchedule={FullScheduleSchema.parse(data)}
+        handlePress={handlePress}
+      />
+    );
+  } catch (error) {
+    console.log('error rendering full schedule: ', error);
+    return <Error />;
+  }
 };
 
 export default ScheduleView;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 
-import {LiveShows} from '~src/contexts/live/types';
+import {LiveShowsType} from '~src/schemas/live';
 import {NowPlayingState} from '~src/contexts/nowPlaying/types';
 
 import OnAir from './OnAir';
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 });
 
 interface Props {
-  liveState: LiveShows;
+  liveState: LiveShowsType;
   nowPlaying: NowPlayingState;
 }
 

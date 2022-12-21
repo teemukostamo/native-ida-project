@@ -1,5 +1,4 @@
 import {z} from 'zod';
-
 import {ImageSchema, SlugSchema} from './common';
 
 export const EpisodeSchema = z.object({
