@@ -43,12 +43,12 @@ export const LiveShowsSchema = z.object({
   tallinn: z.object({
     live_show: LiveShowDataSchema,
     next_show: NextShowSchema,
-    video_strem: z.string(),
+    video_strem: z.string().optional(),
   }),
   helsinki: z.object({
     live_show: LiveShowDataSchema,
     next_show: NextShowSchema,
-    video_strem: z.string(),
+    video_strem: z.string().optional(),
   }),
 });
 export type LiveShowsType = z.infer<typeof LiveShowsSchema>;
