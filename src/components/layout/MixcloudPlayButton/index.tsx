@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {LatestEpisode} from '~src/contexts/latest/types';
+import {EpisodeItemType} from '~src/schemas/episode';
 import {AppContext} from '~src/contexts/main';
 import {onPlayMixcloudPress} from '~src/contexts/nowPlaying/actions';
 import {addToPlayHistory} from '~src/contexts/favorites/actions';
@@ -7,7 +7,7 @@ import {addToPlayHistory} from '~src/contexts/favorites/actions';
 import MixcloudPlayButtonContent from './MixcloudPlayButtonContent';
 
 type Props = {
-  item: LatestEpisode;
+  item: EpisodeItemType;
 };
 
 const MixcloudPlayButton: React.FC<Props> = ({item}) => {

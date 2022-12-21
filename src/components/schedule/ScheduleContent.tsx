@@ -4,7 +4,7 @@ import {Title, Text} from 'react-native-paper';
 import {format, parseISO} from 'date-fns';
 
 import theme from '~src/theme';
-import {FullSchedule} from '~src/contexts/schedule/types';
+import {FullScheduleType} from '~src/schemas/schedule';
 
 const styles = StyleSheet.create({
   container: {
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
 
 type Props = {
   handlePress: (slug: string, id: number) => void;
-  fullSchedule: FullSchedule;
+  fullSchedule: FullScheduleType;
 };
 
 const ScheduleContent: React.FC<Props> = ({fullSchedule, handlePress}) => {

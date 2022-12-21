@@ -1,9 +1,12 @@
 import React, {useContext} from 'react';
 import {View, StyleSheet} from 'react-native';
+import useLive from '../../hooks/useLive';
 
 import Tallinn from './Tallinn';
 import Helsinki from './Helsinki';
 import Loading from '../layout/Loading';
+import Error from '../layout/Error';
+
 import {AppContext} from '~src/contexts/main';
 
 const styles = StyleSheet.create({
@@ -14,16 +17,21 @@ const styles = StyleSheet.create({
 
 const LiveView: React.FC = () => {
   const {state} = useContext(AppContext);
+  const {isLoading, isError, data} = useLive();
 
-  return state.live ? (
+  if (isLoading) {
+    return <Loading />;
+  }
+  if (isError) {
+    return <Error />;
+  }
+  return (
     <View style={styles.liveContainer}>
       <View style={styles.liveContainer}>
-        <Tallinn nowPlaying={state.nowPlaying} liveState={state.live} />
-        <Helsinki nowPlaying={state.nowPlaying} liveState={state.live} />
+        <Tallinn nowPlaying={state.nowPlaying} liveState={data} />
+        <Helsinki nowPlaying={state.nowPlaying} liveState={data} />
       </View>
     </View>
-  ) : (
-    <Loading />
   );
 };
 

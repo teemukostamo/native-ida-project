@@ -6,18 +6,8 @@ import {
   STOP,
   CLOSE_NOW_PLAYING,
 } from './nowPlaying/reducer';
-
-import {FETCH_LIVE_SHOWS} from './live/reducer';
-import {LiveShows} from './live/types';
-
-import {FETCH_LATEST_SHOWS} from './latest/reducer';
-import {LatestEpisodes, LatestEpisode} from './latest/types';
-
-import {FETCH_FULL_SCHEDULE} from './schedule/reducer';
-import {FullSchedule} from './schedule/types';
-
-import {SET_SHOW_PAGE_STATE} from './shows/reducer';
-import {ShowItemType} from './shows/types';
+import {EpisodeItemType} from '~src/schemas/episode';
+import {ShowItemType} from '~src/schemas/show';
 
 import {OPEN_MODAL, CLOSE_MODAL} from './favoriteModal/reducer';
 import {FavoriteModalType} from './favoriteModal/types';
@@ -40,26 +30,6 @@ import {
   SET_GENRE,
   CLEAR_FILTERS,
 } from './filters/reducer';
-
-interface LiveShowsAction {
-  type: typeof FETCH_LIVE_SHOWS;
-  data: LiveShows;
-}
-
-interface LatestEpisodesAction {
-  type: typeof FETCH_LATEST_SHOWS;
-  data: LatestEpisodes;
-}
-
-interface FullScheduleAction {
-  type: typeof FETCH_FULL_SCHEDULE;
-  data: FullSchedule;
-}
-
-interface ShowPageAction {
-  type: typeof SET_SHOW_PAGE_STATE;
-  data: ShowItemType;
-}
 
 interface StartPlayerAction {
   type: typeof PLAY_HELSINKI | typeof PLAY_TALLINN | typeof PLAY_MIXCLOUD;
@@ -113,7 +83,7 @@ interface AddRemoveFavoriteEpisodeAction {
     | typeof REMOVE_EPISODE
     | typeof ADD_TO_HISTORY
     | typeof REMOVE_FROM_HISTORY;
-  data: LatestEpisode;
+  data: EpisodeItemType;
 }
 
 interface GetFavoritesAction {
@@ -135,10 +105,6 @@ interface UpdateNowPlaying {
 }
 
 type ActionTypes =
-  | LiveShowsAction
-  | LatestEpisodesAction
-  | FullScheduleAction
-  | ShowPageAction
   | StartPlayerAction
   | StopPlayerAction
   | UpdateNowPlaying

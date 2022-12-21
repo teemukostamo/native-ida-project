@@ -4,7 +4,7 @@ import {IconButton, Title} from 'react-native-paper';
 import theme from '~src/theme';
 import GenreButtons from '../../layout/GenreButtons';
 import {stripHtmlTags, decodeHtmlCharCodes} from '~src/utils/common';
-import {LatestEpisode} from '~src/contexts/latest/types';
+import {EpisodeItemType} from '~src/schemas/episode';
 
 const styles = StyleSheet.create({
   coverImage: {
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
 });
 
 type Props = {
-  item: LatestEpisode;
-  onPlayPress: (episodeItem: LatestEpisode) => void;
+  item: EpisodeItemType;
+  onPlayPress: (episodeItem: EpisodeItemType) => void;
 };
 
 const EpisodeDetailsContent: React.FC<Props> = ({item, onPlayPress}) => {

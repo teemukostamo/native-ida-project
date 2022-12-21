@@ -5,11 +5,11 @@ import ShowItem from '../shows/ShowItem';
 import Filters from '../layout/Filters';
 import Loading from '../layout/Loading';
 import Error from '../layout/Error';
+import FavoriteModal from '../layout/FavoriteModal';
 
 import useShows from '~src/hooks/useShows';
-
+import {ShowSchema} from '~src/schemas/show';
 import theme from '~src/theme';
-import FavoriteModal from '../layout/FavoriteModal';
 
 const styles = StyleSheet.create({
   container: {
@@ -36,19 +36,25 @@ const ExploreShows: React.FC = () => {
       </View>
     );
   }
-  return (
-    <View style={styles.container}>
-      <Filters />
-      <FlatList
-        data={data?.pages.map(page => page).flat()}
-        renderItem={({item}) => <ShowItem item={item} />}
-        keyExtractor={item => item.ID}
-        onEndReached={() => fetchMore()}
-        ListFooterComponent={isFetching ? <Loading /> : null}
-      />
-      <FavoriteModal />
-    </View>
-  );
+
+  try {
+    return (
+      <View style={styles.container}>
+        <Filters />
+        <FlatList
+          data={data?.pages.map(page => page).flat()}
+          renderItem={({item}) => <ShowItem item={ShowSchema.parse(item)} />}
+          keyExtractor={item => item.ID}
+          onEndReached={() => fetchMore()}
+          ListFooterComponent={isFetching ? <Loading /> : null}
+        />
+        <FavoriteModal />
+      </View>
+    );
+  } catch (error) {
+    console.log('error with shows: ', error);
+    return <Error />;
+  }
 };
 
 export default ExploreShows;

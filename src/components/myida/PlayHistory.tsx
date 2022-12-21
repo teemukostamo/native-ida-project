@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
-import {LatestEpisode} from '~src/contexts/latest/types';
+import {EpisodeItemType} from '~src/schemas/episode';
 import EpisodeItem from '../episodes/EpisodeItem';
 import FavoriteModal from '../layout/FavoriteModal';
 import EmptyListPlaceholder from './EmptyListPlaceholder';
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 });
 
 type Props = {
-  episodes: LatestEpisode[];
+  episodes: EpisodeItemType[];
 };
 
 const PlayHistory: React.FC<Props> = ({episodes}) => {

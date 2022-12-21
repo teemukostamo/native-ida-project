@@ -19,14 +19,12 @@ import ExploreEpisodes from './components/explore/ExploreEpisodes';
 import TopBar from './components/layout/TopBar';
 
 import {AppContext, mainReducer, initialState} from './contexts/main';
-import {getLiveShows} from './contexts/live/actions';
-import {getFullSchedule} from './contexts/schedule/actions';
-import {getMsToNextHour} from './utils/common';
-
 import {setupPlayer} from './services/trackPlayer';
 
 import theme from './theme';
 import {getFavorites} from './contexts/favorites/actions';
+import {prefetchSchedule} from './services/schedule';
+import {prefetchLatestEpisodes} from './services/episode';
 
 const queryClient = new QueryClient();
 
@@ -46,19 +44,9 @@ const App = () => {
   useEffect(() => {
     let isMounted = true;
     if (isMounted) {
-      getLiveShows(dispatch);
-      getFullSchedule(dispatch);
+      prefetchSchedule(queryClient);
+      prefetchLatestEpisodes(queryClient);
       getFavorites(dispatch);
-
-      setTimeout(() => {
-        getLiveShows(dispatch);
-        console.log('fetched shows at the next hour at: ', new Date());
-
-        setInterval(() => {
-          getLiveShows(dispatch);
-          console.log('fetched shows at every hour at: ', new Date());
-        }, 3600000);
-      }, getMsToNextHour());
     }
 
     const initPlayer = async () => {

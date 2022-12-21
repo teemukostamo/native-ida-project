@@ -1,13 +1,12 @@
 import React, {useContext} from 'react';
 import {AppContext} from '~src/contexts/main';
 import {openModal} from '~src/contexts/favoriteModal/actions';
-import {LatestEpisode} from '~src/contexts/latest/types';
-import {ShowItemType} from '~src/contexts/shows/types';
-
+import {EpisodeItemType} from '~src/schemas/episode';
+import {ShowItemType} from '~src/schemas/show';
 import FavoriteModalTriggerContent from './FavoriteModalTriggerContent';
 
 type Props = {
-  item: ShowItemType | LatestEpisode;
+  item: ShowItemType | EpisodeItemType;
 };
 
 const FavoriteModalTrigger: React.FC<Props> = ({item}) => {

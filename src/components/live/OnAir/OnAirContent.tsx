@@ -3,7 +3,7 @@ import {View, ImageBackground, StyleSheet} from 'react-native';
 import {Title, Text, IconButton} from 'react-native-paper';
 
 import {NowPlayingState} from '~src/contexts/nowPlaying/types';
-import {LiveShowData} from '~src/contexts/live/types';
+import {LiveShowDataType} from '~src/schemas/live';
 import GenreButtonsContent from '../../layout/GenreButtons/GenreButtonsContent';
 
 import theme from '~src/theme';
@@ -87,7 +87,7 @@ interface Taxonomies {
 interface Props {
   studio: string;
   nowPlaying: NowPlayingState;
-  liveShow: LiveShowData;
+  liveShow: LiveShowDataType;
   genres: Taxonomies[];
   handlePress: () => void;
 }

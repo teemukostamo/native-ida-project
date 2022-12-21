@@ -1,6 +1,6 @@
 import FavoriteStorage from '../../utils/AsyncStorageUtil';
-import {ShowItemType} from '../shows/types';
-import {LatestEpisode} from '../latest/types';
+import {ShowItemType} from '~src/schemas/show';
+import {EpisodeItemType} from '~src/schemas/episode';
 
 export const getFavorites = () => {
   const shows = FavoriteStorage.getFavoriteShows();
@@ -16,6 +16,6 @@ export const addFavoriteShow = (data: ShowItemType) => {
   FavoriteStorage.addShow(data);
 };
 
-export const addFavoriteEpisode = (data: LatestEpisode) => {
+export const addFavoriteEpisode = (data: EpisodeItemType) => {
   FavoriteStorage.addEpisode(data);
 };

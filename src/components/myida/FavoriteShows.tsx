@@ -2,7 +2,7 @@ import React from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 
 import ShowItem from '../shows/ShowItem';
-import {ShowItemType} from '~src/contexts/shows/types';
+import {ShowItemType} from '~src/schemas/show';
 import FavoriteModal from '../layout/FavoriteModal';
 import EmptyListPlaceholder from './EmptyListPlaceholder';
 

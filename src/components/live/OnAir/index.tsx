@@ -2,8 +2,9 @@ import React, {useContext} from 'react';
 import {AppContext} from '~src/contexts/main';
 
 import {NowPlayingState} from '~src/contexts/nowPlaying/types';
-import {LiveShowData} from '~src/contexts/live/types';
+import {LiveShowDataSchema, LiveShowDataType} from '~src/schemas/live';
 import OnAirContent from './OnAirContent';
+import Error from '~src/components/layout/Error';
 import {
   stopPlayerPress,
   onTallinnPlayPress,
@@ -18,7 +19,7 @@ interface Taxonomies {
 interface Props {
   studio: string;
   nowPlaying: NowPlayingState;
-  liveShow: LiveShowData;
+  liveShow: LiveShowDataType;
   genres: Taxonomies[];
 }
 
@@ -77,15 +78,20 @@ const OnAir: React.FC<Props> = ({studio, nowPlaying, liveShow, genres}) => {
     }
   };
 
-  return (
-    <OnAirContent
-      studio={studio}
-      nowPlaying={nowPlaying}
-      liveShow={liveShow}
-      genres={genres}
-      handlePress={handlePress}
-    />
-  );
+  try {
+    return (
+      <OnAirContent
+        studio={studio}
+        nowPlaying={nowPlaying}
+        liveShow={LiveShowDataSchema.parse(liveShow)}
+        genres={genres}
+        handlePress={handlePress}
+      />
+    );
+  } catch (error) {
+    console.log('error in onAir: ', error);
+    return <Error />;
+  }
 };
 
 export default OnAir;

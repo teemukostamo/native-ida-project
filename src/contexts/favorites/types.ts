@@ -1,8 +1,8 @@
-import {ShowItemType} from '../shows/types';
-import {LatestEpisode} from '../latest/types';
+import {ShowItemType} from '~src/schemas/show';
+import {EpisodeItemType} from '~src/schemas/episode';
 
 export type FavoritesType = {
   shows: ShowItemType[];
-  episodes: LatestEpisode[];
-  history: LatestEpisode[];
+  episodes: EpisodeItemType[];
+  history: EpisodeItemType[];
 };

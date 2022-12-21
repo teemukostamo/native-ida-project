@@ -4,13 +4,13 @@ import {render} from '~__test_helpers__/testUtils';
 
 import {initialNowPlaying} from '~src/contexts/nowPlaying/reducer';
 import {offAir, offline} from '~__test_helpers__/mockdata/live';
-import {LiveShows} from '~src/contexts/live/types';
+import {LiveShowsSchema} from '~src/schemas/live';
 
 describe('Tallinn', () => {
   it('renders offair view', async () => {
     const {getByText} = await render(
       <Tallinn
-        liveState={offAir as LiveShows}
+        liveState={LiveShowsSchema.parse(offAir)}
         nowPlaying={initialNowPlaying}
       />,
     );
@@ -22,7 +22,7 @@ describe('Tallinn', () => {
   it('renders offline when next show info not available', async () => {
     const {getByText, queryByText} = await render(
       <Tallinn
-        liveState={offline as LiveShows}
+        liveState={LiveShowsSchema.parse(offline)}
         nowPlaying={initialNowPlaying}
       />,
     );
