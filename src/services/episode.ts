@@ -8,13 +8,12 @@ export const fetchEpisodes = async () => {
 };
 
 export const prefetchLatestEpisodes = async (queryClient: {
-  prefetchQuery: (arg0: {
+  prefetchInfiniteQuery: (arg0: {
     queryKey: string[];
     queryFn: () => Promise<any>;
   }) => any;
 }) => {
-  // The results of this query will be cached like a normal query
-  await queryClient.prefetchQuery({
+  await queryClient.prefetchInfiniteQuery({
     queryKey: initialQueryKey,
     queryFn: fetchEpisodes,
   });
