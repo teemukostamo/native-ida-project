@@ -3,6 +3,7 @@ import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Text} from 'react-native-paper';
 
 import FavoriteStorage from '~src/utils/AsyncStorageUtil';
+import LoginModal from './LoginModal';
 
 import theme from '~src/theme';
 import {useNavigate} from 'react-router-native';
@@ -30,9 +31,7 @@ const Account = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
-        <Text style={styles.linkText}>LOGIN</Text>
-      </TouchableOpacity>
+      <LoginModal />
       <TouchableOpacity>
         <Text style={styles.linkText}>SETTINGS</Text>
       </TouchableOpacity>
