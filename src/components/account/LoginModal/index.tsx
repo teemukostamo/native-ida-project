@@ -11,6 +11,9 @@ import {Button} from 'react-native-paper';
 import {useForm} from 'react-hook-form';
 import FormInput from './FormInput';
 import {EMAIL_REGEX, PASSWORD_REGEX} from '~src/constants';
+import {CredentialsType} from '~src/types';
+import useLogin from '~src/hooks/useLogin';
+
 import theme from '~src/theme';
 
 const styles = StyleSheet.create({
@@ -68,6 +71,7 @@ const styles = StyleSheet.create({
 const LoginModal = () => {
   const [loginVisible, setLoginVisible] = useState(false);
   const [selectedView, setSelectedView] = useState('login');
+  const {login} = useLogin();
 
   const {
     control,
@@ -80,9 +84,14 @@ const LoginModal = () => {
     },
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    setLoginVisible(!loginVisible);
+  const onSubmit = async (data: CredentialsType) => {
+    const {email, password} = data;
+    try {
+      await login({email, password});
+      setLoginVisible(!loginVisible);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
