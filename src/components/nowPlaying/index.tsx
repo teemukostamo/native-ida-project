@@ -9,6 +9,7 @@ import {
   updateNowPlaying,
 } from '~src/contexts/nowPlaying/actions';
 import {AppContext} from '~src/contexts/main';
+import useLive from '../../hooks/useLive';
 
 import NowPlayingBar from './NowPlayingBar';
 
@@ -16,6 +17,8 @@ const NowPlaying = () => {
   const location = useLocation();
   const {state, dispatch} = useContext(AppContext);
   const [buffering, setBuffering] = useState(false);
+  const {data: live} = useLive();
+
   const {
     studio,
     showNowPlayingBar,
@@ -25,8 +28,8 @@ const NowPlaying = () => {
     image,
     streamType,
   } = state.nowPlaying;
-  const helsinki = state.live?.helsinki;
-  const tallinn = state.live?.tallinn;
+  const helsinki = live?.helsinki;
+  const tallinn = live?.tallinn;
 
   useEffect(() => {
     if (studio === 'helsinki' && helsinki?.live_show && show_title) {
@@ -52,7 +55,7 @@ const NowPlaying = () => {
     }
   }, [
     dispatch,
-    state.live,
+    live,
     helsinki?.live_show,
     tallinn?.live_show,
     show_title,
@@ -60,7 +63,6 @@ const NowPlaying = () => {
   ]);
 
   useTrackPlayerEvents([Event.PlaybackState], async event => {
-    console.log('event state', event);
     if (event.state === State.Buffering) {
       setBuffering(true);
     } else {

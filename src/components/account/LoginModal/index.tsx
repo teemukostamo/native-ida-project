@@ -10,7 +10,7 @@ import {
 import {Button} from 'react-native-paper';
 import {useForm} from 'react-hook-form';
 import FormInput from './FormInput';
-
+import {EMAIL_REGEX, PASSWORD_REGEX} from '~src/constants';
 import theme from '~src/theme';
 
 const styles = StyleSheet.create({
@@ -127,11 +127,22 @@ const LoginModal = () => {
               </Pressable>
             </View>
             <View style={styles.inputContainer}>
-              <FormInput errors={errors} control={control} name="email" />
-              <FormInput errors={errors} control={control} name="password" />
+              <FormInput
+                pattern={EMAIL_REGEX}
+                errors={errors}
+                control={control}
+                name="email"
+              />
+              <FormInput
+                pattern={PASSWORD_REGEX}
+                errors={errors}
+                control={control}
+                name="password"
+              />
             </View>
             <View style={styles.buttonContainer}>
               <Button
+                testID="login-form-submit-button"
                 compact={true}
                 mode="contained"
                 onPress={handleSubmit(onSubmit)}>

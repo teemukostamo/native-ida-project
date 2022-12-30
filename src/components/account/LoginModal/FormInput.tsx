@@ -35,17 +35,18 @@ type Props = {
   errors: ErrorsType;
   control: any;
   name: string;
+  pattern: RegExp;
 };
 
-const FormInput: React.FC<Props> = ({errors, control, name}) => {
-  console.log('errors', errors);
-  console.log(control);
+const FormInput: React.FC<Props> = ({errors, control, name, pattern}) => {
+  console.log(errors);
   return (
     <>
       <Controller
         control={control}
         rules={{
           required: true,
+          pattern,
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <>
@@ -64,7 +65,7 @@ const FormInput: React.FC<Props> = ({errors, control, name}) => {
         name={name}
       />
       {errors[name as keyof ErrorsType] && (
-        <Text style={styles.errors}>{name} is required.</Text>
+        <Text style={styles.errors}>Please enter a valid {name}</Text>
       )}
     </>
   );

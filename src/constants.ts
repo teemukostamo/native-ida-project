@@ -1,3 +1,7 @@
+export const EMAIL_REGEX =
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+export const PASSWORD_REGEX =
+  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{5,}$/;
 export const HELSINKI_LIVE_URL = 'https://stream.radio.co/s435d71fd8/listen';
 export const TALLINN_LIVE_URL = 'https://streams.radio.co/s053b51423/listen';
 export const LIVE_SHOWS_URL = 'https://ida-proxy.fly.dev/live';
